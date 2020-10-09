@@ -4,10 +4,15 @@ from sly import Lexer, Parser
 # https://thrift.apache.org/docs/idl
 
 class ThriftLexer(Lexer):
-    tokens = { INCLUDE, IDENTIFIER, COMMA, SEMICOLON, NUMBER, STRING}
+
+    tokens = (NAMESPACE, INCLUDE, STRUCT) + (IDENTIFIER, COMMA, SEMICOLON, NUMBER, STRING)
+
     literals = {':', ';', ',', '{', '}', '(', ')', '=', '<', '>', '[', ']', '*'}
 
     INCLUDE = r'include'
+    NAMESPACE = r'namespace'
+    STRUCT = r'struct'
+
     IDENTIFIER = r'[a-zA-Z_](\.[a-zA-Z_0-9]|[a-zA-Z_0-9])*'
     NUMBER = r'\d+'
     COMMA = r'\,'
