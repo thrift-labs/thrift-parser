@@ -86,6 +86,7 @@ typedef i32 MyInteger
 const i32 INT32CONSTANT = 9853
 const map<string,string> MAPCONSTANT = {'hello':'world', 'goodnight':'moon'}
 const double DOUBLE_CONSTANT = 98.53333333222
+const double DOUBLE_CONSTANT2 = 1.35E10
 /**
  * You can define enums, which are just 32 bit integers. Values are optional
  * and start at 1 if not supplied, C style again.
