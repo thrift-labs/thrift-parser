@@ -93,9 +93,9 @@ const double DOUBLE_CONSTANT2 = 1.35E10
  */
 enum Operation {
     ADD = 1,
-  SUBTRACT = 2,
+    SUBTRACT = 2,
   MULTIPLY = 3,
-  DIVIDE = 4
+  DIVIDE = 4;
 }
 
 /**

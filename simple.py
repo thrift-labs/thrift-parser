@@ -12,8 +12,8 @@ class ThriftLexer(Lexer):
         R_BRACE, R_PAREN, R_ANGLE, R_BRACKS,
         COMMA, COLON, ASSIGN, POSITIVE, NEGATIVE, SEMI,
         INT_CONSTANT, DOUBLE_CONSTANT,
-        LITERAL, IDENTIFIER, STIDENTIFIER, LIST_SEPARATOR,
-        ONE_LINE_COMMENT, LINES_COMMENT,
+        LITERAL, IDENTIFIER, STIDENTIFIER,
+        # ONE_LINE_COMMENT, LINES_COMMENT,
     }
 
     ignore = ' \t'
@@ -22,7 +22,6 @@ class ThriftLexer(Lexer):
     INCLUDE = r'include'
     CPP_INCLUDE = r'cpp_include'
     NAMESPACE = r'namespace'
-    NAMESPACE_SCOPE = r'cl|c_glib|cpp|dart|delphi|haxe|go|java|js|lua|netstd|perl|php|py|py\.twisted|rb|st|xsd'
 
     CONST = r'const'
     TYPEDEF = r'typedef'
@@ -82,20 +81,18 @@ class ThriftLexer(Lexer):
 
     DOUBLE_CONSTANT = r'[+-]?\d+(\.\d+)?([Ee]\d+)?'
     INT_CONSTANT = r'\d+'
+    NAMESPACE_SCOPE = r'cl|c_glib|cpp|dart|delphi|haxe|go|java|js|lua|netstd|perl|php|py|py\.twisted|rb|st|xsd'
 
     LITERAL = r'("[^"]*")' + '|' + r"('[^']*')"
 
     IDENTIFIER = r'[a-zA-Z_][a-zA-Z0-9._]*'
     STIDENTIFIER = r'[a-zA-Z_][a-zA-Z0-9._-]*'
-    LIST_SEPARATOR = r',|;'
 
-    ONE_LINE_COMMENT = r'(//|#)[^\n]*'
-    LINES_COMMENT = r'(/\*(.|\n)*?\*/)'
-
-    #IDENTIFIER['namespace'] = NAMESPACE
-    #IDENTIFIER['namespace'] = NAMESPACE
+    #ONE_LINE_COMMENT = r'(//|#)[^\n]*'
+    #LINES_COMMENT = r'(/\*(.|\n)*?\*/)'
 
     ignore_newline = r'\n+'
+    ignore_comment = r'((//|#)[^\n]*)|(/\*(.|\n)*?\*/)'
 
     # Extra action for newlines
     def ignore_newline(self, t):
@@ -105,10 +102,115 @@ class ThriftLexer(Lexer):
         print("Illegal character '%s'" % t.value[0])
         self.index += 1
 
-'''
+
 class ThriftParser(Parser):
     tokens = ThriftLexer.tokens
-'''
+
+    precedence = ()
+
+    # https://thrift.apache.org/docs/idl
+    @_("Headers Definitions")
+    def Document(self, p):
+        print(p.__dict__)
+
+    @_("Header")
+    def Headers(self, p):
+        print(p.__dict__)
+
+    @_("Headers Header")
+    def Headers(self, p):
+        print(p.__dict__)
+
+    @_("Include")
+    def Header(self, p):
+        print(p.__dict__)
+
+    @_("CppInclude")
+    def Header(self, p):
+        print(p.__dict__)
+
+    @_("Namespace")
+    def Header(self, p):
+        print(p.__dict__)
+
+    @_("INCLUDE LITERAL")
+    def Include(self, p):
+        print(p.__dict__)
+
+    @_("CPP_INCLUDE LITERAL")
+    def CppInclude(self, p):
+        print(p.__dict__)
+
+    @_("NAMESPACE NAMESPACE_SCOPE IDENTIFIER")
+    def Namespace(self, p):
+        print(p.__dict__)
+
+    @_("Definition")
+    def Definitions(self, p):
+        print(p.__dict__)
+
+    @_("Definitions Definition")
+    def Definitions(self, p):
+        print(p.__dict__)
+
+    @_("Const")
+    def Definition(self, p):
+        print(p.__dict__)
+
+    @_("Typedef")
+    def Definition(self, p):
+        print(p.__dict__)
+
+    @_("Enum")
+    def Definition(self, p):
+        print(p.__dict__)
+
+    @_("Senum")
+    def Definition(self, p):
+        print(p.__dict__)
+
+    @_("Struct")
+    def Definition(self, p):
+        print(p.__dict__)
+
+    @_("Union")
+    def Definition(self, p):
+        print(p.__dict__)
+
+    @_("Exception")
+    def Definition(self, p):
+        print(p.__dict__)
+
+    @_("Service")
+    def Definition(self, p):
+        print(p.__dict__)
+
+    @_("CONST FieldType IDENTIFIER ASSIGN ConstValue ListSeparator")
+    def Const(self, p):
+        print(p.__dict__)
+
+    @_("CONST FieldType IDENTIFIER ASSIGN ConstValue")
+    def Const(self, p):
+        print(p.__dict__)
+
+    @_("COMMA")
+    def ListSeparator(self, p):
+        print(p.__dict__)
+
+        # [9]  Typedef         ::=  'typedef' DefinitionType Identifier
+
+
+    @_("COMMA")
+    def ListSeparator(self, p):
+        print(p.__dict__)
+
+    @_("SEMI")
+    def ListSeparator(self, p):
+        print(p.__dict__)
+
+    def error(self, p):
+        print(f'{self.__class__}:{getattr(p,"lineno","")}: '
+              f'Syntax error at {getattr(p,"value","EOC")}')
 
 
 if __name__ == '__main__':
@@ -116,22 +218,21 @@ if __name__ == '__main__':
         text = f.read()
         lexer = ThriftLexer()
         for token in lexer.tokenize(text):
-            print(token)
+            pass
+            # print(token)
 
         print('--------------split----------')
-        '''
         lexer = ThriftLexer()
         parser = ThriftParser()
         parser.parse(lexer.tokenize(text))
-        '''
 
+    '''
     with open('./tutorial/shared.thrift', 'r') as f:
         text = f.read()
         lexer = ThriftLexer()
         for token in lexer.tokenize(text):
             print(token)
 
-        '''
         print('--------------split----------')
         lexer = ThriftLexer()
         parser = ThriftParser()
