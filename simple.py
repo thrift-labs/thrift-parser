@@ -1,6 +1,9 @@
 from sly import Lexer, Parser
 
 
+# https://thrift.apache.org/docs/idl
+
+
 class ThriftLexer(Lexer):
     tokens = { INCLUDE, CPP_INCLUDE, NAMESPACE, NAMESPACE_SCOPE,
         CONST, TYPEDEF, ENUM, SENUM, STRUCT, UNION, EXCEPTION,
@@ -50,17 +53,17 @@ class ThriftLexer(Lexer):
     XSD_ATTRS = r'xsd_attrs'
 
     REVERSED_KEYWORD_LIST = ["BEGIN", "END", "__CLASS__", "__DIR__", "__FILE__", "__FUNCTION__",
-"__LINE__", "__METHOD__", "__NAMESPACE__", "abstract", "alias", "and", "args", "as",
-"assert", "begin", "break", "case", "catch", "class", "clone", "continue", "declare",
-"def", "default", "del", "delete", "do", "dynamic", "elif", "else", "elseif", "elsif",
-"end", "enddeclare", "endfor", "endforeach", "endif", "endswitch", "endwhile", "ensure",
-"except", "exec", "finally", "float", "for", "foreach", "from", "function", "global",
-"goto", "if", "implements", "import", "in", "inline", "instanceof", "interface", "is",
-"lambda", "module", "native", "new", "next", "nil", "not", "or", "package", "pass",
-"public", "print", "private", "protected", "raise", "redo", "rescue", "retry", "register",
-"return", "self", "sizeof", "static", "super", "switch", "synchronized", "then", "this",
-"throw", "transient", "try", "undef", "unless", "unsigned", "until", "use", "var",
-"virtual", "volatile", "when", "while", "with", "xor", "yield"]
+        "__LINE__", "__METHOD__", "__NAMESPACE__", "abstract", "alias", "and", "args", "as",
+        "assert", "begin", "break", "case", "catch", "class", "clone", "continue", "declare",
+        "def", "default", "del", "delete", "do", "dynamic", "elif", "else", "elseif", "elsif",
+        "end", "enddeclare", "endfor", "endforeach", "endif", "endswitch", "endwhile", "ensure",
+        "except", "exec", "finally", "float", "for", "foreach", "from", "function", "global",
+        "goto", "if", "implements", "import", "in", "inline", "instanceof", "interface", "is",
+        "lambda", "module", "native", "new", "next", "nil", "not", "or", "package", "pass",
+        "public", "print", "private", "protected", "raise", "redo", "rescue", "retry", "register",
+        "return", "self", "sizeof", "static", "super", "switch", "synchronized", "then", "this",
+        "throw", "transient", "try", "undef", "unless", "unsigned", "until", "use", "var",
+        "virtual", "volatile", "when", "while", "with", "xor", "yield"]
     REVERSED_KEYWORDS = r'|'.join(REVERSED_KEYWORD_LIST)
 
     L_BRACE = r'{'
@@ -81,6 +84,7 @@ class ThriftLexer(Lexer):
 
     DOUBLE_CONSTANT = r'[+-]?\d+(\.\d+)?([Ee]\d+)?'
     INT_CONSTANT = r'\d+'
+    # [6]  NamespaceScope  ::=  '*' | 'c_glib' | 'cpp' | 'delphi' | 'haxe' | 'go' | 'java' | 'js' | 'lua' | 'netstd' | 'perl' | 'php' | 'py' | 'py.twisted' | 'rb' | 'st' | 'xsd'
     NAMESPACE_SCOPE = r'cl|c_glib|cpp|dart|delphi|haxe|go|java|js|lua|netstd|perl|php|py|py\.twisted|rb|st|xsd'
 
     LITERAL = r'("[^"]*")' + '|' + r"('[^']*')"
@@ -105,12 +109,11 @@ class ThriftLexer(Lexer):
 
 class ThriftParser(Parser):
     tokens = ThriftLexer.tokens
-
     precedence = ()
 
-    # https://thrift.apache.org/docs/idl
     @_("Headers Definitions")
     def Document(self, p):
+        # [1]  Document        ::=  Header* Definition*
         print(p.__dict__)
 
     @_("Header")
@@ -123,26 +126,32 @@ class ThriftParser(Parser):
 
     @_("Include")
     def Header(self, p):
+        # [2]  Header          ::=  Include | CppInclude | Namespace
         print(p.__dict__)
 
     @_("CppInclude")
     def Header(self, p):
+        # [2]  Header          ::=  Include | CppInclude | Namespace
         print(p.__dict__)
 
     @_("Namespace")
     def Header(self, p):
+        # [2]  Header          ::=  Include | CppInclude | Namespace
         print(p.__dict__)
 
     @_("INCLUDE LITERAL")
     def Include(self, p):
+        # [3]  Include         ::=  'include' Literal
         print(p.__dict__)
 
     @_("CPP_INCLUDE LITERAL")
     def CppInclude(self, p):
+        # [4]  CppInclude      ::=  'cpp_include' Literal
         print(p.__dict__)
 
     @_("NAMESPACE NAMESPACE_SCOPE IDENTIFIER")
     def Namespace(self, p):
+        # [5]  Namespace       ::=  ( 'namespace' ( NamespaceScope Identifier ) )
         print(p.__dict__)
 
     @_("Definition")
@@ -153,10 +162,14 @@ class ThriftParser(Parser):
     def Definitions(self, p):
         print(p.__dict__)
 
-    @_("Const")
+    @_("Const", "Typedef")
     def Definition(self, p):
+        import pdb
+        pdb.set_trace()
+        # [7]  Definition      ::=  Const | Typedef | Enum | Senum | Struct | Union | Exception | Service
         print(p.__dict__)
 
+    '''
     @_("Typedef")
     def Definition(self, p):
         print(p.__dict__)
@@ -184,6 +197,7 @@ class ThriftParser(Parser):
     @_("Service")
     def Definition(self, p):
         print(p.__dict__)
+    '''
 
     @_("CONST FieldType IDENTIFIER ASSIGN ConstValue ListSeparator")
     def Const(self, p):
@@ -193,19 +207,34 @@ class ThriftParser(Parser):
     def Const(self, p):
         print(p.__dict__)
 
-    @_("COMMA")
+    # TODO [32] ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
+    @_("INT_CONSTANT", "DOUBLE_CONSTANT", "LITERAL", "IDENTIFIER")
+    def ConstValue(self, p):
+        print(p.__dict__)
+
+    @_("COMMA", "SEMI")
     def ListSeparator(self, p):
         print(p.__dict__)
 
-        # [9]  Typedef         ::=  'typedef' DefinitionType Identifier
-
-
-    @_("COMMA")
-    def ListSeparator(self, p):
+    @_("IDENTIFIER")
+    def FieldType(self, p):
         print(p.__dict__)
 
-    @_("SEMI")
-    def ListSeparator(self, p):
+    @_("BASE_TYPE")
+    def FieldType(self, p):
+        print(p.__dict__)
+
+    '''
+    @_("ContainerType")
+    def FieldType(self, p):
+        print(p.__dict__)
+    '''
+    @_("TYPEDEF DefinitionType IDENTIFIER")
+    def Typedef(self, p):
+        print(p.__dict__)
+
+    @_("BASE_TYPE")
+    def DefinitionType(self, p):
         print(p.__dict__)
 
     def error(self, p):
