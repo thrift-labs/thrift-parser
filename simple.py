@@ -8,7 +8,7 @@ class ThriftLexer(Lexer):
     tokens = { INCLUDE, CPP_INCLUDE, NAMESPACE, NAMESPACE_SCOPE,
         CONST, TYPEDEF, ENUM, SENUM, STRUCT, UNION, EXCEPTION,
         SERVICE, EXTENDS, REQUIRED, OPTIONAL, ONE_WAY, VOID, THROWS,
-        MAP_TYPE, SET_TYPE, LIST_TYPE, BASE_TYPE, CPP_TYPE,
+        MAP, SET, LIST, BASE_TYPE, CPP_TYPE,
         XSD_ALL, XSD_OPTIONAL, XSD_NILLABLE, XSD_ATTRS,
         REVERSED_KEYWORDS,
         L_BRACE, L_PAREN, L_ANGLE, L_BRACKS,
@@ -40,9 +40,9 @@ class ThriftLexer(Lexer):
     ONE_WAY = r'oneway'
     VOID = r'void'
     THROWS = r'throws'
-    MAP_TYPE = r'map'
-    SET_TYPE = r'SET'
-    LIST_TYPE = 'list'
+    MAP = r'map'
+    SET = r'SET'
+    LIST = 'list'
 
     BASE_TYPE = r'bool|byte|i8|i16|i32|i64|double|string|binary|slist'
     CPP_TYPE = r'cpp_type'
@@ -116,17 +116,7 @@ class ThriftParser(Parser):
         # [1]  Document        ::=  Header* Definition*
         print(p)
 
-    @_("Include")
-    def Header(self, p):
-        # [2]  Header          ::=  Include | CppInclude | Namespace
-        print(p)
-
-    @_("CppInclude")
-    def Header(self, p):
-        # [2]  Header          ::=  Include | CppInclude | Namespace
-        print(p)
-
-    @_("Namespace")
+    @_("Include", "CppInclude", "Namespace")
     def Header(self, p):
         # [2]  Header          ::=  Include | CppInclude | Namespace
         print(p)
@@ -146,66 +136,22 @@ class ThriftParser(Parser):
         # [5]  Namespace       ::=  ( 'namespace' ( NamespaceScope Identifier ) )
         print(p)
 
-    @_("Const", "Typedef", "Enum", "Senum")
+    # NamespaceScope
+    # [6]  NamespaceScope  ::=  '*' | 'c_glib' | 'cpp' | 'delphi' | 'haxe' | 'go' | 'java' | 'js' | 'lua' | 'netstd' | 'perl' | 'php' | 'py' | 'py.twisted' | 'rb' | 'st' | 'xsd'
+
+    @_("Const", "Typedef", "Enum", "Senum", "Struct", "Union", "Exception", "Service")
     def Definition(self, p):
         # [7]  Definition      ::=  Const | Typedef | Enum | Senum | Struct | Union | Exception | Service
         print(p)
-
-    '''
-    @_("Senum")
-    def Definition(self, p):
-        print(p)
-
-    @_("Struct")
-    def Definition(self, p):
-        print(p)
-
-    @_("Union")
-    def Definition(self, p):
-        print(p)
-
-    @_("Exception")
-    def Definition(self, p):
-        print(p)
-
-    @_("Service")
-    def Definition(self, p):
-        print(p)
-    '''
-
 
     @_("CONST FieldType IDENTIFIER ASSIGN ConstValue [ ListSeparator ]")
     def Const(self, p):
         # [8]  Const           ::=  'const' FieldType Identifier '=' ConstValue ListSeparator?
         print(p)
 
-    @_("INT_CONSTANT", "DOUBLE_CONSTANT", "LITERAL", "IDENTIFIER")
-    def ConstValue(self, p):
-        # TODO
-        # [32] ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
-        print(p)
-
-    @_("COMMA", "SEMI")
-    def ListSeparator(self, p):
-        print(p)
-
-    @_("IDENTIFIER", "BASE_TYPE")
-    def FieldType(self, p):
-        print(p)
-
-    '''
-    @_("ContainerType")
-    def FieldType(self, p):
-        print(p)
-    '''
-
     @_("TYPEDEF DefinitionType IDENTIFIER")
     def Typedef(self, p):
         # [9]  Typedef         ::=  'typedef' DefinitionType Identifier
-        print(p)
-
-    @_("BASE_TYPE")
-    def DefinitionType(self, p):
         print(p)
 
     @_("ENUM IDENTIFIER L_BRACE { EnumItem } R_BRACE")
@@ -223,44 +169,158 @@ class ThriftParser(Parser):
         # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
         print(p)
 
-    @_("SENUM IDENTIFIER L_BRACE SenumItem R_BRACE")
+    @_("SENUM IDENTIFIER L_BRACE { SenumItem } R_BRACE")
     def Senum(self, p):
         # [11] Senum           ::=  'senum' Identifier '{' (Literal ListSeparator?)* '}'
         print(p)
 
-    @_("SenumItem SenumItem", "LITERAL", "LITERAL ListSeparator")
+    @_("LITERAL [ ListSeparator ]")
     def SenumItem(self, p):
         print(p)
 
-    '''
-    @_("STRUCT IDENTIFIER L_BRACE Field R_BRACE", "STRUCT IDENTIFIER XSD_ALL L_BRACE Field R_BRACE")
+    @_("STRUCT IDENTIFIER [ XSD_ALL ] L_BRACE { Field } R_BRACE")
     def Struct(self, p):
         # [12] Struct          ::=  'struct' Identifier 'xsd_all'? '{' Field* '}'
         print(p)
-    '''
 
-    '''
-    @_("[ FieldType ] [ IDENTIFIER ] IDENTIFIER [ListSeparator]")
-    def Field(self, p):
-        # [12] Struct          ::=  'struct' Identifier 'xsd_all'? '{' Field* '}'
-        print(p)
-    '''
-
-    '''
-    @_("Field Field")
-    def Field(self, p):
+    @_("UNION IDENTIFIER [ XSD_ALL ] L_BRACE { Field } R_BRACE")
+    def Union(self, p):
+        # [13] Union          ::=  'union' Identifier 'xsd_all'? '{' Field* '}'
         print(p)
 
-    @_("FieldID FieldReq FieldType IDENTIFIER ")
+    @_("EXCEPTION IDENTIFIER L_BRACE { Field } R_BRACE")
+    def Exception(self, p):
+        # [14] Exception       ::=  'exception' Identifier '{' Field* '}'
+        pass
+
+    @_("SERVICE IDENTIFIER [ EXTENDS IDENTIFIER ] L_BRACE { Function } R_BRACE")
+    def Service(self, p):
+        # [15] Service         ::=  'service' Identifier ( 'extends' Identifier )? '{' Function* '}'
+        pass
+
+    @_("[ FieldID ] [ FieldReq ] FieldType IDENTIFIER [ ASSIGN ConstValue ] XsdFieldOptions [ ListSeparator ]")
     def Field(self, p):
+        # [16] Field           ::=  FieldID? FieldReq? FieldType Identifier ('=' ConstValue)? XsdFieldOptions ListSeparator?
         print(p)
 
-        [16] Field           ::=  FieldID? FieldReq? FieldType Identifier ('=' ConstValue)? XsdFieldOptions ListSeparator?
+    @_("INT_CONSTANT COLON")
+    def FieldID(self, p):
+        # [17] FieldID         ::=  IntConstant ':'
+        print(p)
 
-    '''
-    def error(self, p):
-        print(f'{self.__class__}:{getattr(p,"lineno","")}: '
-              f'Syntax error at {getattr(p,"value","EOC")}')
+    @_("REQUIRED", "OPTIONAL")
+    def FieldReq(self, p):
+        # [18] FieldReq        ::=  'required' | 'optional'
+        print(p)
+
+    @_("[ XSD_OPTIONAL ] [ XSD_NILLABLE ] [ XsdAttrs ]")
+    def XsdFieldOptions(self, p):
+        # [19] XsdFieldOptions ::=  'xsd_optional'? 'xsd_nillable'? XsdAttrs?
+        pass
+
+    @_("XSD_ATTRS L_BRACE { Field } R_BRACE")
+    def XsdAttrs(self, p):
+        # [20] XsdAttrs        ::=  'xsd_attrs' '{' Field* '}'
+        pass
+
+    @_("[ ONE_WAY ] FunctionType IDENTIFIER L_PAREN { Field } R_PAREN [ Throws ] [ ListSeparator ]")
+    def Function(self, p):
+        # [21] Function        ::=  'oneway'? FunctionType Identifier '(' Field* ')' Throws? ListSeparator?
+        pass
+
+    @_("FieldType", "VOID")
+    def FunctionType(self, p):
+        # [22] FunctionType    ::=  FieldType | 'void'
+        pass
+
+    @_("THROWS L_PAREN { Field } R_PAREN")
+    def Throws(self, p):
+        # [23] Throws          ::=  'throws' '(' Field* ')'
+        pass
+
+    @_("IDENTIFIER", "BASE_TYPE", "ContainerType")
+    def FieldType(self, p):
+        # [24] FieldType       ::=  Identifier | BaseType | ContainerType
+        pass
+
+    @_("BASE_TYPE", "ContainerType")
+    def DefinitionType(self, p):
+        # [25] DefinitionType  ::=  BaseType | ContainerType
+        pass
+
+    # BASE_TYPE
+    # [26] BaseType        ::=  'bool' | 'byte' | 'i8' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
+
+    @_("MapType", "SetType", "ListType")
+    def ContainerType(self, p):
+        # [27] ContainerType   ::=  MapType | SetType | ListType
+        pass
+
+    @_("MAP [ CppType ] L_ANGLE FieldType COMMA FieldType R_ANGLE")
+    def MapType(self, p):
+        # [28] MapType         ::=  'map' CppType? '<' FieldType ',' FieldType '>'
+        pass
+
+    @_("SET [ CppType ] L_ANGLE FieldType R_ANGLE")
+    def SetType(self, p):
+        # [29] SetType         ::=  'set' CppType? '<' FieldType '>'
+        pass
+
+    @_("LIST L_ANGLE FieldType R_ANGLE [ CppType ]")
+    def ListType(self, p):
+        # [30] ListType        ::=  'list' '<' FieldType '>' CppType?
+        pass
+
+    @_("CPP_TYPE LITERAL")
+    def CppType(self, p):
+        # [31] CppType         ::=  'cpp_type' Literal
+        pass
+
+    @_("IntConstant", "DoubleConstant", "LITERAL", "IDENTIFIER", "ConstList", "ConstMap")
+    def ConstValue(self, p):
+        # [32] ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
+        print(p)
+
+    @_("[ Sign ] INT_CONSTANT")
+    def IntConstant(self, p):
+        # # [33] IntConstant     ::=  ('+' | '-')? Digit+
+        pass
+
+    @_("[ Sign ] DOUBLE_CONSTANT")
+    def DoubleConstant(self, p):
+        # [34] DoubleConstant  ::=  ('+' | '-')? Digit* ('.' Digit+)? ( ('E' | 'e') IntConstant )?
+        pass
+
+    @_("POSITIVE", "NEGATIVE")
+    def Sign(self, p):
+        pass
+
+    @_("L_BRACKS { ConstValue [ ListSeparator ] } R_BRACKS")
+    def ConstList(self, p):
+        # [35] ConstList       ::=  '[' (ConstValue ListSeparator?)* ']'
+        pass
+
+    @_("L_BRACE { ConstValue COLON ConstValue [ ListSeparator ] } R_BRACE")
+    def ConstMap(self, p):
+        # [36] ConstMap        ::=  '{' (ConstValue ':' ConstValue ListSeparator?)* '}'
+        pass
+
+    # Literal
+    # [37] Literal         ::=  ('"' [^"]* '"') | ("'" [^']* "'")
+
+    #Identifier
+    #[38] Identifier      ::=  ( Letter | '_' ) ( Letter | Digit | '.' | '_' )*
+
+    # STIdentifier
+    # [39] STIdentifier    ::=  ( Letter | '_' ) ( Letter | Digit | '.' | '_' | '-' )*
+
+    @_("COMMA", "SEMI")
+    def ListSeparator(self, p):
+        # [40] ListSeparator   ::=  ',' | ';'
+        print(p)
+
+    # [41] Letter          ::=  ['A'-'Z'] | ['a'-'z']
+    # [42] Digit           ::=  ['0'-'9']
 
 
 if __name__ == '__main__':
