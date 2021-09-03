@@ -111,17 +111,9 @@ class ThriftParser(Parser):
     tokens = ThriftLexer.tokens
     precedence = ()
 
-    @_("Headers Definitions")
+    @_("{ Header } { Definition }")
     def Document(self, p):
         # [1]  Document        ::=  Header* Definition*
-        print(p)
-
-    @_("Header")
-    def Headers(self, p):
-        print(p)
-
-    @_("Headers Header")
-    def Headers(self, p):
         print(p)
 
     @_("Include")
@@ -154,14 +146,6 @@ class ThriftParser(Parser):
         # [5]  Namespace       ::=  ( 'namespace' ( NamespaceScope Identifier ) )
         print(p)
 
-    @_("Definition")
-    def Definitions(self, p):
-        print(p)
-
-    @_("Definitions Definition")
-    def Definitions(self, p):
-        print(p)
-
     @_("Const", "Typedef", "Enum", "Senum")
     def Definition(self, p):
         # [7]  Definition      ::=  Const | Typedef | Enum | Senum | Struct | Union | Exception | Service
@@ -190,14 +174,15 @@ class ThriftParser(Parser):
     '''
 
 
-    @_("CONST FieldType IDENTIFIER ASSIGN ConstValue", "CONST FieldType IDENTIFIER ASSIGN ConstValue ListSeparator")
+    @_("CONST FieldType IDENTIFIER ASSIGN ConstValue [ ListSeparator ]")
     def Const(self, p):
         # [8]  Const           ::=  'const' FieldType Identifier '=' ConstValue ListSeparator?
         print(p)
 
-    # TODO [32] ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
     @_("INT_CONSTANT", "DOUBLE_CONSTANT", "LITERAL", "IDENTIFIER")
     def ConstValue(self, p):
+        # TODO
+        # [32] ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
         print(p)
 
     @_("COMMA", "SEMI")
@@ -213,6 +198,7 @@ class ThriftParser(Parser):
     def FieldType(self, p):
         print(p)
     '''
+
     @_("TYPEDEF DefinitionType IDENTIFIER")
     def Typedef(self, p):
         # [9]  Typedef         ::=  'typedef' DefinitionType Identifier
@@ -222,13 +208,8 @@ class ThriftParser(Parser):
     def DefinitionType(self, p):
         print(p)
 
-    @_("ENUM IDENTIFIER L_BRACE EnumItem R_BRACE")
+    @_("ENUM IDENTIFIER L_BRACE { EnumItem } R_BRACE")
     def Enum(self, p):
-        # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
-        print(p)
-
-    @_("EnumItem EnumItem")
-    def EnumItem(self, p):
         # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
         print(p)
 
@@ -237,7 +218,7 @@ class ThriftParser(Parser):
         # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
         print(p)
 
-    @_("IDENTIFIER ASSIGN INT_CONSTANT", "IDENTIFIER ASSIGN INT_CONSTANT ListSeparator")
+    @_("IDENTIFIER ASSIGN INT_CONSTANT [ ListSeparator ]")
     def EnumItem(self, p):
         # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
         print(p)
