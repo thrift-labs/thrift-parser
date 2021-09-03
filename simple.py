@@ -114,129 +114,169 @@ class ThriftParser(Parser):
     @_("Headers Definitions")
     def Document(self, p):
         # [1]  Document        ::=  Header* Definition*
-        print(p.__dict__)
+        print(p)
 
     @_("Header")
     def Headers(self, p):
-        print(p.__dict__)
+        print(p)
 
     @_("Headers Header")
     def Headers(self, p):
-        print(p.__dict__)
+        print(p)
 
     @_("Include")
     def Header(self, p):
         # [2]  Header          ::=  Include | CppInclude | Namespace
-        print(p.__dict__)
+        print(p)
 
     @_("CppInclude")
     def Header(self, p):
         # [2]  Header          ::=  Include | CppInclude | Namespace
-        print(p.__dict__)
+        print(p)
 
     @_("Namespace")
     def Header(self, p):
         # [2]  Header          ::=  Include | CppInclude | Namespace
-        print(p.__dict__)
+        print(p)
 
     @_("INCLUDE LITERAL")
     def Include(self, p):
         # [3]  Include         ::=  'include' Literal
-        print(p.__dict__)
+        print(p)
 
     @_("CPP_INCLUDE LITERAL")
     def CppInclude(self, p):
         # [4]  CppInclude      ::=  'cpp_include' Literal
-        print(p.__dict__)
+        print(p)
 
     @_("NAMESPACE NAMESPACE_SCOPE IDENTIFIER")
     def Namespace(self, p):
         # [5]  Namespace       ::=  ( 'namespace' ( NamespaceScope Identifier ) )
-        print(p.__dict__)
+        print(p)
 
     @_("Definition")
     def Definitions(self, p):
-        print(p.__dict__)
+        print(p)
 
     @_("Definitions Definition")
     def Definitions(self, p):
-        print(p.__dict__)
+        print(p)
 
-    @_("Const", "Typedef")
+    @_("Const", "Typedef", "Enum", "Senum")
     def Definition(self, p):
-        import pdb
-        pdb.set_trace()
         # [7]  Definition      ::=  Const | Typedef | Enum | Senum | Struct | Union | Exception | Service
-        print(p.__dict__)
+        print(p)
 
     '''
-    @_("Typedef")
-    def Definition(self, p):
-        print(p.__dict__)
-
-    @_("Enum")
-    def Definition(self, p):
-        print(p.__dict__)
-
     @_("Senum")
     def Definition(self, p):
-        print(p.__dict__)
+        print(p)
 
     @_("Struct")
     def Definition(self, p):
-        print(p.__dict__)
+        print(p)
 
     @_("Union")
     def Definition(self, p):
-        print(p.__dict__)
+        print(p)
 
     @_("Exception")
     def Definition(self, p):
-        print(p.__dict__)
+        print(p)
 
     @_("Service")
     def Definition(self, p):
-        print(p.__dict__)
+        print(p)
     '''
 
-    @_("CONST FieldType IDENTIFIER ASSIGN ConstValue ListSeparator")
-    def Const(self, p):
-        print(p.__dict__)
 
-    @_("CONST FieldType IDENTIFIER ASSIGN ConstValue")
+    @_("CONST FieldType IDENTIFIER ASSIGN ConstValue", "CONST FieldType IDENTIFIER ASSIGN ConstValue ListSeparator")
     def Const(self, p):
-        print(p.__dict__)
+        # [8]  Const           ::=  'const' FieldType Identifier '=' ConstValue ListSeparator?
+        print(p)
 
     # TODO [32] ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
     @_("INT_CONSTANT", "DOUBLE_CONSTANT", "LITERAL", "IDENTIFIER")
     def ConstValue(self, p):
-        print(p.__dict__)
+        print(p)
 
     @_("COMMA", "SEMI")
     def ListSeparator(self, p):
-        print(p.__dict__)
+        print(p)
 
-    @_("IDENTIFIER")
+    @_("IDENTIFIER", "BASE_TYPE")
     def FieldType(self, p):
-        print(p.__dict__)
-
-    @_("BASE_TYPE")
-    def FieldType(self, p):
-        print(p.__dict__)
+        print(p)
 
     '''
     @_("ContainerType")
     def FieldType(self, p):
-        print(p.__dict__)
+        print(p)
     '''
     @_("TYPEDEF DefinitionType IDENTIFIER")
     def Typedef(self, p):
-        print(p.__dict__)
+        # [9]  Typedef         ::=  'typedef' DefinitionType Identifier
+        print(p)
 
     @_("BASE_TYPE")
     def DefinitionType(self, p):
-        print(p.__dict__)
+        print(p)
 
+    @_("ENUM IDENTIFIER L_BRACE EnumItem R_BRACE")
+    def Enum(self, p):
+        # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
+        print(p)
+
+    @_("EnumItem EnumItem")
+    def EnumItem(self, p):
+        # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
+        print(p)
+
+    @_("IDENTIFIER [ ListSeparator ]")
+    def EnumItem(self, p):
+        # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
+        print(p)
+
+    @_("IDENTIFIER ASSIGN INT_CONSTANT", "IDENTIFIER ASSIGN INT_CONSTANT ListSeparator")
+    def EnumItem(self, p):
+        # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
+        print(p)
+
+    @_("SENUM IDENTIFIER L_BRACE SenumItem R_BRACE")
+    def Senum(self, p):
+        # [11] Senum           ::=  'senum' Identifier '{' (Literal ListSeparator?)* '}'
+        print(p)
+
+    @_("SenumItem SenumItem", "LITERAL", "LITERAL ListSeparator")
+    def SenumItem(self, p):
+        print(p)
+
+    '''
+    @_("STRUCT IDENTIFIER L_BRACE Field R_BRACE", "STRUCT IDENTIFIER XSD_ALL L_BRACE Field R_BRACE")
+    def Struct(self, p):
+        # [12] Struct          ::=  'struct' Identifier 'xsd_all'? '{' Field* '}'
+        print(p)
+    '''
+
+    '''
+    @_("[ FieldType ] [ IDENTIFIER ] IDENTIFIER [ListSeparator]")
+    def Field(self, p):
+        # [12] Struct          ::=  'struct' Identifier 'xsd_all'? '{' Field* '}'
+        print(p)
+    '''
+
+    '''
+    @_("Field Field")
+    def Field(self, p):
+        print(p)
+
+    @_("FieldID FieldReq FieldType IDENTIFIER ")
+    def Field(self, p):
+        print(p)
+
+        [16] Field           ::=  FieldID? FieldReq? FieldType Identifier ('=' ConstValue)? XsdFieldOptions ListSeparator?
+
+    '''
     def error(self, p):
         print(f'{self.__class__}:{getattr(p,"lineno","")}: '
               f'Syntax error at {getattr(p,"value","EOC")}')
