@@ -5,7 +5,7 @@ from sly import Lexer, Parser
 
 
 class ThriftLexer(Lexer):
-    tokens = { INCLUDE, CPP_INCLUDE, NAMESPACE, NAMESPACE_SCOPE,
+    tokens = { INCLUDE, CPP_INCLUDE, NAMESPACE,
         CONST, TYPEDEF, ENUM, SENUM, STRUCT, UNION, EXCEPTION,
         SERVICE, EXTENDS, REQUIRED, OPTIONAL, ONE_WAY, VOID, THROWS,
         MAP, SET, LIST, BASE_TYPE, CPP_TYPE,
@@ -82,10 +82,8 @@ class ThriftLexer(Lexer):
     NEGATIVE = r'-'
     SEMI = r';'
 
-    DOUBLE_CONSTANT = r'[+-]?\d+(\.\d+)?([Ee]\d+)?'
+    DOUBLE_CONSTANT = r'\d*(((\.\d+)([Ee](\+|-)?\d+)?)|((\.\d+)?([Ee](\+|-)?\d+)))'
     INT_CONSTANT = r'\d+'
-    # [6]  NamespaceScope  ::=  '*' | 'c_glib' | 'cpp' | 'delphi' | 'haxe' | 'go' | 'java' | 'js' | 'lua' | 'netstd' | 'perl' | 'php' | 'py' | 'py.twisted' | 'rb' | 'st' | 'xsd'
-    NAMESPACE_SCOPE = r'cl|c_glib|cpp|dart|delphi|haxe|go|java|js|lua|netstd|perl|php|py|py\.twisted|rb|st|xsd'
 
     LITERAL = r'("[^"]*")' + '|' + r"('[^']*')"
 
@@ -131,13 +129,23 @@ class ThriftParser(Parser):
         # [4]  CppInclude      ::=  'cpp_include' Literal
         print(p)
 
-    @_("NAMESPACE NAMESPACE_SCOPE IDENTIFIER")
+    @_("NAMESPACE NamespaceScope IDENTIFIER")
     def Namespace(self, p):
         # [5]  Namespace       ::=  ( 'namespace' ( NamespaceScope Identifier ) )
         print(p)
 
+    # @_("'*' | 'c_glib' | 'cpp' | 'delphi' | 'haxe' | 'go' | 'java' | 'js' | 'lua' | 'netstd' | 'perl' | 'php' | 'py' | 'py.twisted' | 'rb' | 'st' | 'xsd'","IDENTIFIER")
+    @_("IDENTIFIER")
+    def NamespaceScope(self, p):
+        # # [6]  NamespaceScope  ::=  '*' | 'c_glib' | 'cpp' | 'delphi' | 'haxe' | 'go' | 'java' | 'js' | 'lua' | 'netstd' | 'perl' | 'php' | 'py' | 'py.twisted' | 'rb' | 'st' | 'xsd'
+        pass
+
     # NamespaceScope
-    # [6]  NamespaceScope  ::=  '*' | 'c_glib' | 'cpp' | 'delphi' | 'haxe' | 'go' | 'java' | 'js' | 'lua' | 'netstd' | 'perl' | 'php' | 'py' | 'py.twisted' | 'rb' | 'st' | 'xsd'
+
+
+    # [6]  NamespaceScope  ::=
+    # NAMESPACE_SCOPE = r'cl|c_glib|cpp|dart|delphi|d|haxe|go|java|js|lua|netstd|perl|php|py|py\.twisted|rb|st|xsd'
+
 
     @_("Const", "Typedef", "Enum", "Senum", "Struct", "Union", "Exception", "Service")
     def Definition(self, p):
@@ -321,6 +329,11 @@ class ThriftParser(Parser):
 
     # [41] Letter          ::=  ['A'-'Z'] | ['a'-'z']
     # [42] Digit           ::=  ['0'-'9']
+
+    def error(self, p):
+        import pdb
+        pdb.set_trace()
+        print(p)
 
 
 if __name__ == '__main__':
