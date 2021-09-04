@@ -17,7 +17,7 @@ class ThriftLexer(Lexer):
         SERVICE, EXTENDS, REQUIRED, OPTIONAL, ONEWAY, VOID, THROWS,
         MAP, SET, LIST, BASE_TYPE, CPP_TYPE,
         XSD_ALL, XSD_OPTIONAL, XSD_NILLABLE, XSD_ATTRS,
-        # REVERSED_KEYWORDS,
+        REVERSED_KEYWORD,
     }
 
     ignore = ' \t'
@@ -87,20 +87,109 @@ class ThriftLexer(Lexer):
     IDENTIFIER['xsd_nillable'] = XSD_NILLABLE
     IDENTIFIER['xsd_attrs'] = XSD_ATTRS
 
-    # TODO
-    REVERSED_KEYWORD_LIST = ["BEGIN", "END", "__CLASS__", "__DIR__", "__FILE__", "__FUNCTION__",
-        "__LINE__", "__METHOD__", "__NAMESPACE__", "abstract", "alias", "and", "args", "as",
-        "assert", "begin", "break", "case", "catch", "class", "clone", "continue", "declare",
-        "def", "default", "del", "delete", "do", "dynamic", "elif", "else", "elseif", "elsif",
-        "end", "enddeclare", "endfor", "endforeach", "endif", "endswitch", "endwhile", "ensure",
-        "except", "exec", "finally", "float", "for", "foreach", "from", "function", "global",
-        "goto", "if", "implements", "import", "in", "inline", "instanceof", "interface", "is",
-        "lambda", "module", "native", "new", "next", "nil", "not", "or", "package", "pass",
-        "public", "print", "private", "protected", "raise", "redo", "rescue", "retry", "register",
-        "return", "self", "sizeof", "static", "super", "switch", "synchronized", "then", "this",
-        "throw", "transient", "try", "undef", "unless", "unsigned", "until", "use", "var",
-        "virtual", "volatile", "when", "while", "with", "xor", "yield"]
-    # REVERSED_KEYWORDS = r'|'.join(REVERSED_KEYWORD_LIST)
+    IDENTIFIER['BEGIN'] = REVERSED_KEYWORD
+    IDENTIFIER['END'] = REVERSED_KEYWORD
+    IDENTIFIER['__CLASS__'] = REVERSED_KEYWORD
+    IDENTIFIER['__DIR__'] = REVERSED_KEYWORD
+    IDENTIFIER['__FILE__'] = REVERSED_KEYWORD
+    IDENTIFIER['__FUNCTION__'] = REVERSED_KEYWORD
+    IDENTIFIER['__LINE__'] = REVERSED_KEYWORD
+    IDENTIFIER['__METHOD__'] = REVERSED_KEYWORD
+    IDENTIFIER['__NAMESPACE__'] = REVERSED_KEYWORD
+    IDENTIFIER['abstract'] = REVERSED_KEYWORD
+    IDENTIFIER['alias'] = REVERSED_KEYWORD
+    IDENTIFIER['and'] = REVERSED_KEYWORD
+    IDENTIFIER['args'] = REVERSED_KEYWORD
+    IDENTIFIER['as'] = REVERSED_KEYWORD
+    IDENTIFIER['assert'] = REVERSED_KEYWORD
+    IDENTIFIER['begin'] = REVERSED_KEYWORD
+    IDENTIFIER['break'] = REVERSED_KEYWORD
+    IDENTIFIER['case'] = REVERSED_KEYWORD
+    IDENTIFIER['catch'] = REVERSED_KEYWORD
+    IDENTIFIER['class'] = REVERSED_KEYWORD
+    IDENTIFIER['clone'] = REVERSED_KEYWORD
+    IDENTIFIER['continue'] = REVERSED_KEYWORD
+    IDENTIFIER['declare'] = REVERSED_KEYWORD
+    IDENTIFIER['def'] = REVERSED_KEYWORD
+    IDENTIFIER['default'] = REVERSED_KEYWORD
+    IDENTIFIER['del'] = REVERSED_KEYWORD
+    IDENTIFIER['delete'] = REVERSED_KEYWORD
+    IDENTIFIER['do'] = REVERSED_KEYWORD
+    IDENTIFIER['dynamic'] = REVERSED_KEYWORD
+    IDENTIFIER['elif'] = REVERSED_KEYWORD
+    IDENTIFIER['else'] = REVERSED_KEYWORD
+    IDENTIFIER['elseif'] = REVERSED_KEYWORD
+    IDENTIFIER['elsif'] = REVERSED_KEYWORD
+    IDENTIFIER['end'] = REVERSED_KEYWORD
+    IDENTIFIER['enddeclare'] = REVERSED_KEYWORD
+    IDENTIFIER['endfor'] = REVERSED_KEYWORD
+    IDENTIFIER['endforeach'] = REVERSED_KEYWORD
+    IDENTIFIER['endif'] = REVERSED_KEYWORD
+    IDENTIFIER['endswitch'] = REVERSED_KEYWORD
+    IDENTIFIER['endwhile'] = REVERSED_KEYWORD
+    IDENTIFIER['ensure'] = REVERSED_KEYWORD
+    IDENTIFIER['except'] = REVERSED_KEYWORD
+    IDENTIFIER['exec'] = REVERSED_KEYWORD
+    IDENTIFIER['finally'] = REVERSED_KEYWORD
+    IDENTIFIER['float'] = REVERSED_KEYWORD
+    IDENTIFIER['for'] = REVERSED_KEYWORD
+    IDENTIFIER['foreach'] = REVERSED_KEYWORD
+    IDENTIFIER['from'] = REVERSED_KEYWORD
+    IDENTIFIER['function'] = REVERSED_KEYWORD
+    IDENTIFIER['global'] = REVERSED_KEYWORD
+    IDENTIFIER['goto'] = REVERSED_KEYWORD
+    IDENTIFIER['if'] = REVERSED_KEYWORD
+    IDENTIFIER['implements'] = REVERSED_KEYWORD
+    IDENTIFIER['import'] = REVERSED_KEYWORD
+    IDENTIFIER['in'] = REVERSED_KEYWORD
+    IDENTIFIER['inline'] = REVERSED_KEYWORD
+    IDENTIFIER['instanceof'] = REVERSED_KEYWORD
+    IDENTIFIER['interface'] = REVERSED_KEYWORD
+    IDENTIFIER['is'] = REVERSED_KEYWORD
+    IDENTIFIER['lambda'] = REVERSED_KEYWORD
+    IDENTIFIER['module'] = REVERSED_KEYWORD
+    IDENTIFIER['native'] = REVERSED_KEYWORD
+    IDENTIFIER['new'] = REVERSED_KEYWORD
+    IDENTIFIER['next'] = REVERSED_KEYWORD
+    IDENTIFIER['nil'] = REVERSED_KEYWORD
+    IDENTIFIER['not'] = REVERSED_KEYWORD
+    IDENTIFIER['or'] = REVERSED_KEYWORD
+    IDENTIFIER['package'] = REVERSED_KEYWORD
+    IDENTIFIER['pass'] = REVERSED_KEYWORD
+    IDENTIFIER['public'] = REVERSED_KEYWORD
+    IDENTIFIER['print'] = REVERSED_KEYWORD
+    IDENTIFIER['private'] = REVERSED_KEYWORD
+    IDENTIFIER['protected'] = REVERSED_KEYWORD
+    IDENTIFIER['raise'] = REVERSED_KEYWORD
+    IDENTIFIER['redo'] = REVERSED_KEYWORD
+    IDENTIFIER['rescue'] = REVERSED_KEYWORD
+    IDENTIFIER['retry'] = REVERSED_KEYWORD
+    IDENTIFIER['register'] = REVERSED_KEYWORD
+    IDENTIFIER['return'] = REVERSED_KEYWORD
+    IDENTIFIER['self'] = REVERSED_KEYWORD
+    IDENTIFIER['sizeof'] = REVERSED_KEYWORD
+    IDENTIFIER['static'] = REVERSED_KEYWORD
+    IDENTIFIER['super'] = REVERSED_KEYWORD
+    IDENTIFIER['switch'] = REVERSED_KEYWORD
+    IDENTIFIER['synchronized'] = REVERSED_KEYWORD
+    IDENTIFIER['then'] = REVERSED_KEYWORD
+    IDENTIFIER['this'] = REVERSED_KEYWORD
+    IDENTIFIER['throw'] = REVERSED_KEYWORD
+    IDENTIFIER['transient'] = REVERSED_KEYWORD
+    IDENTIFIER['try'] = REVERSED_KEYWORD
+    IDENTIFIER['undef'] = REVERSED_KEYWORD
+    IDENTIFIER['unless'] = REVERSED_KEYWORD
+    IDENTIFIER['unsigned'] = REVERSED_KEYWORD
+    IDENTIFIER['until'] = REVERSED_KEYWORD
+    IDENTIFIER['use'] = REVERSED_KEYWORD
+    IDENTIFIER['var'] = REVERSED_KEYWORD
+    IDENTIFIER['virtual'] = REVERSED_KEYWORD
+    IDENTIFIER['volatile'] = REVERSED_KEYWORD
+    IDENTIFIER['when'] = REVERSED_KEYWORD
+    IDENTIFIER['while'] = REVERSED_KEYWORD
+    IDENTIFIER['with'] = REVERSED_KEYWORD
+    IDENTIFIER['xor'] = REVERSED_KEYWORD
+    IDENTIFIER['yield'] = REVERSED_KEYWORD
 
     # ONE_LINE_COMMENT = r'(//|#)[^\n]*'
     # LINES_COMMENT = r'(/\*(.|\n)*?\*/)'
