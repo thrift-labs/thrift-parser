@@ -5,66 +5,22 @@ from sly import Lexer, Parser
 
 
 class ThriftLexer(Lexer):
-    tokens = { INCLUDE, CPP_INCLUDE, NAMESPACE,
-        CONST, TYPEDEF, ENUM, SENUM, STRUCT, UNION, EXCEPTION,
-        SERVICE, EXTENDS, REQUIRED, OPTIONAL, ONE_WAY, VOID, THROWS,
-        MAP, SET, LIST, BASE_TYPE, CPP_TYPE,
-        XSD_ALL, XSD_OPTIONAL, XSD_NILLABLE, XSD_ATTRS,
-        REVERSED_KEYWORDS,
+    tokens = {
         L_BRACE, L_PAREN, L_ANGLE, L_BRACKS,
         R_BRACE, R_PAREN, R_ANGLE, R_BRACKS,
-        COMMA, COLON, ASSIGN, POSITIVE, NEGATIVE, SEMI,
+        COMMA, COLON, ASSIGN, POSITIVE, NEGATIVE, SEMI, ASTERISK,
         INT_CONSTANT, DOUBLE_CONSTANT,
         LITERAL, IDENTIFIER, STIDENTIFIER,
         # ONE_LINE_COMMENT, LINES_COMMENT,
+        INCLUDE, CPP_INCLUDE, NAMESPACE,
+        CONST, TYPEDEF, ENUM, SENUM, STRUCT, UNION, EXCEPTION,
+        SERVICE, EXTENDS, REQUIRED, OPTIONAL, ONEWAY, VOID, THROWS,
+        MAP, SET, LIST, BASE_TYPE, CPP_TYPE,
+        XSD_ALL, XSD_OPTIONAL, XSD_NILLABLE, XSD_ATTRS,
+        # REVERSED_KEYWORDS,
     }
 
     ignore = ' \t'
-
-    # https://thrift.apache.org/docs/idl
-    INCLUDE = r'include'
-    CPP_INCLUDE = r'cpp_include'
-    NAMESPACE = r'namespace'
-
-    CONST = r'const'
-    TYPEDEF = r'typedef'
-    ENUM = r'enum'
-    SENUM = r'senum'
-    STRUCT = r'struct'
-    UNION = r'union'
-    EXCEPTION = r'exception'
-    SERVICE = r'service'
-    EXTENDS = r'extends'
-    REQUIRED = r'required'
-    OPTIONAL = r'optional'
-    ONE_WAY = r'oneway'
-    VOID = r'void'
-    THROWS = r'throws'
-    MAP = r'map'
-    SET = r'SET'
-    LIST = 'list'
-
-    BASE_TYPE = r'bool|byte|i8|i16|i32|i64|double|string|binary|slist'
-    CPP_TYPE = r'cpp_type'
-
-    XSD_ALL = r'xsd_all'
-    XSD_OPTIONAL = r'xsd_optional'
-    XSD_NILLABLE = r'xsd_nillable'
-    XSD_ATTRS = r'xsd_attrs'
-
-    REVERSED_KEYWORD_LIST = ["BEGIN", "END", "__CLASS__", "__DIR__", "__FILE__", "__FUNCTION__",
-        "__LINE__", "__METHOD__", "__NAMESPACE__", "abstract", "alias", "and", "args", "as",
-        "assert", "begin", "break", "case", "catch", "class", "clone", "continue", "declare",
-        "def", "default", "del", "delete", "do", "dynamic", "elif", "else", "elseif", "elsif",
-        "end", "enddeclare", "endfor", "endforeach", "endif", "endswitch", "endwhile", "ensure",
-        "except", "exec", "finally", "float", "for", "foreach", "from", "function", "global",
-        "goto", "if", "implements", "import", "in", "inline", "instanceof", "interface", "is",
-        "lambda", "module", "native", "new", "next", "nil", "not", "or", "package", "pass",
-        "public", "print", "private", "protected", "raise", "redo", "rescue", "retry", "register",
-        "return", "self", "sizeof", "static", "super", "switch", "synchronized", "then", "this",
-        "throw", "transient", "try", "undef", "unless", "unsigned", "until", "use", "var",
-        "virtual", "volatile", "when", "while", "with", "xor", "yield"]
-    REVERSED_KEYWORDS = r'|'.join(REVERSED_KEYWORD_LIST)
 
     L_BRACE = r'{'
     R_BRACE = r'}'
@@ -81,17 +37,73 @@ class ThriftLexer(Lexer):
     POSITIVE = r'\+'
     NEGATIVE = r'-'
     SEMI = r';'
+    ASTERISK = r'\*'
 
     DOUBLE_CONSTANT = r'((\d+|(\d*\.\d+))[Ee][\+-]?\d+)|(\d*\.\d+)'
     INT_CONSTANT = r'\d+'
 
     LITERAL = r'("[^"]*")' + '|' + r"('[^']*')"
-
     IDENTIFIER = r'[a-zA-Z_][a-zA-Z0-9._]*'
     STIDENTIFIER = r'[a-zA-Z_][a-zA-Z0-9._-]*'
 
-    #ONE_LINE_COMMENT = r'(//|#)[^\n]*'
-    #LINES_COMMENT = r'(/\*(.|\n)*?\*/)'
+    # https://thrift.apache.org/docs/idl
+    IDENTIFIER['include'] = INCLUDE
+    IDENTIFIER['cpp_include'] = CPP_INCLUDE
+    IDENTIFIER['namespace'] = NAMESPACE
+
+    IDENTIFIER['const'] = CONST
+    IDENTIFIER['typedef'] = TYPEDEF
+    IDENTIFIER['enum'] = ENUM
+    IDENTIFIER['senum'] = SENUM
+    IDENTIFIER['struct'] = STRUCT
+    IDENTIFIER['union'] = UNION
+    IDENTIFIER['exception'] = EXCEPTION
+    IDENTIFIER['service'] = SERVICE
+    IDENTIFIER['extends'] = EXTENDS
+    IDENTIFIER['required'] = REQUIRED
+    IDENTIFIER['optional'] = OPTIONAL
+    IDENTIFIER['oneway'] = ONEWAY
+    IDENTIFIER['void'] = VOID
+    IDENTIFIER['throws'] = THROWS
+    IDENTIFIER['map'] = MAP
+    IDENTIFIER['set'] = SET
+    IDENTIFIER['list'] = LIST
+
+    IDENTIFIER['bool'] = BASE_TYPE
+    IDENTIFIER['byte'] = BASE_TYPE
+    IDENTIFIER['i8'] = BASE_TYPE
+    IDENTIFIER['i16'] = BASE_TYPE
+    IDENTIFIER['i32'] = BASE_TYPE
+    IDENTIFIER['i64'] = BASE_TYPE
+    IDENTIFIER['double'] = BASE_TYPE
+    IDENTIFIER['string'] = BASE_TYPE
+    IDENTIFIER['binary'] = BASE_TYPE
+    IDENTIFIER['slist'] = BASE_TYPE
+
+    IDENTIFIER['cpp_type'] = CPP_TYPE
+
+    IDENTIFIER['xsd_all'] = XSD_ALL
+    IDENTIFIER['xsd_optional'] = XSD_OPTIONAL
+    IDENTIFIER['xsd_nillable'] = XSD_NILLABLE
+    IDENTIFIER['xsd_attrs'] = XSD_ATTRS
+
+    # TODO
+    REVERSED_KEYWORD_LIST = ["BEGIN", "END", "__CLASS__", "__DIR__", "__FILE__", "__FUNCTION__",
+        "__LINE__", "__METHOD__", "__NAMESPACE__", "abstract", "alias", "and", "args", "as",
+        "assert", "begin", "break", "case", "catch", "class", "clone", "continue", "declare",
+        "def", "default", "del", "delete", "do", "dynamic", "elif", "else", "elseif", "elsif",
+        "end", "enddeclare", "endfor", "endforeach", "endif", "endswitch", "endwhile", "ensure",
+        "except", "exec", "finally", "float", "for", "foreach", "from", "function", "global",
+        "goto", "if", "implements", "import", "in", "inline", "instanceof", "interface", "is",
+        "lambda", "module", "native", "new", "next", "nil", "not", "or", "package", "pass",
+        "public", "print", "private", "protected", "raise", "redo", "rescue", "retry", "register",
+        "return", "self", "sizeof", "static", "super", "switch", "synchronized", "then", "this",
+        "throw", "transient", "try", "undef", "unless", "unsigned", "until", "use", "var",
+        "virtual", "volatile", "when", "while", "with", "xor", "yield"]
+    # REVERSED_KEYWORDS = r'|'.join(REVERSED_KEYWORD_LIST)
+
+    # ONE_LINE_COMMENT = r'(//|#)[^\n]*'
+    # LINES_COMMENT = r'(/\*(.|\n)*?\*/)'
 
     ignore_newline = r'\n+'
     ignore_comment = r'((//|#)[^\n]*)|(/\*(.|\n)*?\*/)'
@@ -135,7 +147,7 @@ class ThriftParser(Parser):
         pass
 
     # @_("'*' | 'c_glib' | 'cpp' | 'delphi' | 'haxe' | 'go' | 'java' | 'js' | 'lua' | 'netstd' | 'perl' | 'php' | 'py' | 'py.twisted' | 'rb' | 'st' | 'xsd'","IDENTIFIER")
-    @_("IDENTIFIER")
+    @_("IDENTIFIER", "ASTERISK")
     def NamespaceScope(self, p):
         # # [6]  NamespaceScope  ::=  '*' | 'c_glib' | 'cpp' | 'delphi' | 'haxe' | 'go' | 'java' | 'js' | 'lua' | 'netstd' | 'perl' | 'php' | 'py' | 'py.twisted' | 'rb' | 'st' | 'xsd'
         pass
@@ -226,7 +238,7 @@ class ThriftParser(Parser):
         # [20] XsdAttrs        ::=  'xsd_attrs' '{' Field* '}'
         pass
 
-    @_("[ ONE_WAY ] FunctionType IDENTIFIER L_PAREN { Field } R_PAREN [ Throws ] [ ListSeparator ]")
+    @_("[ ONEWAY ] FunctionType IDENTIFIER L_PAREN { Field } R_PAREN [ Throws ] [ ListSeparator ]")
     def Function(self, p):
         # [21] Function        ::=  'oneway'? FunctionType Identifier '(' Field* ')' Throws? ListSeparator?
         pass

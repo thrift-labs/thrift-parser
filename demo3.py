@@ -10,11 +10,10 @@ class NumberLexer(Lexer):
     IDENTIFIER = r'[a-zA-Z_][a-zA-Z0-9._]*'
     IDENTIFIER['string'] = BASE_TYPE
     IDENTIFIER['bool'] = BASE_TYPE
-    '''
+
     types = r'bool|byte|i8|i16|i32|i64|double|string|binary|slist'.split('|')
     for token in types:
         IDENTIFIER[token] = BASE_TYPE
-    '''
 
     ignore = ' \t'
     ignore_newline = r'\n+'

@@ -35,7 +35,8 @@ namespace py ThriftTest
 namespace py.twisted ThriftTest
 namespace rb Thrift.Test
 namespace st ThriftTest
-namespace xsd test (uri = 'http://thrift.apache.org/ns/ThriftTest')
+# TODO
+# namespace xsd test (uri = 'http://thrift.apache.org/ns/ThriftTest')
 
 // Presence of namespaces and sub-namespaces for which there is
 // no generator should compile with warnings only
@@ -100,12 +101,17 @@ struct Xtruct3
 }
 
 
+# TODO fix this
+/*
 struct Insanity
 {
   1: map<Numberz, UserId> userMap,
   2: list<Xtruct> xtructs
 } (python.immutable= "")
+*/
 
+# TODO: fix this annotation
+/*
 struct CrazyNesting {
   1: string string_field,
   2: optional set<Insanity> set_field,
@@ -113,6 +119,7 @@ struct CrazyNesting {
   3: required list<map<set<i32> (python.immutable = ""), map<i32,set<list<map<Insanity,string>(python.immutable = "")> (python.immutable = "")>>>> list_field,
   4: binary binary_field
 }
+*/
 
 union SomeUnion {
   1: map<Numberz, UserId> map_thing,
