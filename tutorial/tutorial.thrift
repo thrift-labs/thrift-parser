@@ -62,7 +62,7 @@ include "shared.thrift"
  * Thrift files can namespace, package, or prefix their output in various
  * target languages.
  */
-
+/*
 namespace cl tutorial
 namespace cpp tutorial
 namespace d tutorial
@@ -72,6 +72,8 @@ namespace php tutorial
 namespace perl tutorial
 namespace haxe tutorial
 namespace netstd tutorial
+*/
+namespace py tutorial
 
 /**
  * Thrift lets you do typedefs to get pretty names for your types. Standard
@@ -96,6 +98,7 @@ enum Operation {
     SUBTRACT = 2,
   MULTIPLY = 3,
   DIVIDE = 4;
+  LESS = -1;
 }
 
 /**

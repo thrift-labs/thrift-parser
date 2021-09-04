@@ -82,7 +82,7 @@ class ThriftLexer(Lexer):
     NEGATIVE = r'-'
     SEMI = r';'
 
-    DOUBLE_CONSTANT = r'\d*(((\.\d+)([Ee](\+|-)?\d+)?)|((\.\d+)?([Ee](\+|-)?\d+)))'
+    DOUBLE_CONSTANT = r'((\d+|(\d*\.\d+))[Ee][\+-]?\d+)|(\d*\.\d+)'
     INT_CONSTANT = r'\d+'
 
     LITERAL = r'("[^"]*")' + '|' + r"('[^']*')"
@@ -112,27 +112,27 @@ class ThriftParser(Parser):
     @_("{ Header } { Definition }")
     def Document(self, p):
         # [1]  Document        ::=  Header* Definition*
-        print(p)
+        pass
 
     @_("Include", "CppInclude", "Namespace")
     def Header(self, p):
         # [2]  Header          ::=  Include | CppInclude | Namespace
-        print(p)
+        pass
 
     @_("INCLUDE LITERAL")
     def Include(self, p):
         # [3]  Include         ::=  'include' Literal
-        print(p)
+        pass
 
     @_("CPP_INCLUDE LITERAL")
     def CppInclude(self, p):
         # [4]  CppInclude      ::=  'cpp_include' Literal
-        print(p)
+        pass
 
     @_("NAMESPACE NamespaceScope IDENTIFIER")
     def Namespace(self, p):
         # [5]  Namespace       ::=  ( 'namespace' ( NamespaceScope Identifier ) )
-        print(p)
+        pass
 
     # @_("'*' | 'c_glib' | 'cpp' | 'delphi' | 'haxe' | 'go' | 'java' | 'js' | 'lua' | 'netstd' | 'perl' | 'php' | 'py' | 'py.twisted' | 'rb' | 'st' | 'xsd'","IDENTIFIER")
     @_("IDENTIFIER")
@@ -140,61 +140,55 @@ class ThriftParser(Parser):
         # # [6]  NamespaceScope  ::=  '*' | 'c_glib' | 'cpp' | 'delphi' | 'haxe' | 'go' | 'java' | 'js' | 'lua' | 'netstd' | 'perl' | 'php' | 'py' | 'py.twisted' | 'rb' | 'st' | 'xsd'
         pass
 
-    # NamespaceScope
-
-
-    # [6]  NamespaceScope  ::=
-    # NAMESPACE_SCOPE = r'cl|c_glib|cpp|dart|delphi|d|haxe|go|java|js|lua|netstd|perl|php|py|py\.twisted|rb|st|xsd'
-
-
     @_("Const", "Typedef", "Enum", "Senum", "Struct", "Union", "Exception", "Service")
     def Definition(self, p):
         # [7]  Definition      ::=  Const | Typedef | Enum | Senum | Struct | Union | Exception | Service
-        print(p)
+        pass
 
     @_("CONST FieldType IDENTIFIER ASSIGN ConstValue [ ListSeparator ]")
     def Const(self, p):
         # [8]  Const           ::=  'const' FieldType Identifier '=' ConstValue ListSeparator?
-        print(p)
+        pass
 
     @_("TYPEDEF DefinitionType IDENTIFIER")
     def Typedef(self, p):
         # [9]  Typedef         ::=  'typedef' DefinitionType Identifier
-        print(p)
+        pass
 
     @_("ENUM IDENTIFIER L_BRACE { EnumItem } R_BRACE")
     def Enum(self, p):
         # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
-        print(p)
+        pass
 
     @_("IDENTIFIER [ ListSeparator ]")
     def EnumItem(self, p):
         # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
-        print(p)
+        pass
 
-    @_("IDENTIFIER ASSIGN INT_CONSTANT [ ListSeparator ]")
+    @_("IDENTIFIER ASSIGN IntConstant [ ListSeparator ]")
     def EnumItem(self, p):
         # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
-        print(p)
+        pass
 
     @_("SENUM IDENTIFIER L_BRACE { SenumItem } R_BRACE")
     def Senum(self, p):
         # [11] Senum           ::=  'senum' Identifier '{' (Literal ListSeparator?)* '}'
-        print(p)
+        pass
 
     @_("LITERAL [ ListSeparator ]")
     def SenumItem(self, p):
-        print(p)
+        # [11] Senum           ::=  'senum' Identifier '{' (Literal ListSeparator?)* '}'
+        pass
 
     @_("STRUCT IDENTIFIER [ XSD_ALL ] L_BRACE { Field } R_BRACE")
     def Struct(self, p):
         # [12] Struct          ::=  'struct' Identifier 'xsd_all'? '{' Field* '}'
-        print(p)
+        pass
 
     @_("UNION IDENTIFIER [ XSD_ALL ] L_BRACE { Field } R_BRACE")
     def Union(self, p):
         # [13] Union          ::=  'union' Identifier 'xsd_all'? '{' Field* '}'
-        print(p)
+        pass
 
     @_("EXCEPTION IDENTIFIER L_BRACE { Field } R_BRACE")
     def Exception(self, p):
@@ -206,20 +200,21 @@ class ThriftParser(Parser):
         # [15] Service         ::=  'service' Identifier ( 'extends' Identifier )? '{' Function* '}'
         pass
 
-    @_("[ FieldID ] [ FieldReq ] FieldType IDENTIFIER [ ASSIGN ConstValue ] XsdFieldOptions [ ListSeparator ]")
+    @_("FieldID [ FieldReq ] FieldType IDENTIFIER [ ASSIGN ConstValue ] XsdFieldOptions [ ListSeparator ]")
     def Field(self, p):
+        # NOTE: FieldID may not be empty
         # [16] Field           ::=  FieldID? FieldReq? FieldType Identifier ('=' ConstValue)? XsdFieldOptions ListSeparator?
-        print(p)
+        pass
 
     @_("INT_CONSTANT COLON")
     def FieldID(self, p):
         # [17] FieldID         ::=  IntConstant ':'
-        print(p)
+        pass
 
     @_("REQUIRED", "OPTIONAL")
     def FieldReq(self, p):
         # [18] FieldReq        ::=  'required' | 'optional'
-        print(p)
+        pass
 
     @_("[ XSD_OPTIONAL ] [ XSD_NILLABLE ] [ XsdAttrs ]")
     def XsdFieldOptions(self, p):
@@ -246,18 +241,20 @@ class ThriftParser(Parser):
         # [23] Throws          ::=  'throws' '(' Field* ')'
         pass
 
-    @_("IDENTIFIER", "BASE_TYPE", "ContainerType")
+    @_("IDENTIFIER", "BaseType", "ContainerType")
     def FieldType(self, p):
         # [24] FieldType       ::=  Identifier | BaseType | ContainerType
         pass
 
-    @_("BASE_TYPE", "ContainerType")
+    @_("BaseType", "ContainerType")
     def DefinitionType(self, p):
         # [25] DefinitionType  ::=  BaseType | ContainerType
         pass
 
-    # BASE_TYPE
-    # [26] BaseType        ::=  'bool' | 'byte' | 'i8' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
+    @_("BASE_TYPE")
+    def BaseType(self, p):
+        # [26] BaseType        ::=  'bool' | 'byte' | 'i8' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
+        pass
 
     @_("MapType", "SetType", "ListType")
     def ContainerType(self, p):
@@ -287,7 +284,7 @@ class ThriftParser(Parser):
     @_("IntConstant", "DoubleConstant", "LITERAL", "IDENTIFIER", "ConstList", "ConstMap")
     def ConstValue(self, p):
         # [32] ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
-        print(p)
+        pass
 
     @_("[ Sign ] INT_CONSTANT")
     def IntConstant(self, p):
@@ -325,7 +322,7 @@ class ThriftParser(Parser):
     @_("COMMA", "SEMI")
     def ListSeparator(self, p):
         # [40] ListSeparator   ::=  ',' | ';'
-        print(p)
+        pass
 
     # [41] Letter          ::=  ['A'-'Z'] | ['a'-'z']
     # [42] Digit           ::=  ['0'-'9']
@@ -336,28 +333,19 @@ class ThriftParser(Parser):
         print(p)
 
 
-if __name__ == '__main__':
-    with open('./tutorial/tutorial.thrift', 'r') as f:
+def run_file(file):
+    print(f'---run file {file}----------')
+    with open(file, 'r') as f:
         text = f.read()
         lexer = ThriftLexer()
         for token in lexer.tokenize(text):
             pass
-            # print(token)
-
-        print('--------------split----------')
         lexer = ThriftLexer()
         parser = ThriftParser()
         parser.parse(lexer.tokenize(text))
 
-    '''
-    with open('./tutorial/shared.thrift', 'r') as f:
-        text = f.read()
-        lexer = ThriftLexer()
-        for token in lexer.tokenize(text):
-            print(token)
 
-        print('--------------split----------')
-        lexer = ThriftLexer()
-        parser = ThriftParser()
-        parser.parse(lexer.tokenize(text))
-        '''
+if __name__ == '__main__':
+    run_file('./tutorial/tutorial.thrift')
+    run_file('./tutorial/shared.thrift')
+    run_file('./tutorial/ThriftTest.thrift')
