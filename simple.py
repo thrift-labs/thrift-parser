@@ -251,27 +251,27 @@ class ThriftParser(Parser):
         # [8]  Const           ::=  'const' FieldType Identifier '=' ConstValue ListSeparator?
         pass
 
-    @_("TYPEDEF DefinitionType IDENTIFIER")
+    @_("TYPEDEF DefinitionType [ Annotation ] IDENTIFIER [ Annotation ]")
     def Typedef(self, p):
         # [9]  Typedef         ::=  'typedef' DefinitionType Identifier
         pass
 
-    @_("ENUM IDENTIFIER L_BRACE { EnumItem } R_BRACE")
+    @_("ENUM IDENTIFIER L_BRACE { EnumItem } R_BRACE [ Annotation ]")
     def Enum(self, p):
         # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
         pass
 
-    @_("IDENTIFIER [ ListSeparator ]")
+    @_("IDENTIFIER [ Annotation ] [ ListSeparator ]")
     def EnumItem(self, p):
         # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
         pass
 
-    @_("IDENTIFIER ASSIGN IntConstant [ ListSeparator ]")
+    @_("IDENTIFIER ASSIGN IntConstant [ Annotation ] [ ListSeparator ]")
     def EnumItem(self, p):
         # [10] Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}'
         pass
 
-    @_("SENUM IDENTIFIER L_BRACE { SenumItem } R_BRACE")
+    @_("SENUM IDENTIFIER L_BRACE { SenumItem } R_BRACE [ Annotation ]")
     def Senum(self, p):
         # [11] Senum           ::=  'senum' Identifier '{' (Literal ListSeparator?)* '}'
         pass
@@ -281,7 +281,7 @@ class ThriftParser(Parser):
         # [11] Senum           ::=  'senum' Identifier '{' (Literal ListSeparator?)* '}'
         pass
 
-    @_("STRUCT IDENTIFIER [ XSD_ALL ] L_BRACE { Field } R_BRACE")
+    @_("STRUCT IDENTIFIER [ XSD_ALL ] L_BRACE { Field } R_BRACE [ Annotation ]")
     def Struct(self, p):
         # [12] Struct          ::=  'struct' Identifier 'xsd_all'? '{' Field* '}'
         pass
@@ -291,17 +291,17 @@ class ThriftParser(Parser):
         # [13] Union          ::=  'union' Identifier 'xsd_all'? '{' Field* '}'
         pass
 
-    @_("EXCEPTION IDENTIFIER L_BRACE { Field } R_BRACE")
+    @_("EXCEPTION IDENTIFIER L_BRACE { Field } R_BRACE [ Annotation ]")
     def Exception(self, p):
         # [14] Exception       ::=  'exception' Identifier '{' Field* '}'
         pass
 
-    @_("SERVICE IDENTIFIER [ EXTENDS IDENTIFIER ] L_BRACE { Function } R_BRACE")
+    @_("SERVICE IDENTIFIER [ EXTENDS IDENTIFIER ] L_BRACE { Function } R_BRACE [ Annotation ]")
     def Service(self, p):
         # [15] Service         ::=  'service' Identifier ( 'extends' Identifier )? '{' Function* '}'
         pass
 
-    @_("FieldID [ FieldReq ] FieldType IDENTIFIER [ ASSIGN ConstValue ] XsdFieldOptions [ ListSeparator ]")
+    @_("FieldID [ FieldReq ] FieldType IDENTIFIER [ ASSIGN ConstValue ] XsdFieldOptions [ Annotation ] [ ListSeparator ]")
     def Field(self, p):
         # NOTE: FieldID may not be empty
         # [16] Field           ::=  FieldID? FieldReq? FieldType Identifier ('=' ConstValue)? XsdFieldOptions ListSeparator?
@@ -327,7 +327,7 @@ class ThriftParser(Parser):
         # [20] XsdAttrs        ::=  'xsd_attrs' '{' Field* '}'
         pass
 
-    @_("[ ONEWAY ] FunctionType IDENTIFIER L_PAREN { Field } R_PAREN [ Throws ] [ ListSeparator ]")
+    @_("[ ONEWAY ] FunctionType IDENTIFIER L_PAREN { Field } R_PAREN [ Throws ] [ Annotation ] [ ListSeparator ]")
     def Function(self, p):
         # [21] Function        ::=  'oneway'? FunctionType Identifier '(' Field* ')' Throws? ListSeparator?
         pass
@@ -372,7 +372,7 @@ class ThriftParser(Parser):
         # [29] SetType         ::=  'set' CppType? '<' FieldType '>'
         pass
 
-    @_("LIST L_ANGLE FieldType R_ANGLE [ CppType ]")
+    @_("LIST L_ANGLE FieldType [ Annotation ] R_ANGLE [ CppType ]")
     def ListType(self, p):
         # [30] ListType        ::=  'list' '<' FieldType '>' CppType?
         pass
@@ -428,6 +428,18 @@ class ThriftParser(Parser):
     # [41] Letter          ::=  ['A'-'Z'] | ['a'-'z']
     # [42] Digit           ::=  ['0'-'9']
 
+    @_("L_PAREN { AnnotationItem } R_PAREN")
+    def Annotation(self, p):
+        # new guess idl see https://issues.apache.org/jira/browse/THRIFT-4061
+        # [43] Annotation       ::=  '(' (Identifier ('=' LITERAL)? ListSeparator?)* ')'
+        pass
+
+    @_("IDENTIFIER [ ASSIGN LITERAL ] [ ListSeparator ]")
+    def AnnotationItem(self, p):
+        # new guess idl see https://issues.apache.org/jira/browse/THRIFT-4061
+        # [43] Annotation       ::=  '(' (Identifier ('=' LITERAL)? ListSeparator?)* ')'
+        pass
+
     def error(self, p):
         import pdb
         pdb.set_trace()
@@ -450,3 +462,4 @@ if __name__ == '__main__':
     run_file('./tutorial/tutorial.thrift')
     run_file('./tutorial/shared.thrift')
     run_file('./tutorial/ThriftTest.thrift')
+    run_file('./tutorial/AnnotationTest.thrift')
