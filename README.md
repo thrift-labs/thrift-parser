@@ -11,6 +11,17 @@ python thrift parser --> thrift-fmt --> auto format my thrift files in one style
 
 1. 支持 Annotation (uri = 'https://github.com/')
 
+list<
+    map<
+        set<i32> (python.immutable = ""),
+        map<i32,
+            set<
+                list<
+                    map<Insanity,string> (python.immutable = "")
+                    >
+                (python.immutable = "")
+            >>>> list_field,
+
 
 2. 支持解析 Comment
 

@@ -230,7 +230,7 @@ class ThriftParser(Parser):
         # [4]  CppInclude      ::=  'cpp_include' Literal
         pass
 
-    @_("NAMESPACE NamespaceScope IDENTIFIER")
+    @_("NAMESPACE NamespaceScope IDENTIFIER [ Annotation ]")
     def Namespace(self, p):
         # [5]  Namespace       ::=  ( 'namespace' ( NamespaceScope Identifier ) )
         pass
@@ -352,7 +352,7 @@ class ThriftParser(Parser):
         # [25] DefinitionType  ::=  BaseType | ContainerType
         pass
 
-    @_("BASE_TYPE")
+    @_("BASE_TYPE [ Annotation ]")
     def BaseType(self, p):
         # [26] BaseType        ::=  'bool' | 'byte' | 'i8' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
         pass
@@ -362,17 +362,17 @@ class ThriftParser(Parser):
         # [27] ContainerType   ::=  MapType | SetType | ListType
         pass
 
-    @_("MAP [ CppType ] L_ANGLE FieldType COMMA FieldType R_ANGLE")
+    @_("MAP [ CppType ] L_ANGLE FieldType COMMA FieldType R_ANGLE [ Annotation ]")
     def MapType(self, p):
         # [28] MapType         ::=  'map' CppType? '<' FieldType ',' FieldType '>'
         pass
 
-    @_("SET [ CppType ] L_ANGLE FieldType R_ANGLE")
+    @_("SET [ CppType ] L_ANGLE FieldType R_ANGLE [ Annotation ]")
     def SetType(self, p):
         # [29] SetType         ::=  'set' CppType? '<' FieldType '>'
         pass
 
-    @_("LIST L_ANGLE FieldType [ Annotation ] R_ANGLE [ CppType ]")
+    @_("LIST L_ANGLE FieldType R_ANGLE [ CppType ] [ Annotation ]")
     def ListType(self, p):
         # [30] ListType        ::=  'list' '<' FieldType '>' CppType?
         pass
