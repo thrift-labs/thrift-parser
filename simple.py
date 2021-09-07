@@ -22,6 +22,11 @@ class ThriftLexer(Lexer):
 
     ignore = ' \t'
 
+    LITERAL = r'''(\"|\')((?<!\\)\\\2|.)*?\2'''
+
+    ignore_newline = r'\n+'
+    ignore_comment = r'((//|#)[^\n]*)|(/\*(.|\n)*?\*/)'
+
     L_BRACE = r'{'
     R_BRACE = r'}'
     L_PAREN = r'\('
@@ -42,7 +47,12 @@ class ThriftLexer(Lexer):
     DOUBLE_CONSTANT = r'((\d+|(\d*\.\d+))[Ee][\+-]?\d+)|(\d*\.\d+)'
     INT_CONSTANT = r'\d+'
 
-    LITERAL = r'("[^"]*")' + '|' + r"('[^']*')"
+    # import pdb
+    # pdb.set_trace()
+
+    # LITERAL = r'("[^"]*")' + '|' + r"('[^']*')"
+    # LITERAL = r'''(\"|\')((?<!\\)\\\1|.)*?\1'''
+
     IDENTIFIER = r'[a-zA-Z_][a-zA-Z0-9._]*'
     STIDENTIFIER = r'[a-zA-Z_][a-zA-Z0-9._-]*'
 
@@ -193,9 +203,6 @@ class ThriftLexer(Lexer):
 
     # ONE_LINE_COMMENT = r'(//|#)[^\n]*'
     # LINES_COMMENT = r'(/\*(.|\n)*?\*/)'
-
-    ignore_newline = r'\n+'
-    ignore_comment = r'((//|#)[^\n]*)|(/\*(.|\n)*?\*/)'
 
     # Extra action for newlines
     def ignore_newline(self, t):
@@ -459,6 +466,7 @@ def run_file(file):
 
 
 if __name__ == '__main__':
+    run_file('./tutorial/simple.thrift')
     run_file('./tutorial/tutorial.thrift')
     run_file('./tutorial/shared.thrift')
     run_file('./tutorial/ThriftTest.thrift')
