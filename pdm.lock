@@ -1,0 +1,13 @@
+[[package]]
+name = "antlr4-python3-runtime"
+version = "4.10"
+summary = "ANTLR 4.10 runtime for Python 2.7.12"
+
+[metadata]
+lock_version = "3.1"
+content_hash = "sha256:fac91c1594923a5ba2e38d38798a829999edee411d6a8937e3b2d8b0b2e6378f"
+
+[metadata.files]
+"antlr4-python3-runtime 4.10" = [
+    {file = "antlr4-python3-runtime-4.10.tar.gz", hash = "sha256:061a49bc72ae05a35d9b61c0ba0ac36c0397708819f02fbfb20a80e47d287a1b"},
+]
