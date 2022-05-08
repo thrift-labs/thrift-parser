@@ -1,4 +1,4 @@
-# Generated from antlr/Thrift.g4 by ANTLR 4.10.1
+# Generated from Thrift.g4 by ANTLR 4.10.1
 from antlr4 import *
 from io import StringIO
 import sys

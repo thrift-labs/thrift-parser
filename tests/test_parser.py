@@ -23,8 +23,7 @@ def parse_one_thrift(filepath):
 
 
 def test_files():
-    # TODO: use *.thrift
-    files = glob.glob('./fixtures/ThriftTest.thrift')
+    files = glob.glob('./fixtures/*.thrift')
     for file in files:
         parser = parse_one_thrift('../' + file)
         ctx = ParserRuleContext()
