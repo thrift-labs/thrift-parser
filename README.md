@@ -40,54 +40,14 @@ def main(file):
 ```
 
 
-# Why ? thrift-parser
+# Why ?
 
 python thrift parser --> thrift-fmt --> auto format my thrift files in one style
 
 
-# Deprecated [My Old Try]
+# TODO
 
-<s>python3 simple.py</s>s>
-
-<s>1. include + struct + service</s>
-
-1. 支持 Annotation (uri = 'https://github.com/')
-
-list<
-    map<
-        set<i32> (python.immutable = ""),
-        map<i32,
-            set<
-                list<
-                    map<Insanity,string> (python.immutable = "")
-                    >
-                (python.immutable = "")
-            >>>> list_field,
-
-
-2. 支持解析 Comment
-
-
-3. more test https://github.com/evernote/evernote-thrift/tree/master/src
-
-4. ast 封装
-
-
-## COPYING
-
-将参考以下代码
-
-https://thrift.apache.org/docs/idl
-
-https://github.com/apache/thrift APACHE
-
-
-sly: https://github.com/dabeaz/sly
-
-ptsd: https://github.com/wickman/ptsd MIT
-
-ply: https://github.com/dabeaz/ply BSD
-
-js thrift-parser: https://github.com/eleme/thrift-parser MIT
-
-annotationTest.thrift https://git-wip-us.apache.org/repos/asf?p=thrift.git;a=blob_plain;f=test/AnnotationTest.thrift;hb=HEAD
+1. remove last EOF in documents ?
+2. more ast operate: like ServiceNode.Append(MethodNode), 这样可以动态生成 Thrift 文件
+3. other language?
+4. better code
