@@ -16,22 +16,23 @@ def get_abs_filepath(filepath):
 def test_files():
     files = glob.glob('./fixtures/*.thrift')
     for file in files:
-        _, _, parser = parse_file(get_abs_filepath('../' + file))
-
-        ctx = ParserRuleContext()
-        parser.enterRule(ctx, 0, 0)
-        document = parser.document()
-
+        _, _, _, document = parse_file(get_abs_filepath('../' + file))
         assert len(document.children) > 0
 
 
 def test_load_normal():
-    _, _, parser = parse_file(get_abs_filepath('../fixtures/tutorial.thrift'))
-
-    ctx = ParserRuleContext()
-    parser.enterRule(ctx, 0, 0)
-    document = parser.document()
+    _, _, _, document = parse_file(get_abs_filepath('../fixtures/tutorial.thrift'))
 
     assert len(document.children) > 0
     header = document.children[0]
     assert header.getText() == 'include"shared.thrift"'
+
+
+def test_get_comments_tokens():
+    _, Tokens, _, _ = parse_file(get_abs_filepath('../fixtures/tutorial.thrift'))
+    comments = []
+    for token in Tokens.tokens:
+        if token.channel == 2:
+            comments.append(token)
+
+    assert len(comments) > 0
