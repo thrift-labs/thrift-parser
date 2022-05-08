@@ -214,9 +214,9 @@ WS
     ;
 
 SL_COMMENT
-    : ('//' | '#') (~'\n')* ('\r')? '\n' -> channel(1)
+    : ('//' | '#') (~'\n')* ('\r')? '\n' -> channel(2)
     ;
 
 ML_COMMENT
-    : '/*' .*? '*/' -> channel(1)
+    : '/*' .*? '*/' -> channel(2)
     ;

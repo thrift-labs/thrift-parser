@@ -10,4 +10,4 @@ def parse_file(file):
     lexer = ThriftLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = ThriftParser(stream)
-    return parser
+    return (lexer, stream, parser)

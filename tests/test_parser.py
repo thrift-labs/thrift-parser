@@ -16,7 +16,7 @@ def get_abs_filepath(filepath):
 def test_files():
     files = glob.glob('./fixtures/*.thrift')
     for file in files:
-        parser = parse_file(get_abs_filepath('../' + file))
+        _, _, parser = parse_file(get_abs_filepath('../' + file))
 
         ctx = ParserRuleContext()
         parser.enterRule(ctx, 0, 0)
@@ -26,7 +26,7 @@ def test_files():
 
 
 def test_load_normal():
-    parser = parse_file(get_abs_filepath('../fixtures/tutorial.thrift'))
+    _, _, parser = parse_file(get_abs_filepath('../fixtures/tutorial.thrift'))
 
     ctx = ParserRuleContext()
     parser.enterRule(ctx, 0, 0)
