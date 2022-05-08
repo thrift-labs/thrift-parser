@@ -23,7 +23,7 @@ test = [
     "pytest>=7.1.2",
 ]
 dev = [
-    "tox-pdm>=0.3.4",
+    "flake8>=4.0.1",
 ]
 
 [build-system]
