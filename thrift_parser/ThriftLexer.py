@@ -1,4 +1,4 @@
-# Generated from antlr-gammars-v4/Thrift.g4 by ANTLR 4.10.1
+# Generated from antlr/Thrift.g4 by ANTLR 4.10.1
 from antlr4 import *
 from io import StringIO
 import sys
@@ -244,7 +244,7 @@ class ThriftLexer(Lexer):
     TYPE_DOUBLE = 45
     TYPE_STRING = 46
     TYPE_BINARY = 47
-    LITERAL = 48
+    LITERAL_VALUE = 48
     IDENTIFIER = 49
     COMMA = 50
     WS = 51
@@ -268,8 +268,8 @@ class ThriftLexer(Lexer):
     symbolicNames = [ "<INVALID>",
             "INTEGER", "HEX_INTEGER", "DOUBLE", "TYPE_BOOL", "TYPE_BYTE", 
             "TYPE_I16", "TYPE_I32", "TYPE_I64", "TYPE_DOUBLE", "TYPE_STRING", 
-            "TYPE_BINARY", "LITERAL", "IDENTIFIER", "COMMA", "WS", "SL_COMMENT", 
-            "ML_COMMENT" ]
+            "TYPE_BINARY", "LITERAL_VALUE", "IDENTIFIER", "COMMA", "WS", 
+            "SL_COMMENT", "ML_COMMENT" ]
 
     ruleNames = [ "T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", 
                   "T__7", "T__8", "T__9", "T__10", "T__11", "T__12", "T__13", 
@@ -279,8 +279,8 @@ class ThriftLexer(Lexer):
                   "T__32", "T__33", "T__34", "T__35", "INTEGER", "HEX_INTEGER", 
                   "DOUBLE", "TYPE_BOOL", "TYPE_BYTE", "TYPE_I16", "TYPE_I32", 
                   "TYPE_I64", "TYPE_DOUBLE", "TYPE_STRING", "TYPE_BINARY", 
-                  "LITERAL", "IDENTIFIER", "COMMA", "LETTER", "DIGIT", "HEX_DIGIT", 
-                  "WS", "SL_COMMENT", "ML_COMMENT" ]
+                  "LITERAL_VALUE", "IDENTIFIER", "COMMA", "LETTER", "DIGIT", 
+                  "HEX_DIGIT", "WS", "SL_COMMENT", "ML_COMMENT" ]
 
     grammarFileName = "Thrift.g4"
 
