@@ -11,10 +11,13 @@ dependencies = [
 requires-python = ">=3.7"
 readme = "README.md"
 license = {text = "MIT"}
+
 [project.optional-dependencies]
 
 [tool]
 [tool.pdm]
+excludes = ["tests/"]
+
 [tool.pdm.dev-dependencies]
 test = [
     "pytest>=7.1.2",

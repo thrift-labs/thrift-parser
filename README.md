@@ -1,9 +1,27 @@
 # thrift-parser
 
+```bash
+pip install thrift-parser
+```
+
+`Thrift.g4` is from https://github.com/antlr/grammars-v4
+
+
+## parse
+
+```python
+from thrift_parser import parse_file
+
+lexer, tokens, parser, document = parse_file('tutorial.thrift')
+```
+
+
+# Why ? thrift-parser
+
 python thrift parser --> thrift-fmt --> auto format my thrift files in one style
 
 
-## TODO
+# My Old Try
 
 <s>python3 simple.py</s>s>
 
