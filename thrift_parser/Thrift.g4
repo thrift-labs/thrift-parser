@@ -214,9 +214,9 @@ WS
     ;
 
 SL_COMMENT
-    : ('//' | '#') (~'\n')* ('\r')? '\n' -> channel(HIDDEN)
+    : ('//' | '#') (~'\n')* ('\r')? '\n' -> channel(1)
     ;
 
 ML_COMMENT
-    : '/*' .*? '*/' -> channel(HIDDEN)
+    : '/*' .*? '*/' -> channel(1)
     ;
