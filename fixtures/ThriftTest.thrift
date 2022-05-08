@@ -35,7 +35,8 @@ namespace py ThriftTest
 namespace py.twisted ThriftTest
 namespace rb Thrift.Test
 namespace st ThriftTest
-namespace xsd test (uri = 'http://thrift.apache.org/ns/ThriftTest')
+// TODO support this.
+// namespace xsd test (uri = 'http://thrift.apache.org/ns/ThriftTest')
 
 // Presence of namespaces and sub-namespaces for which there is
 // no generator should compile with warnings only
