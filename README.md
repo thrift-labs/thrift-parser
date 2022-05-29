@@ -18,7 +18,9 @@ or smiple
 
 ```python
 from thrift_parser import ThriftData
+
 thrift_data = ThriftData.from_file('tutorial.thrift')
+
 print(thrift_data.tokens[0].text)
 print(thrift_data.document.children)
 ```
@@ -55,7 +57,5 @@ python thrift parser --> thrift-fmt --> auto format my thrift files in one style
 
 # TODO
 
-1. remove last EOF in documents ?
-2. more ast operate: like ServiceNode.Append(MethodNode), 这样可以动态生成 Thrift 文件
-3. other language?
-4. better code
+1. more ast operate, fake_token, fake_context
+2. other language?
