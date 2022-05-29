@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 from antlr4 import InputStream
 from antlr4 import FileStream
@@ -12,7 +12,9 @@ from .ThriftLexer import ThriftLexer
 from .ThriftParser import ThriftParser
 
 
-def parse(input_stream: InputStream, ctx: Optional[ParserRuleContext] = None):
+ParseResult = Tuple[ThriftLexer, CommonTokenStream, ThriftParser, ThriftParser.DocumentContext]
+
+def parse(input_stream: InputStream, ctx: Optional[ParserRuleContext] = None) -> ParseResult:
     lexer = ThriftLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = ThriftParser(stream)
@@ -26,7 +28,7 @@ def parse(input_stream: InputStream, ctx: Optional[ParserRuleContext] = None):
     return (lexer, stream, parser, document)
 
 
-def parse_file(file, ctx=None):
+def parse_file(file, ctx=None)  -> ParseResult:
     input_stream = FileStream(file, encoding='utf8')
     return parse(input_stream, ctx=ctx)
 
