@@ -18,7 +18,8 @@ def test_files():
         _, _, _, document = parse_file(file)
         assert len(document.children) > 0
         data = ThriftData.from_file(file)
-        assert len(data._tokens) > 0
+        assert len(data.tokens) > 0
+        assert len(data.document.children) > 0
 
 
 def test_load_normal():

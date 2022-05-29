@@ -14,6 +14,14 @@ from thrift_parser import parse_file
 
 lexer, tokens, parser, document = parse_file('tutorial.thrift')
 ```
+or smiple
+
+```python
+from thrift_parser import ThriftData
+thrift_data = ThriftData.from_file('tutorial.thrift')
+print(thrift_data.tokens[0].text)
+print(thrift_data.document.children)
+```
 
 or you can try antlr's way
 

@@ -37,7 +37,7 @@ class ThriftData(object):
 
     def __init__(self, input_stream: InputStream):
         _, tokens, _, document = parse(input_stream)
-        self._tokens: List[CommonToken] = tokens.tokens
+        self.tokens: List[CommonToken] = tokens.tokens
         self.document: ThriftParser.DocumentContext = document
 
     @classmethod
