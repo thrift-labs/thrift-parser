@@ -1,6 +1,6 @@
 [project]
 name = "thrift-parser"
-version = "0.0.1"
+version = "0.0.2"
 description = "a thrift parser (antlr4)"
 authors = [
     {name = "alingse", email = "alingse@foxmail.com"},

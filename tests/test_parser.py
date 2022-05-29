@@ -1,9 +1,7 @@
 import os
 import glob
 
-from antlr4 import ParserRuleContext
-
-from thrift_parser import parse_file
+from thrift_parser import parse_file, ThriftData
 
 
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -16,8 +14,11 @@ def get_abs_filepath(filepath):
 def test_files():
     files = glob.glob('./fixtures/*.thrift')
     for file in files:
-        _, _, _, document = parse_file(get_abs_filepath('../' + file))
+        file = get_abs_filepath('../' + file)
+        _, _, _, document = parse_file(file)
         assert len(document.children) > 0
+        data = ThriftData.from_file(file)
+        assert len(data._tokens) > 0
 
 
 def test_load_normal():
