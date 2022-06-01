@@ -38,3 +38,7 @@ def test_get_comments_tokens():
             comments.append(token)
 
     assert len(comments) > 0
+
+def test_from_str():
+    data = ThriftData.from_str('include "shared.thrift"')
+    assert data.tokens[0].text == 'include'

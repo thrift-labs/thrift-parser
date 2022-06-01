@@ -49,3 +49,8 @@ class ThriftData(object):
     def from_stdin(cls) -> ThriftData:
         input_stream = StdinStream(encoding='utf8')
         return cls(input_stream)
+
+    @classmethod
+    def from_str(cls, data: str) -> ThriftData:
+        input_stream = InputStream(data)
+        return cls(input_stream)
