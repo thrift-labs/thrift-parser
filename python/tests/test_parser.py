@@ -12,7 +12,7 @@ def get_abs_filepath(filepath):
 
 
 def test_files():
-    files = glob.glob('./fixtures/*.thrift')
+    files = glob.glob('../../fixtures/*.thrift')
     for file in files:
         file = get_abs_filepath('../' + file)
         _, _, _, document = parse_file(file)
@@ -23,7 +23,7 @@ def test_files():
 
 
 def test_load_normal():
-    _, _, _, document = parse_file(get_abs_filepath('../fixtures/tutorial.thrift'))
+    _, _, _, document = parse_file(get_abs_filepath('../../fixtures/tutorial.thrift'))
 
     assert len(document.children) > 0
     header = document.children[0]
@@ -31,7 +31,7 @@ def test_load_normal():
 
 
 def test_get_comments_tokens():
-    _, Tokens, _, _ = parse_file(get_abs_filepath('../fixtures/tutorial.thrift'))
+    _, Tokens, _, _ = parse_file(get_abs_filepath('../../fixtures/tutorial.thrift'))
     comments = []
     for token in Tokens.tokens:
         if token.channel == 2:
