@@ -18,6 +18,10 @@ jobs:
       matrix:
         python-version: ["3.7", "3.8", "3.9", "3.10"]
 
+    defaults:
+        run:
+          working-directory: python
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
@@ -26,9 +30,6 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Setup PDM
       uses: pdm-project/setup-pdm@v2.6
-
-    - name: Change Dir
-      run: cd python
 
     - name: Install dependencies
       run: pdm install
