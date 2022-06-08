@@ -427,3 +427,8 @@ describe('Test parse complex', () => {
     const data = ThriftData.from_str(testThrift);
     assert.equal(data.tokens.get(3).text, 'namespace');
 });
+
+describe('Test parse from file', () => {
+    const data = ThriftData.from_file('../fixtures/simple.thrift');
+    assert.notEqual(data.tokens.get(0).text, '');
+});
