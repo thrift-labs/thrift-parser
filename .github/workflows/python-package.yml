@@ -32,10 +32,10 @@ jobs:
       uses: pdm-project/setup-pdm@v2.6
 
     - name: Install dependencies
-      run: pdm install
+      run: pdm install -v
 
     - name: Build Packages
-      run: pdm build
+      run: pdm build -v
 
     - name: Test with pytest
       run: |
