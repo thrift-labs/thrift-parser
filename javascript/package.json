@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "src",
-    "dist"
+    "lib"
   ],
   "scripts": {
     "build": "tsc",
@@ -32,6 +32,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@types/antlr4": "^4.7.2",
     "antlr4": "^4.10.1"
   },
   "devDependencies": {
