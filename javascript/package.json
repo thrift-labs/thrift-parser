@@ -28,6 +28,9 @@
     "url": "https://github.com/thrift-labs/thrift-parser/issues"
   },
   "homepage": "https://github.com/thrift-labs/thrift-parser#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "antlr4": "^4.10.1"
   },
