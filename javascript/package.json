@@ -4,8 +4,11 @@
   "description": "A parser of Thrift , by Antlr4",
   "type": "module",
   "main": "index.js",
+  "files": [
+    "src/"
+  ],
   "scripts": {
-    "test": "node_modules/.bin/mocha test/*.spec.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -23,14 +26,10 @@
   },
   "homepage": "https://github.com/thrift-labs/thrift-parser#readme",
   "dependencies": {
-    "antlr4": "^4.10.1",
-    "assert": "^2.0.0",
-    "mocha": "^10.0.0"
+    "antlr4": "^4.10.1"
   },
   "devDependencies": {
-    "typescript": "^4.7.3"
-  },
-  "files": [
-    "src/"
-  ]
+    "assert": "^2.0.0",
+    "mocha": "^10.0.0"
+  }
 }

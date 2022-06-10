@@ -1,9 +1,11 @@
 import assert from 'assert';
-import { ThriftData, parse } from '../src/index.js';
+import { ThriftData } from '../src/index.js';
 
 describe('Test loading from string', () => {
+  it('should return 2', () => {
     const data = ThriftData.from_str('include "shared.thrift"');
     assert.equal(data.tokens.get(0).text, 'include');
+  });
 });
 
 const testThrift = `
@@ -424,11 +426,17 @@ struct OptionalSetDefaultTest {
 `
 
 describe('Test parse complex', () => {
+  it('should return 2', () => {
     const data = ThriftData.from_str(testThrift);
     assert.equal(data.tokens.get(3).text, 'namespace');
+  })
 });
 
 describe('Test parse from file', () => {
+  it('should return 2', () => {
     const data = ThriftData.from_file('../fixtures/simple.thrift');
     assert.notEqual(data.tokens.get(0).text, '');
+  })
 });
+
+
