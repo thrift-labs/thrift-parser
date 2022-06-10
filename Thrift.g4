@@ -25,7 +25,7 @@ cpp_include
 
 
 definition
-    : const_rule | typedef_ | enum_rule | senum | struct_ | union_ | exception | service
+    : const_rule | typedef_ | enum_rule | senum | struct_ | union_ | exception_ | service
     ;
 
 const_rule
@@ -56,7 +56,7 @@ union_
     : 'union' IDENTIFIER '{' field* '}' type_annotations?
     ;
 
-exception
+exception_
     : 'exception' IDENTIFIER '{' field* '}' type_annotations?
     ;
 
