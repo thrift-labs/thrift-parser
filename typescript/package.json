@@ -1,8 +1,8 @@
 {
   "name": "thirft-parser-ts",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A parser of Thrift , by Antlr4 and antlr4ts",
+  "main": "src/index.js",
   "files": [
     "src/*.ts",
     "lib"
@@ -17,12 +17,21 @@
     "type": "git",
     "url": "git+https://github.com/thrift-labs/thrift-parser.git"
   },
-  "author": "",
+  "keywords": [
+    "Thrift",
+    "Parser",
+    "antlr4",
+    "antlr4ts"
+  ],
+  "author": "alingse",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/thrift-labs/thrift-parser/issues"
   },
   "homepage": "https://github.com/thrift-labs/thrift-parser#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "antlr4ts": "^0.5.0-alpha.4",
     "typescript": "^4.7.3"
