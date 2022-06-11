@@ -1,8 +1,8 @@
 {
   "name": "thirft-parser-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A parser of Thrift , by Antlr4 and antlr4ts",
-  "main": "src/index.js",
+  "main": "lib/src/index.js",
   "files": [
     "src/*.ts",
     "lib"
