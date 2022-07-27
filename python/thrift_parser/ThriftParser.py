@@ -210,7 +210,7 @@ class ThriftParser ( Parser ):
     RULE_senum = 10
     RULE_struct_ = 11
     RULE_union_ = 12
-    RULE_exception = 13
+    RULE_exception_ = 13
     RULE_service = 14
     RULE_field = 15
     RULE_field_id = 16
@@ -239,7 +239,7 @@ class ThriftParser ( Parser ):
 
     ruleNames =  [ "document", "header", "include_", "namespace_", "cpp_include", 
                    "definition", "const_rule", "typedef_", "enum_rule", 
-                   "enum_field", "senum", "struct_", "union_", "exception", 
+                   "enum_field", "senum", "struct_", "union_", "exception_", 
                    "service", "field", "field_id", "field_req", "function_", 
                    "oneway", "function_type", "throws_list", "type_annotations", 
                    "type_annotation", "annotation_value", "field_type", 
@@ -679,8 +679,8 @@ class ThriftParser ( Parser ):
             return self.getTypedRuleContext(ThriftParser.Union_Context,0)
 
 
-        def exception(self):
-            return self.getTypedRuleContext(ThriftParser.ExceptionContext,0)
+        def exception_(self):
+            return self.getTypedRuleContext(ThriftParser.Exception_Context,0)
 
 
         def service(self):
@@ -742,7 +742,7 @@ class ThriftParser ( Parser ):
             elif token in [ThriftParser.T__15]:
                 self.enterOuterAlt(localctx, 7)
                 self.state = 124
-                self.exception()
+                self.exception_()
                 pass
             elif token in [ThriftParser.T__16]:
                 self.enterOuterAlt(localctx, 8)
@@ -1301,7 +1301,7 @@ class ThriftParser ( Parser ):
         return localctx
 
 
-    class ExceptionContext(ParserRuleContext):
+    class Exception_Context(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1323,23 +1323,23 @@ class ThriftParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return ThriftParser.RULE_exception
+            return ThriftParser.RULE_exception_
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterException" ):
-                listener.enterException(self)
+            if hasattr( listener, "enterException_" ):
+                listener.enterException_(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitException" ):
-                listener.exitException(self)
+            if hasattr( listener, "exitException_" ):
+                listener.exitException_(self)
 
 
 
 
-    def exception(self):
+    def exception_(self):
 
-        localctx = ThriftParser.ExceptionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 26, self.RULE_exception)
+        localctx = ThriftParser.Exception_Context(self, self._ctx, self.state)
+        self.enterRule(localctx, 26, self.RULE_exception_)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)

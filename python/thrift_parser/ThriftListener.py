@@ -125,12 +125,12 @@ class ThriftListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ThriftParser#exception.
-    def enterException(self, ctx:ThriftParser.ExceptionContext):
+    # Enter a parse tree produced by ThriftParser#exception_.
+    def enterException_(self, ctx:ThriftParser.Exception_Context):
         pass
 
-    # Exit a parse tree produced by ThriftParser#exception.
-    def exitException(self, ctx:ThriftParser.ExceptionContext):
+    # Exit a parse tree produced by ThriftParser#exception_.
+    def exitException_(self, ctx:ThriftParser.Exception_Context):
         pass
 
 

@@ -124,7 +124,7 @@ enum_field
 senum
 struct_
 union_
-exception
+exception_
 service
 field
 field_id

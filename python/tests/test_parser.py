@@ -39,6 +39,26 @@ def test_get_comments_tokens():
 
     assert len(comments) > 0
 
+
 def test_from_str():
     data = ThriftData.from_str('include "shared.thrift"')
     assert data.tokens[0].text == 'include'
+
+
+def test_literal_value():
+    thrift = r'''
+    const string default_user = "it\'s name is \" x \" ";
+    '''
+    data = data = ThriftData.from_str(thrift.strip())
+    assert len(data.tokens) == 11
+    assert data.tokens[8].text == r'"it\'s name is \" x \" "'
+
+def test_literal_value_with_annotation():
+    thrift = r'''
+    struct A {
+        1: string id (go.tag = "gorm:\"primary_key\" json:\"id\" sq:\"eq,\"");
+    }
+    '''
+    data = data = ThriftData.from_str(thrift.strip())
+    assert len(data.tokens) == 24
+    assert data.tokens[18].text == r'"gorm:\"primary_key\" json:\"id\" sq:\"eq,\""'
