@@ -17,5 +17,21 @@ describe('Thrift Data', function () {
         assert.ok(token instanceof TerminalNode);
         assert.strictEqual(token.childCount, 0);
       });
+
+      it('load literal value', function () {
+        const thrift = `const string default_user = 'it\\'s name is \\" x \\" or \\'x\\' \\r\\t\\n';`
+        const data = ThriftData.from_string(thrift);
+        assert.strictEqual(data.tokens.get(0).text, 'const');
+
+        const defines = data.document.getChild(0);
+        const constValue = defines.getChild(0);
+        const token = constValue.getChild(0);
+        assert.strictEqual(token.text, 'const');
+        console.log(token);
+        assert.ok(token instanceof TerminalNode);
+        assert.strictEqual(token.childCount, 0);
+
+        assert.strictEqual(data.tokens.get(8).text, `'it\\'s name is \\" x \\" or \\'x\\' \\r\\t\\n'`);
+      });
     });
 });
