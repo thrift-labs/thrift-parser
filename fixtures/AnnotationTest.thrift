@@ -19,7 +19,8 @@
 
 typedef list<i32> ( cpp.template = "std::list" ) int_linked_list
 
-const string default_user = '\'hello\' "world\"s"';
+const string default_user = '\'hello\' "world"s"';
+const string default_name = "\"hello\" world's";
 
 struct User {
   1: i32 id        (go.tag="gorm:\"primary_key\" json:\"id\"");

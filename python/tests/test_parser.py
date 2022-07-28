@@ -53,6 +53,19 @@ def test_literal_value():
     assert len(data.tokens) == 11
     assert data.tokens[8].text == r'"it\'s name is \" x \" "'
 
+def test_literal_value_quote():
+    thrift = '''
+    const string default_user = 'it\\'s name is \\" x \\" or \\'x\\' \\r\\t\\n';
+    '''
+    data = data = ThriftData.from_str(thrift.strip())
+    assert len(data.tokens) == 11
+    assert data.tokens[8].text == '''
+    'it\\'s name is \\" x \\" or \\'x\\' \\r\\t\\n'
+    '''.strip()
+    assert data.tokens[8].text == r'''
+    'it\'s name is \" x \" or \'x\' \r\t\n'
+    '''.strip()
+
 def test_literal_value_with_annotation():
     thrift = r'''
     struct A {
