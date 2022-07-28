@@ -19,14 +19,15 @@
 
 typedef list<i32> ( cpp.template = "std::list" ) int_linked_list
 
-const string default_user = '\'hello\' "world"s"';
-const string default_name = "\"hello\" world's";
-
+//const string default_user = "\'default_user\'" ;
+//const string default_name = '"abc\'s"' ;
+/*
 struct User {
   1: i32 id        (go.tag="gorm:\"primary_key\" json:\"id\"");
   2: i32 age       (go.tag="json:\"age\"");
   3: string name   (go.tag="json:\"name\" sq:\"eq,\"");
 }
+*/
 
 struct foo {
   1: i32 bar ( presence = "required" );
@@ -80,7 +81,7 @@ service foo_service {
 } (a.b="c")
 
 service deprecate_everything {
-  void Foo( ) ( deprecated = "This method has neither 'x' nor \"y\"" )
+  // void Foo( ) ( deprecated = "This method has neither 'x' nor \"y\"" )
   void Bar( ) ( deprecated = "Fails to deliver ä¸­æ–‡ ÐºÐ¾Ð»Ð±Ð°ÑÐ°" )
   void Baz( ) ( deprecated = "Need this to work with tabs (\t) or Umlauts (Ã¤Ã¶Ã¼Ã„Ã–ÃœÃŸ) too" )
   void Deprecated() ( deprecated ) // no comment

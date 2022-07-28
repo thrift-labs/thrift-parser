@@ -1,4 +1,5 @@
 import { CharStreams, CharStream, CommonTokenStream, ParserRuleContext } from 'antlr4ts';
+import { BailErrorStrategy } from 'antlr4ts';
 import { ThriftParser, DocumentContext } from './ThriftParser';
 import { ThriftLexer } from './ThriftLexer';
 
@@ -18,6 +19,8 @@ export function parse(input_stream: CharStream) : ParserReult {
     const lexer = new ThriftLexer(input_stream);
     const stream = new CommonTokenStream(lexer);
     const parser = new ThriftParser(stream);
+    parser.errorHandler = new BailErrorStrategy();
+
     const ctx = new ParserRuleContext();
     parser.enterRule(ctx, 0, 0);
     const document = parser.document();

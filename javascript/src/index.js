@@ -11,6 +11,8 @@ export function parse(input_stream) {
     const lexer = new ThriftLexer(input_stream);
     const stream = new antlr4.CommonTokenStream(lexer);
     const parser = new ThriftParser(stream);
+    parser._errHandler = new antlr4.error.BailErrorStrategy();
+
     const ctx = new antlr4.ParserRuleContext();
     parser.enterRule(ctx, 0, 0);
     const document = parser.document();
@@ -24,8 +26,9 @@ export function parse_file(file) {
 
 export class ThriftData {
     constructor(input_stream) {
-        const [, tokens, , document] = parse(input_stream);
+        const [, tokens, parser, document] = parse(input_stream);
         this.tokens = tokens;
+        this.parser = parser;
         this.document = document;
     }
 

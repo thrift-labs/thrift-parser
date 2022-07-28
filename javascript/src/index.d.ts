@@ -5,6 +5,7 @@ export class ThriftData {
     static from_str(data: string): ThriftData;
     constructor(input_stream: antlr4.InputStream);
     tokens: antlr4.Token[];
+    parser: ThriftParser;
     document: ThriftParser.DocumentContext;
 }
 

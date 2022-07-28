@@ -425,18 +425,49 @@ struct OptionalSetDefaultTest {
 }
 `
 
-describe('Test parse complex', () => {
-  it('should return 2', () => {
+describe('Test parse from_str', () => {
+  it('parse testThrift', () => {
     const data = ThriftData.from_str(testThrift);
+    assert.equal(true, data instanceof ThriftData);
     assert.equal(data.tokens.get(3).text, 'namespace');
+  })
+
+  it('test complex literal', () => {
+    const thrift = `const string default_user = "\\'default_user\\'" ;
+    const string default_name = '"abc\\'s"';`
+    const data = ThriftData.from_str(thrift);
+    assert.equal(true, data instanceof ThriftData);
+    assert.notEqual(data.tokens.get(0).text, '');
+  })
+
+  it('test parse wrong', () => {
+    assert.throws(() => {
+      const thrift = `A B C;`
+      const data = ThriftData.from_str(thrift);
+    })
   })
 });
 
 describe('Test parse from file', () => {
-  it('should return 2', () => {
+  it('test simple', () => {
     const data = ThriftData.from_file('../fixtures/simple.thrift');
+    assert.equal(true, data instanceof ThriftData);
     assert.notEqual(data.tokens.get(0).text, '');
   })
+
+  it('test AnnotationTest', () => {
+    const data = ThriftData.from_file('../fixtures/AnnotationTest.thrift');
+    assert.equal(true, data instanceof ThriftData);
+    assert.ok(data.tokens.get(1) !== undefined);
+  })
+
+  it('test literal', () => {
+    const data = ThriftData.from_file('../fixtures/literal.thrift');
+    // console.log(data.tokens);
+    assert.equal(true, data instanceof ThriftData);
+    data.parser.addErrorListener(new ErrorListener());
+    assert.ok(data.tokens.get(1) !== undefined);
+    assert.ok(data.document !== undefined);
+  })
+
 });
-
-

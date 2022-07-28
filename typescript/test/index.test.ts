@@ -33,5 +33,23 @@ describe('Thrift Data', function () {
 
         assert.strictEqual(data.tokens.get(8).text, `'it\\'s name is \\" x \\" or \\'x\\' \\r\\t\\n'`);
       });
+
+      it('load literal value2', function () {
+        const thrift = `const string default_user = "\\'default_user\\'" ;
+        const string default_name = '"abc\\'s"';`
+
+        const data = ThriftData.from_string(thrift);
+        assert.equal(true, data instanceof ThriftData);
+        assert.notEqual(data.tokens.get(0).text, '');
+      });
+
+      it('test complex literal more', () => {
+        const thrift = `const string default_user = "\\'default_user\\'" ;
+        const string default_name = '"abc\\'s"';`
+        const data = ThriftData.from_string(thrift);
+        assert.equal(true, data instanceof ThriftData);
+        assert.notEqual(data.tokens.get(0).text, '');
+      })
+
     });
 });
