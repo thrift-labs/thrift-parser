@@ -1,6 +1,6 @@
 {
   "name": "thrift-parser-antlr4",
-  "version": "1.0.5",
+  "version": "1.0.6-a1",
   "description": "A parser of Thrift , by Antlr4",
   "type": "module",
   "main": "src/index.js",
