@@ -463,10 +463,8 @@ describe('Test parse from file', () => {
 
   it('test literal', () => {
     const data = ThriftData.from_file('../fixtures/literal.thrift');
-    // console.log(data.tokens);
     assert.equal(true, data instanceof ThriftData);
-    data.parser.addErrorListener(new ErrorListener());
-    assert.ok(data.tokens.get(1) !== undefined);
+    assert.ok(data.tokens.get(0).text === 'const');
     assert.ok(data.document !== undefined);
   })
 

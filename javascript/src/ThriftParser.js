@@ -170,7 +170,7 @@ export default class ThriftParser extends antlr4.Parser {
     static ruleNames = [ "document", "header", "include_", "namespace_", 
                          "cpp_include", "definition", "const_rule", "typedef_", 
                          "enum_rule", "enum_field", "senum", "struct_", 
-                         "union_", "exception", "service", "field", "field_id", 
+                         "union_", "exception_", "service", "field", "field_id", 
                          "field_req", "function_", "oneway", "function_type", 
                          "throws_list", "type_annotations", "type_annotation", 
                          "annotation_value", "field_type", "base_type", 
@@ -454,7 +454,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        case ThriftParser.T__15:
 	            this.enterOuterAlt(localctx, 7);
 	            this.state = 124;
-	            this.exception();
+	            this.exception_();
 	            break;
 	        case ThriftParser.T__16:
 	            this.enterOuterAlt(localctx, 8);
@@ -812,9 +812,9 @@ export default class ThriftParser extends antlr4.Parser {
 
 
 
-	exception() {
-	    let localctx = new ExceptionContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 26, ThriftParser.RULE_exception);
+	exception_() {
+	    let localctx = new Exception_Context(this, this._ctx, this.state);
+	    this.enterRule(localctx, 26, ThriftParser.RULE_exception_);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -1953,7 +1953,7 @@ ThriftParser.RULE_enum_field = 9;
 ThriftParser.RULE_senum = 10;
 ThriftParser.RULE_struct_ = 11;
 ThriftParser.RULE_union_ = 12;
-ThriftParser.RULE_exception = 13;
+ThriftParser.RULE_exception_ = 13;
 ThriftParser.RULE_service = 14;
 ThriftParser.RULE_field = 15;
 ThriftParser.RULE_field_id = 16;
@@ -2239,8 +2239,8 @@ class DefinitionContext extends antlr4.ParserRuleContext {
 	    return this.getTypedRuleContext(Union_Context,0);
 	};
 
-	exception() {
-	    return this.getTypedRuleContext(ExceptionContext,0);
+	exception_() {
+	    return this.getTypedRuleContext(Exception_Context,0);
 	};
 
 	service() {
@@ -2613,7 +2613,7 @@ class Union_Context extends antlr4.ParserRuleContext {
 
 
 
-class ExceptionContext extends antlr4.ParserRuleContext {
+class Exception_Context extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
         if(parent===undefined) {
@@ -2624,7 +2624,7 @@ class ExceptionContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = ThriftParser.RULE_exception;
+        this.ruleIndex = ThriftParser.RULE_exception_;
     }
 
 	IDENTIFIER() {
@@ -2648,13 +2648,13 @@ class ExceptionContext extends antlr4.ParserRuleContext {
 
 	enterRule(listener) {
 	    if(listener instanceof ThriftListener ) {
-	        listener.enterException(this);
+	        listener.enterException_(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof ThriftListener ) {
-	        listener.exitException(this);
+	        listener.exitException_(this);
 		}
 	}
 
@@ -3785,7 +3785,7 @@ ThriftParser.Enum_fieldContext = Enum_fieldContext;
 ThriftParser.SenumContext = SenumContext; 
 ThriftParser.Struct_Context = Struct_Context; 
 ThriftParser.Union_Context = Union_Context; 
-ThriftParser.ExceptionContext = ExceptionContext; 
+ThriftParser.Exception_Context = Exception_Context; 
 ThriftParser.ServiceContext = ServiceContext; 
 ThriftParser.FieldContext = FieldContext; 
 ThriftParser.Field_idContext = Field_idContext; 

@@ -122,12 +122,12 @@ export default class ThriftListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by ThriftParser#exception.
-	enterException(ctx) {
+	// Enter a parse tree produced by ThriftParser#exception_.
+	enterException_(ctx) {
 	}
 
-	// Exit a parse tree produced by ThriftParser#exception.
-	exitException(ctx) {
+	// Exit a parse tree produced by ThriftParser#exception_.
+	exitException_(ctx) {
 	}
 
 

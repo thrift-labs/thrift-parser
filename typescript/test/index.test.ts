@@ -13,7 +13,7 @@ describe('Thrift Data', function () {
         const include = header.getChild(0);
         const token = include.getChild(0);
         assert.strictEqual(token.text, 'include');
-        console.log(token);
+
         assert.ok(token instanceof TerminalNode);
         assert.strictEqual(token.childCount, 0);
       });
@@ -27,7 +27,7 @@ describe('Thrift Data', function () {
         const constValue = defines.getChild(0);
         const token = constValue.getChild(0);
         assert.strictEqual(token.text, 'const');
-        console.log(token);
+
         assert.ok(token instanceof TerminalNode);
         assert.strictEqual(token.childCount, 0);
 
@@ -49,6 +49,15 @@ describe('Thrift Data', function () {
         const data = ThriftData.from_string(thrift);
         assert.equal(true, data instanceof ThriftData);
         assert.notEqual(data.tokens.get(0).text, '');
+      })
+
+      it('test read from file', () => {
+        const data = ThriftData.from_file(
+          '../fixtures/literal.thrift');
+        assert.equal(true, data instanceof ThriftData);
+        assert.equal(data.tokens.get(0).text, 'const');
+        assert.equal(data.tokens.get(8).text, `"\\'default_user\\'"`);
+        assert.equal(data.tokens.get(20).text, `'"abc\\'s"'`);
       })
 
     });
