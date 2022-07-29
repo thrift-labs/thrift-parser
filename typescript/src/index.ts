@@ -1,4 +1,5 @@
 import { CharStreams, CharStream, CommonTokenStream, ParserRuleContext } from 'antlr4ts';
+import fs from 'fs';
 import { BailErrorStrategy } from 'antlr4ts';
 import { ThriftParser, DocumentContext } from './ThriftParser';
 import { ThriftLexer } from './ThriftLexer';
@@ -38,6 +39,12 @@ export class ThriftData {
     }
 
     static from_string(data: string) {
+        const input_stream = CharStreams.fromString(data);
+        return new ThriftData(input_stream);
+    }
+
+    static from_file(file: string) {
+        const data = fs.readFileSync(file, 'utf8');
         const input_stream = CharStreams.fromString(data);
         return new ThriftData(input_stream);
     }
