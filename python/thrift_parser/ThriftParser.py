@@ -1,4 +1,4 @@
-# Generated from Thrift.g4 by ANTLR 4.10.1
+# Generated from Thrift.g4 by ANTLR 4.11.1
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -194,7 +194,7 @@ class ThriftParser ( Parser ):
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "INTEGER", "HEX_INTEGER", "DOUBLE", "TYPE_BOOL", 
                       "TYPE_BYTE", "TYPE_I16", "TYPE_I32", "TYPE_I64", "TYPE_DOUBLE", 
-                      "TYPE_STRING", "TYPE_BINARY", "LITERAL_VALUE", "IDENTIFIER", 
+                      "TYPE_STRING", "TYPE_BINARY", "LITERAL", "IDENTIFIER", 
                       "COMMA", "WS", "SL_COMMENT", "ML_COMMENT" ]
 
     RULE_document = 0
@@ -295,7 +295,7 @@ class ThriftParser ( Parser ):
     TYPE_DOUBLE=45
     TYPE_STRING=46
     TYPE_BINARY=47
-    LITERAL_VALUE=48
+    LITERAL=48
     IDENTIFIER=49
     COMMA=50
     WS=51
@@ -304,7 +304,7 @@ class ThriftParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.10.1")
+        self.checkVersion("4.11.1")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -359,7 +359,7 @@ class ThriftParser ( Parser ):
             self.state = 81
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.T__0) | (1 << ThriftParser.T__1) | (1 << ThriftParser.T__3) | (1 << ThriftParser.T__4) | (1 << ThriftParser.T__5))) != 0):
+            while ((_la) & ~0x3f) == 0 and ((1 << _la) & 118) != 0:
                 self.state = 78
                 self.header()
                 self.state = 83
@@ -369,7 +369,7 @@ class ThriftParser ( Parser ):
             self.state = 87
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.T__6) | (1 << ThriftParser.T__8) | (1 << ThriftParser.T__9) | (1 << ThriftParser.T__12) | (1 << ThriftParser.T__13) | (1 << ThriftParser.T__14) | (1 << ThriftParser.T__15) | (1 << ThriftParser.T__16))) != 0):
+            while ((_la) & ~0x3f) == 0 and ((1 << _la) & 255616) != 0:
                 self.state = 84
                 self.definition()
                 self.state = 89
@@ -428,17 +428,17 @@ class ThriftParser ( Parser ):
             self.state = 95
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [ThriftParser.T__0]:
+            if token in [1]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 92
                 self.include_()
                 pass
-            elif token in [ThriftParser.T__1, ThriftParser.T__3, ThriftParser.T__4]:
+            elif token in [2, 4, 5]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 93
                 self.namespace_()
                 pass
-            elif token in [ThriftParser.T__5]:
+            elif token in [6]:
                 self.enterOuterAlt(localctx, 3)
                 self.state = 94
                 self.cpp_include()
@@ -462,8 +462,8 @@ class ThriftParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def LITERAL_VALUE(self):
-            return self.getToken(ThriftParser.LITERAL_VALUE, 0)
+        def LITERAL(self):
+            return self.getToken(ThriftParser.LITERAL, 0)
 
         def getRuleIndex(self):
             return ThriftParser.RULE_include_
@@ -488,7 +488,7 @@ class ThriftParser ( Parser ):
             self.state = 97
             self.match(ThriftParser.T__0)
             self.state = 98
-            self.match(ThriftParser.LITERAL_VALUE)
+            self.match(ThriftParser.LITERAL)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -511,8 +511,8 @@ class ThriftParser ( Parser ):
             else:
                 return self.getToken(ThriftParser.IDENTIFIER, i)
 
-        def LITERAL_VALUE(self):
-            return self.getToken(ThriftParser.LITERAL_VALUE, 0)
+        def LITERAL(self):
+            return self.getToken(ThriftParser.LITERAL, 0)
 
         def type_annotations(self):
             return self.getTypedRuleContext(ThriftParser.Type_annotationsContext,0)
@@ -549,7 +549,7 @@ class ThriftParser ( Parser ):
                 self.match(ThriftParser.T__2)
                 self.state = 102
                 _la = self._input.LA(1)
-                if not(_la==ThriftParser.LITERAL_VALUE or _la==ThriftParser.IDENTIFIER):
+                if not(_la==48 or _la==49):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
@@ -564,7 +564,7 @@ class ThriftParser ( Parser ):
                 self.match(ThriftParser.IDENTIFIER)
                 self.state = 105
                 _la = self._input.LA(1)
-                if not(_la==ThriftParser.LITERAL_VALUE or _la==ThriftParser.IDENTIFIER):
+                if not(_la==48 or _la==49):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
@@ -572,7 +572,7 @@ class ThriftParser ( Parser ):
                 self.state = 107
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==ThriftParser.T__21:
+                if _la==22:
                     self.state = 106
                     self.type_annotations()
 
@@ -612,8 +612,8 @@ class ThriftParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def LITERAL_VALUE(self):
-            return self.getToken(ThriftParser.LITERAL_VALUE, 0)
+        def LITERAL(self):
+            return self.getToken(ThriftParser.LITERAL, 0)
 
         def getRuleIndex(self):
             return ThriftParser.RULE_cpp_include
@@ -638,7 +638,7 @@ class ThriftParser ( Parser ):
             self.state = 115
             self.match(ThriftParser.T__5)
             self.state = 116
-            self.match(ThriftParser.LITERAL_VALUE)
+            self.match(ThriftParser.LITERAL)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -709,42 +709,42 @@ class ThriftParser ( Parser ):
             self.state = 126
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [ThriftParser.T__6]:
+            if token in [7]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 118
                 self.const_rule()
                 pass
-            elif token in [ThriftParser.T__8]:
+            elif token in [9]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 119
                 self.typedef_()
                 pass
-            elif token in [ThriftParser.T__9]:
+            elif token in [10]:
                 self.enterOuterAlt(localctx, 3)
                 self.state = 120
                 self.enum_rule()
                 pass
-            elif token in [ThriftParser.T__12]:
+            elif token in [13]:
                 self.enterOuterAlt(localctx, 4)
                 self.state = 121
                 self.senum()
                 pass
-            elif token in [ThriftParser.T__13]:
+            elif token in [14]:
                 self.enterOuterAlt(localctx, 5)
                 self.state = 122
                 self.struct_()
                 pass
-            elif token in [ThriftParser.T__14]:
+            elif token in [15]:
                 self.enterOuterAlt(localctx, 6)
                 self.state = 123
                 self.union_()
                 pass
-            elif token in [ThriftParser.T__15]:
+            elif token in [16]:
                 self.enterOuterAlt(localctx, 7)
                 self.state = 124
                 self.exception_()
                 pass
-            elif token in [ThriftParser.T__16]:
+            elif token in [17]:
                 self.enterOuterAlt(localctx, 8)
                 self.state = 125
                 self.service()
@@ -813,7 +813,7 @@ class ThriftParser ( Parser ):
             self.state = 133
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__7:
+            if _la==8:
                 self.state = 131
                 self.match(ThriftParser.T__7)
                 self.state = 132
@@ -823,7 +823,7 @@ class ThriftParser ( Parser ):
             self.state = 136
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__35 or _la==ThriftParser.COMMA:
+            if _la==36 or _la==50:
                 self.state = 135
                 self.list_separator()
 
@@ -885,7 +885,7 @@ class ThriftParser ( Parser ):
             self.state = 142
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 141
                 self.type_annotations()
 
@@ -950,7 +950,7 @@ class ThriftParser ( Parser ):
             self.state = 150
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==ThriftParser.IDENTIFIER:
+            while _la==49:
                 self.state = 147
                 self.enum_field()
                 self.state = 152
@@ -962,7 +962,7 @@ class ThriftParser ( Parser ):
             self.state = 155
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 154
                 self.type_annotations()
 
@@ -1024,7 +1024,7 @@ class ThriftParser ( Parser ):
             self.state = 160
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__7:
+            if _la==8:
                 self.state = 158
                 self.match(ThriftParser.T__7)
                 self.state = 159
@@ -1034,7 +1034,7 @@ class ThriftParser ( Parser ):
             self.state = 163
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 162
                 self.type_annotations()
 
@@ -1042,7 +1042,7 @@ class ThriftParser ( Parser ):
             self.state = 166
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__35 or _la==ThriftParser.COMMA:
+            if _la==36 or _la==50:
                 self.state = 165
                 self.list_separator()
 
@@ -1066,11 +1066,11 @@ class ThriftParser ( Parser ):
         def IDENTIFIER(self):
             return self.getToken(ThriftParser.IDENTIFIER, 0)
 
-        def LITERAL_VALUE(self, i:int=None):
+        def LITERAL(self, i:int=None):
             if i is None:
-                return self.getTokens(ThriftParser.LITERAL_VALUE)
+                return self.getTokens(ThriftParser.LITERAL)
             else:
-                return self.getToken(ThriftParser.LITERAL_VALUE, i)
+                return self.getToken(ThriftParser.LITERAL, i)
 
         def type_annotations(self):
             return self.getTypedRuleContext(ThriftParser.Type_annotationsContext,0)
@@ -1113,13 +1113,13 @@ class ThriftParser ( Parser ):
             self.state = 177
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==ThriftParser.LITERAL_VALUE:
+            while _la==48:
                 self.state = 171
-                self.match(ThriftParser.LITERAL_VALUE)
+                self.match(ThriftParser.LITERAL)
                 self.state = 173
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==ThriftParser.T__35 or _la==ThriftParser.COMMA:
+                if _la==36 or _la==50:
                     self.state = 172
                     self.list_separator()
 
@@ -1133,7 +1133,7 @@ class ThriftParser ( Parser ):
             self.state = 182
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 181
                 self.type_annotations()
 
@@ -1198,7 +1198,7 @@ class ThriftParser ( Parser ):
             self.state = 190
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.T__19) | (1 << ThriftParser.T__20) | (1 << ThriftParser.T__27) | (1 << ThriftParser.T__30) | (1 << ThriftParser.T__31) | (1 << ThriftParser.INTEGER) | (1 << ThriftParser.HEX_INTEGER) | (1 << ThriftParser.TYPE_BOOL) | (1 << ThriftParser.TYPE_BYTE) | (1 << ThriftParser.TYPE_I16) | (1 << ThriftParser.TYPE_I32) | (1 << ThriftParser.TYPE_I64) | (1 << ThriftParser.TYPE_DOUBLE) | (1 << ThriftParser.TYPE_STRING) | (1 << ThriftParser.TYPE_BINARY) | (1 << ThriftParser.IDENTIFIER))) != 0):
+            while ((_la) & ~0x3f) == 0 and ((1 << _la) & 843744449396736) != 0:
                 self.state = 187
                 self.field()
                 self.state = 192
@@ -1210,7 +1210,7 @@ class ThriftParser ( Parser ):
             self.state = 195
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 194
                 self.type_annotations()
 
@@ -1275,7 +1275,7 @@ class ThriftParser ( Parser ):
             self.state = 203
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.T__19) | (1 << ThriftParser.T__20) | (1 << ThriftParser.T__27) | (1 << ThriftParser.T__30) | (1 << ThriftParser.T__31) | (1 << ThriftParser.INTEGER) | (1 << ThriftParser.HEX_INTEGER) | (1 << ThriftParser.TYPE_BOOL) | (1 << ThriftParser.TYPE_BYTE) | (1 << ThriftParser.TYPE_I16) | (1 << ThriftParser.TYPE_I32) | (1 << ThriftParser.TYPE_I64) | (1 << ThriftParser.TYPE_DOUBLE) | (1 << ThriftParser.TYPE_STRING) | (1 << ThriftParser.TYPE_BINARY) | (1 << ThriftParser.IDENTIFIER))) != 0):
+            while ((_la) & ~0x3f) == 0 and ((1 << _la) & 843744449396736) != 0:
                 self.state = 200
                 self.field()
                 self.state = 205
@@ -1287,7 +1287,7 @@ class ThriftParser ( Parser ):
             self.state = 208
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 207
                 self.type_annotations()
 
@@ -1352,7 +1352,7 @@ class ThriftParser ( Parser ):
             self.state = 216
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.T__19) | (1 << ThriftParser.T__20) | (1 << ThriftParser.T__27) | (1 << ThriftParser.T__30) | (1 << ThriftParser.T__31) | (1 << ThriftParser.INTEGER) | (1 << ThriftParser.HEX_INTEGER) | (1 << ThriftParser.TYPE_BOOL) | (1 << ThriftParser.TYPE_BYTE) | (1 << ThriftParser.TYPE_I16) | (1 << ThriftParser.TYPE_I32) | (1 << ThriftParser.TYPE_I64) | (1 << ThriftParser.TYPE_DOUBLE) | (1 << ThriftParser.TYPE_STRING) | (1 << ThriftParser.TYPE_BINARY) | (1 << ThriftParser.IDENTIFIER))) != 0):
+            while ((_la) & ~0x3f) == 0 and ((1 << _la) & 843744449396736) != 0:
                 self.state = 213
                 self.field()
                 self.state = 218
@@ -1364,7 +1364,7 @@ class ThriftParser ( Parser ):
             self.state = 221
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 220
                 self.type_annotations()
 
@@ -1430,7 +1430,7 @@ class ThriftParser ( Parser ):
             self.state = 227
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__17:
+            if _la==18:
                 self.state = 225
                 self.match(ThriftParser.T__17)
                 self.state = 226
@@ -1442,7 +1442,7 @@ class ThriftParser ( Parser ):
             self.state = 233
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.T__23) | (1 << ThriftParser.T__24) | (1 << ThriftParser.T__25) | (1 << ThriftParser.T__27) | (1 << ThriftParser.T__30) | (1 << ThriftParser.T__31) | (1 << ThriftParser.TYPE_BOOL) | (1 << ThriftParser.TYPE_BYTE) | (1 << ThriftParser.TYPE_I16) | (1 << ThriftParser.TYPE_I32) | (1 << ThriftParser.TYPE_I64) | (1 << ThriftParser.TYPE_DOUBLE) | (1 << ThriftParser.TYPE_STRING) | (1 << ThriftParser.TYPE_BINARY) | (1 << ThriftParser.IDENTIFIER))) != 0):
+            while ((_la) & ~0x3f) == 0 and ((1 << _la) & 843332246831104) != 0:
                 self.state = 230
                 self.function_()
                 self.state = 235
@@ -1454,7 +1454,7 @@ class ThriftParser ( Parser ):
             self.state = 238
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 237
                 self.type_annotations()
 
@@ -1526,7 +1526,7 @@ class ThriftParser ( Parser ):
             self.state = 241
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.INTEGER or _la==ThriftParser.HEX_INTEGER:
+            if _la==37 or _la==38:
                 self.state = 240
                 self.field_id()
 
@@ -1534,7 +1534,7 @@ class ThriftParser ( Parser ):
             self.state = 244
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__19 or _la==ThriftParser.T__20:
+            if _la==20 or _la==21:
                 self.state = 243
                 self.field_req()
 
@@ -1546,7 +1546,7 @@ class ThriftParser ( Parser ):
             self.state = 250
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__7:
+            if _la==8:
                 self.state = 248
                 self.match(ThriftParser.T__7)
                 self.state = 249
@@ -1556,7 +1556,7 @@ class ThriftParser ( Parser ):
             self.state = 253
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 252
                 self.type_annotations()
 
@@ -1564,7 +1564,7 @@ class ThriftParser ( Parser ):
             self.state = 256
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__35 or _la==ThriftParser.COMMA:
+            if _la==36 or _la==50:
                 self.state = 255
                 self.list_separator()
 
@@ -1653,7 +1653,7 @@ class ThriftParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 261
             _la = self._input.LA(1)
-            if not(_la==ThriftParser.T__19 or _la==ThriftParser.T__20):
+            if not(_la==20 or _la==21):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -1728,7 +1728,7 @@ class ThriftParser ( Parser ):
             self.state = 264
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__23 or _la==ThriftParser.T__24:
+            if _la==24 or _la==25:
                 self.state = 263
                 self.oneway()
 
@@ -1742,7 +1742,7 @@ class ThriftParser ( Parser ):
             self.state = 272
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.T__19) | (1 << ThriftParser.T__20) | (1 << ThriftParser.T__27) | (1 << ThriftParser.T__30) | (1 << ThriftParser.T__31) | (1 << ThriftParser.INTEGER) | (1 << ThriftParser.HEX_INTEGER) | (1 << ThriftParser.TYPE_BOOL) | (1 << ThriftParser.TYPE_BYTE) | (1 << ThriftParser.TYPE_I16) | (1 << ThriftParser.TYPE_I32) | (1 << ThriftParser.TYPE_I64) | (1 << ThriftParser.TYPE_DOUBLE) | (1 << ThriftParser.TYPE_STRING) | (1 << ThriftParser.TYPE_BINARY) | (1 << ThriftParser.IDENTIFIER))) != 0):
+            while ((_la) & ~0x3f) == 0 and ((1 << _la) & 843744449396736) != 0:
                 self.state = 269
                 self.field()
                 self.state = 274
@@ -1754,7 +1754,7 @@ class ThriftParser ( Parser ):
             self.state = 277
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__26:
+            if _la==27:
                 self.state = 276
                 self.throws_list()
 
@@ -1762,7 +1762,7 @@ class ThriftParser ( Parser ):
             self.state = 280
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 279
                 self.type_annotations()
 
@@ -1770,7 +1770,7 @@ class ThriftParser ( Parser ):
             self.state = 283
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__35 or _la==ThriftParser.COMMA:
+            if _la==36 or _la==50:
                 self.state = 282
                 self.list_separator()
 
@@ -1815,7 +1815,7 @@ class ThriftParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 285
             _la = self._input.LA(1)
-            if not(_la==ThriftParser.T__23 or _la==ThriftParser.T__24):
+            if not(_la==24 or _la==25):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -1862,12 +1862,12 @@ class ThriftParser ( Parser ):
             self.state = 289
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [ThriftParser.T__27, ThriftParser.T__30, ThriftParser.T__31, ThriftParser.TYPE_BOOL, ThriftParser.TYPE_BYTE, ThriftParser.TYPE_I16, ThriftParser.TYPE_I32, ThriftParser.TYPE_I64, ThriftParser.TYPE_DOUBLE, ThriftParser.TYPE_STRING, ThriftParser.TYPE_BINARY, ThriftParser.IDENTIFIER]:
+            if token in [28, 31, 32, 40, 41, 42, 43, 44, 45, 46, 47, 49]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 287
                 self.field_type()
                 pass
-            elif token in [ThriftParser.T__25]:
+            elif token in [26]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 288
                 self.match(ThriftParser.T__25)
@@ -1926,7 +1926,7 @@ class ThriftParser ( Parser ):
             self.state = 296
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.T__19) | (1 << ThriftParser.T__20) | (1 << ThriftParser.T__27) | (1 << ThriftParser.T__30) | (1 << ThriftParser.T__31) | (1 << ThriftParser.INTEGER) | (1 << ThriftParser.HEX_INTEGER) | (1 << ThriftParser.TYPE_BOOL) | (1 << ThriftParser.TYPE_BYTE) | (1 << ThriftParser.TYPE_I16) | (1 << ThriftParser.TYPE_I32) | (1 << ThriftParser.TYPE_I64) | (1 << ThriftParser.TYPE_DOUBLE) | (1 << ThriftParser.TYPE_STRING) | (1 << ThriftParser.TYPE_BINARY) | (1 << ThriftParser.IDENTIFIER))) != 0):
+            while ((_la) & ~0x3f) == 0 and ((1 << _la) & 843744449396736) != 0:
                 self.state = 293
                 self.field()
                 self.state = 298
@@ -1984,7 +1984,7 @@ class ThriftParser ( Parser ):
             self.state = 305
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==ThriftParser.IDENTIFIER:
+            while _la==49:
                 self.state = 302
                 self.type_annotation()
                 self.state = 307
@@ -2046,7 +2046,7 @@ class ThriftParser ( Parser ):
             self.state = 313
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__7:
+            if _la==8:
                 self.state = 311
                 self.match(ThriftParser.T__7)
                 self.state = 312
@@ -2056,7 +2056,7 @@ class ThriftParser ( Parser ):
             self.state = 316
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__35 or _la==ThriftParser.COMMA:
+            if _la==36 or _la==50:
                 self.state = 315
                 self.list_separator()
 
@@ -2081,8 +2081,8 @@ class ThriftParser ( Parser ):
             return self.getTypedRuleContext(ThriftParser.IntegerContext,0)
 
 
-        def LITERAL_VALUE(self):
-            return self.getToken(ThriftParser.LITERAL_VALUE, 0)
+        def LITERAL(self):
+            return self.getToken(ThriftParser.LITERAL, 0)
 
         def getRuleIndex(self):
             return ThriftParser.RULE_annotation_value
@@ -2106,15 +2106,15 @@ class ThriftParser ( Parser ):
             self.state = 320
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [ThriftParser.INTEGER, ThriftParser.HEX_INTEGER]:
+            if token in [37, 38]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 318
                 self.integer()
                 pass
-            elif token in [ThriftParser.LITERAL_VALUE]:
+            elif token in [48]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 319
-                self.match(ThriftParser.LITERAL_VALUE)
+                self.match(ThriftParser.LITERAL)
                 pass
             else:
                 raise NoViableAltException(self)
@@ -2168,17 +2168,17 @@ class ThriftParser ( Parser ):
             self.state = 325
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [ThriftParser.TYPE_BOOL, ThriftParser.TYPE_BYTE, ThriftParser.TYPE_I16, ThriftParser.TYPE_I32, ThriftParser.TYPE_I64, ThriftParser.TYPE_DOUBLE, ThriftParser.TYPE_STRING, ThriftParser.TYPE_BINARY]:
+            if token in [40, 41, 42, 43, 44, 45, 46, 47]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 322
                 self.base_type()
                 pass
-            elif token in [ThriftParser.IDENTIFIER]:
+            elif token in [49]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 323
                 self.match(ThriftParser.IDENTIFIER)
                 pass
-            elif token in [ThriftParser.T__27, ThriftParser.T__30, ThriftParser.T__31]:
+            elif token in [28, 31, 32]:
                 self.enterOuterAlt(localctx, 3)
                 self.state = 324
                 self.container_type()
@@ -2236,7 +2236,7 @@ class ThriftParser ( Parser ):
             self.state = 329
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 328
                 self.type_annotations()
 
@@ -2297,15 +2297,15 @@ class ThriftParser ( Parser ):
             self.state = 334
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [ThriftParser.T__27]:
+            if token in [28]:
                 self.state = 331
                 self.map_type()
                 pass
-            elif token in [ThriftParser.T__30]:
+            elif token in [31]:
                 self.state = 332
                 self.set_type()
                 pass
-            elif token in [ThriftParser.T__31]:
+            elif token in [32]:
                 self.state = 333
                 self.list_type()
                 pass
@@ -2315,7 +2315,7 @@ class ThriftParser ( Parser ):
             self.state = 337
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__21:
+            if _la==22:
                 self.state = 336
                 self.type_annotations()
 
@@ -2376,7 +2376,7 @@ class ThriftParser ( Parser ):
             self.state = 341
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__32:
+            if _la==33:
                 self.state = 340
                 self.cpp_type()
 
@@ -2441,7 +2441,7 @@ class ThriftParser ( Parser ):
             self.state = 351
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__32:
+            if _la==33:
                 self.state = 350
                 self.cpp_type()
 
@@ -2508,7 +2508,7 @@ class ThriftParser ( Parser ):
             self.state = 362
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__32:
+            if _la==33:
                 self.state = 361
                 self.cpp_type()
 
@@ -2529,8 +2529,8 @@ class ThriftParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def LITERAL_VALUE(self):
-            return self.getToken(ThriftParser.LITERAL_VALUE, 0)
+        def LITERAL(self):
+            return self.getToken(ThriftParser.LITERAL, 0)
 
         def getRuleIndex(self):
             return ThriftParser.RULE_cpp_type
@@ -2555,7 +2555,7 @@ class ThriftParser ( Parser ):
             self.state = 364
             self.match(ThriftParser.T__32)
             self.state = 365
-            self.match(ThriftParser.LITERAL_VALUE)
+            self.match(ThriftParser.LITERAL)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -2579,8 +2579,8 @@ class ThriftParser ( Parser ):
         def DOUBLE(self):
             return self.getToken(ThriftParser.DOUBLE, 0)
 
-        def LITERAL_VALUE(self):
-            return self.getToken(ThriftParser.LITERAL_VALUE, 0)
+        def LITERAL(self):
+            return self.getToken(ThriftParser.LITERAL, 0)
 
         def IDENTIFIER(self):
             return self.getToken(ThriftParser.IDENTIFIER, 0)
@@ -2615,32 +2615,32 @@ class ThriftParser ( Parser ):
             self.state = 373
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [ThriftParser.INTEGER, ThriftParser.HEX_INTEGER]:
+            if token in [37, 38]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 367
                 self.integer()
                 pass
-            elif token in [ThriftParser.DOUBLE]:
+            elif token in [39]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 368
                 self.match(ThriftParser.DOUBLE)
                 pass
-            elif token in [ThriftParser.LITERAL_VALUE]:
+            elif token in [48]:
                 self.enterOuterAlt(localctx, 3)
                 self.state = 369
-                self.match(ThriftParser.LITERAL_VALUE)
+                self.match(ThriftParser.LITERAL)
                 pass
-            elif token in [ThriftParser.IDENTIFIER]:
+            elif token in [49]:
                 self.enterOuterAlt(localctx, 4)
                 self.state = 370
                 self.match(ThriftParser.IDENTIFIER)
                 pass
-            elif token in [ThriftParser.T__33]:
+            elif token in [34]:
                 self.enterOuterAlt(localctx, 5)
                 self.state = 371
                 self.const_list()
                 pass
-            elif token in [ThriftParser.T__10]:
+            elif token in [11]:
                 self.enterOuterAlt(localctx, 6)
                 self.state = 372
                 self.const_map()
@@ -2693,7 +2693,7 @@ class ThriftParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 375
             _la = self._input.LA(1)
-            if not(_la==ThriftParser.INTEGER or _la==ThriftParser.HEX_INTEGER):
+            if not(_la==37 or _la==38):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2754,13 +2754,13 @@ class ThriftParser ( Parser ):
             self.state = 384
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.T__10) | (1 << ThriftParser.T__33) | (1 << ThriftParser.INTEGER) | (1 << ThriftParser.HEX_INTEGER) | (1 << ThriftParser.DOUBLE) | (1 << ThriftParser.LITERAL_VALUE) | (1 << ThriftParser.IDENTIFIER))) != 0):
+            while ((_la) & ~0x3f) == 0 and ((1 << _la) & 845404182677504) != 0:
                 self.state = 378
                 self.const_value()
                 self.state = 380
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==ThriftParser.T__35 or _la==ThriftParser.COMMA:
+                if _la==36 or _la==50:
                     self.state = 379
                     self.list_separator()
 
@@ -2828,7 +2828,7 @@ class ThriftParser ( Parser ):
             self.state = 393
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==ThriftParser.T__35 or _la==ThriftParser.COMMA:
+            if _la==36 or _la==50:
                 self.state = 392
                 self.list_separator()
 
@@ -2882,7 +2882,7 @@ class ThriftParser ( Parser ):
             self.state = 399
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.T__10) | (1 << ThriftParser.T__33) | (1 << ThriftParser.INTEGER) | (1 << ThriftParser.HEX_INTEGER) | (1 << ThriftParser.DOUBLE) | (1 << ThriftParser.LITERAL_VALUE) | (1 << ThriftParser.IDENTIFIER))) != 0):
+            while ((_la) & ~0x3f) == 0 and ((1 << _la) & 845404182677504) != 0:
                 self.state = 396
                 self.const_map_entry()
                 self.state = 401
@@ -2933,7 +2933,7 @@ class ThriftParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 404
             _la = self._input.LA(1)
-            if not(_la==ThriftParser.T__35 or _la==ThriftParser.COMMA):
+            if not(_la==36 or _la==50):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -3001,7 +3001,7 @@ class ThriftParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 406
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << ThriftParser.TYPE_BOOL) | (1 << ThriftParser.TYPE_BYTE) | (1 << ThriftParser.TYPE_I16) | (1 << ThriftParser.TYPE_I32) | (1 << ThriftParser.TYPE_I64) | (1 << ThriftParser.TYPE_DOUBLE) | (1 << ThriftParser.TYPE_STRING) | (1 << ThriftParser.TYPE_BINARY))) != 0)):
+            if not(((_la) & ~0x3f) == 0 and ((1 << _la) & 280375465082880) != 0):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

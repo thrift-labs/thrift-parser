@@ -73,7 +73,7 @@ export class ThriftParser extends Parser {
 	public static readonly TYPE_DOUBLE = 45;
 	public static readonly TYPE_STRING = 46;
 	public static readonly TYPE_BINARY = 47;
-	public static readonly LITERAL_VALUE = 48;
+	public static readonly LITERAL = 48;
 	public static readonly IDENTIFIER = 49;
 	public static readonly COMMA = 50;
 	public static readonly WS = 51;
@@ -147,8 +147,7 @@ export class ThriftParser extends Parser {
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
 		undefined, undefined, "INTEGER", "HEX_INTEGER", "DOUBLE", "TYPE_BOOL", 
 		"TYPE_BYTE", "TYPE_I16", "TYPE_I32", "TYPE_I64", "TYPE_DOUBLE", "TYPE_STRING", 
-		"TYPE_BINARY", "LITERAL_VALUE", "IDENTIFIER", "COMMA", "WS", "SL_COMMENT", 
-		"ML_COMMENT",
+		"TYPE_BINARY", "LITERAL", "IDENTIFIER", "COMMA", "WS", "SL_COMMENT", "ML_COMMENT",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(ThriftParser._LITERAL_NAMES, ThriftParser._SYMBOLIC_NAMES, []);
 
@@ -289,7 +288,7 @@ export class ThriftParser extends Parser {
 			this.state = 97;
 			this.match(ThriftParser.T__0);
 			this.state = 98;
-			this.match(ThriftParser.LITERAL_VALUE);
+			this.match(ThriftParser.LITERAL);
 			}
 		}
 		catch (re) {
@@ -324,7 +323,7 @@ export class ThriftParser extends Parser {
 				this.match(ThriftParser.T__2);
 				this.state = 102;
 				_la = this._input.LA(1);
-				if (!(_la === ThriftParser.LITERAL_VALUE || _la === ThriftParser.IDENTIFIER)) {
+				if (!(_la === ThriftParser.LITERAL || _la === ThriftParser.IDENTIFIER)) {
 				this._errHandler.recoverInline(this);
 				} else {
 					if (this._input.LA(1) === Token.EOF) {
@@ -346,7 +345,7 @@ export class ThriftParser extends Parser {
 				this.match(ThriftParser.IDENTIFIER);
 				this.state = 105;
 				_la = this._input.LA(1);
-				if (!(_la === ThriftParser.LITERAL_VALUE || _la === ThriftParser.IDENTIFIER)) {
+				if (!(_la === ThriftParser.LITERAL || _la === ThriftParser.IDENTIFIER)) {
 				this._errHandler.recoverInline(this);
 				} else {
 					if (this._input.LA(1) === Token.EOF) {
@@ -414,7 +413,7 @@ export class ThriftParser extends Parser {
 			this.state = 115;
 			this.match(ThriftParser.T__5);
 			this.state = 116;
-			this.match(ThriftParser.LITERAL_VALUE);
+			this.match(ThriftParser.LITERAL);
 			}
 		}
 		catch (re) {
@@ -736,11 +735,11 @@ export class ThriftParser extends Parser {
 			this.state = 177;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la === ThriftParser.LITERAL_VALUE) {
+			while (_la === ThriftParser.LITERAL) {
 				{
 				{
 				this.state = 171;
-				this.match(ThriftParser.LITERAL_VALUE);
+				this.match(ThriftParser.LITERAL);
 				this.state = 173;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
@@ -1487,11 +1486,11 @@ export class ThriftParser extends Parser {
 				this.integer();
 				}
 				break;
-			case ThriftParser.LITERAL_VALUE:
+			case ThriftParser.LITERAL:
 				this.enterOuterAlt(_localctx, 2);
 				{
 				this.state = 319;
-				this.match(ThriftParser.LITERAL_VALUE);
+				this.match(ThriftParser.LITERAL);
 				}
 				break;
 			default:
@@ -1802,7 +1801,7 @@ export class ThriftParser extends Parser {
 			this.state = 364;
 			this.match(ThriftParser.T__32);
 			this.state = 365;
-			this.match(ThriftParser.LITERAL_VALUE);
+			this.match(ThriftParser.LITERAL);
 			}
 		}
 		catch (re) {
@@ -1842,11 +1841,11 @@ export class ThriftParser extends Parser {
 				this.match(ThriftParser.DOUBLE);
 				}
 				break;
-			case ThriftParser.LITERAL_VALUE:
+			case ThriftParser.LITERAL:
 				this.enterOuterAlt(_localctx, 3);
 				{
 				this.state = 369;
-				this.match(ThriftParser.LITERAL_VALUE);
+				this.match(ThriftParser.LITERAL);
 				}
 				break;
 			case ThriftParser.IDENTIFIER:
@@ -1937,7 +1936,7 @@ export class ThriftParser extends Parser {
 			this.state = 384;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la === ThriftParser.T__10 || ((((_la - 34)) & ~0x1F) === 0 && ((1 << (_la - 34)) & ((1 << (ThriftParser.T__33 - 34)) | (1 << (ThriftParser.INTEGER - 34)) | (1 << (ThriftParser.HEX_INTEGER - 34)) | (1 << (ThriftParser.DOUBLE - 34)) | (1 << (ThriftParser.LITERAL_VALUE - 34)) | (1 << (ThriftParser.IDENTIFIER - 34)))) !== 0)) {
+			while (_la === ThriftParser.T__10 || ((((_la - 34)) & ~0x1F) === 0 && ((1 << (_la - 34)) & ((1 << (ThriftParser.T__33 - 34)) | (1 << (ThriftParser.INTEGER - 34)) | (1 << (ThriftParser.HEX_INTEGER - 34)) | (1 << (ThriftParser.DOUBLE - 34)) | (1 << (ThriftParser.LITERAL - 34)) | (1 << (ThriftParser.IDENTIFIER - 34)))) !== 0)) {
 				{
 				{
 				this.state = 378;
@@ -2029,7 +2028,7 @@ export class ThriftParser extends Parser {
 			this.state = 399;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la === ThriftParser.T__10 || ((((_la - 34)) & ~0x1F) === 0 && ((1 << (_la - 34)) & ((1 << (ThriftParser.T__33 - 34)) | (1 << (ThriftParser.INTEGER - 34)) | (1 << (ThriftParser.HEX_INTEGER - 34)) | (1 << (ThriftParser.DOUBLE - 34)) | (1 << (ThriftParser.LITERAL_VALUE - 34)) | (1 << (ThriftParser.IDENTIFIER - 34)))) !== 0)) {
+			while (_la === ThriftParser.T__10 || ((((_la - 34)) & ~0x1F) === 0 && ((1 << (_la - 34)) & ((1 << (ThriftParser.T__33 - 34)) | (1 << (ThriftParser.INTEGER - 34)) | (1 << (ThriftParser.HEX_INTEGER - 34)) | (1 << (ThriftParser.DOUBLE - 34)) | (1 << (ThriftParser.LITERAL - 34)) | (1 << (ThriftParser.IDENTIFIER - 34)))) !== 0)) {
 				{
 				{
 				this.state = 396;
@@ -2412,7 +2411,7 @@ export class HeaderContext extends ParserRuleContext {
 
 
 export class Include_Context extends ParserRuleContext {
-	public LITERAL_VALUE(): TerminalNode { return this.getToken(ThriftParser.LITERAL_VALUE, 0); }
+	public LITERAL(): TerminalNode { return this.getToken(ThriftParser.LITERAL, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
@@ -2443,7 +2442,7 @@ export class Namespace_Context extends ParserRuleContext {
 			return this.getToken(ThriftParser.IDENTIFIER, i);
 		}
 	}
-	public LITERAL_VALUE(): TerminalNode | undefined { return this.tryGetToken(ThriftParser.LITERAL_VALUE, 0); }
+	public LITERAL(): TerminalNode | undefined { return this.tryGetToken(ThriftParser.LITERAL, 0); }
 	public type_annotations(): Type_annotationsContext | undefined {
 		return this.tryGetRuleContext(0, Type_annotationsContext);
 	}
@@ -2468,7 +2467,7 @@ export class Namespace_Context extends ParserRuleContext {
 
 
 export class Cpp_includeContext extends ParserRuleContext {
-	public LITERAL_VALUE(): TerminalNode { return this.getToken(ThriftParser.LITERAL_VALUE, 0); }
+	public LITERAL(): TerminalNode { return this.getToken(ThriftParser.LITERAL, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
@@ -2660,13 +2659,13 @@ export class Enum_fieldContext extends ParserRuleContext {
 
 export class SenumContext extends ParserRuleContext {
 	public IDENTIFIER(): TerminalNode { return this.getToken(ThriftParser.IDENTIFIER, 0); }
-	public LITERAL_VALUE(): TerminalNode[];
-	public LITERAL_VALUE(i: number): TerminalNode;
-	public LITERAL_VALUE(i?: number): TerminalNode | TerminalNode[] {
+	public LITERAL(): TerminalNode[];
+	public LITERAL(i: number): TerminalNode;
+	public LITERAL(i?: number): TerminalNode | TerminalNode[] {
 		if (i === undefined) {
-			return this.getTokens(ThriftParser.LITERAL_VALUE);
+			return this.getTokens(ThriftParser.LITERAL);
 		} else {
-			return this.getToken(ThriftParser.LITERAL_VALUE, i);
+			return this.getToken(ThriftParser.LITERAL, i);
 		}
 	}
 	public type_annotations(): Type_annotationsContext | undefined {
@@ -3113,7 +3112,7 @@ export class Annotation_valueContext extends ParserRuleContext {
 	public integer(): IntegerContext | undefined {
 		return this.tryGetRuleContext(0, IntegerContext);
 	}
-	public LITERAL_VALUE(): TerminalNode | undefined { return this.tryGetToken(ThriftParser.LITERAL_VALUE, 0); }
+	public LITERAL(): TerminalNode | undefined { return this.tryGetToken(ThriftParser.LITERAL, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
@@ -3311,7 +3310,7 @@ export class List_typeContext extends ParserRuleContext {
 
 
 export class Cpp_typeContext extends ParserRuleContext {
-	public LITERAL_VALUE(): TerminalNode { return this.getToken(ThriftParser.LITERAL_VALUE, 0); }
+	public LITERAL(): TerminalNode { return this.getToken(ThriftParser.LITERAL, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
@@ -3337,7 +3336,7 @@ export class Const_valueContext extends ParserRuleContext {
 		return this.tryGetRuleContext(0, IntegerContext);
 	}
 	public DOUBLE(): TerminalNode | undefined { return this.tryGetToken(ThriftParser.DOUBLE, 0); }
-	public LITERAL_VALUE(): TerminalNode | undefined { return this.tryGetToken(ThriftParser.LITERAL_VALUE, 0); }
+	public LITERAL(): TerminalNode | undefined { return this.tryGetToken(ThriftParser.LITERAL, 0); }
 	public IDENTIFIER(): TerminalNode | undefined { return this.tryGetToken(ThriftParser.IDENTIFIER, 0); }
 	public const_list(): Const_listContext | undefined {
 		return this.tryGetRuleContext(0, Const_listContext);

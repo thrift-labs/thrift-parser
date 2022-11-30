@@ -1,4 +1,4 @@
-// Generated from Thrift.g4 by ANTLR 4.10.1
+// Generated from java-escape by ANTLR 4.11.1
 // jshint ignore: start
 import antlr4 from 'antlr4';
 import ThriftListener from './ThriftListener.js';
@@ -146,7 +146,7 @@ const sharedContextCache = new antlr4.PredictionContextCache();
 
 export default class ThriftParser extends antlr4.Parser {
 
-    static grammarFileName = "Thrift.g4";
+    static grammarFileName = "java-escape";
     static literalNames = [ null, "'include'", "'namespace'", "'*'", "'cpp_namespace'", 
                             "'php_namespace'", "'cpp_include'", "'const'", 
                             "'='", "'typedef'", "'enum'", "'{'", "'}'", 
@@ -165,8 +165,8 @@ export default class ThriftParser extends antlr4.Parser {
                              null, null, null, null, null, "INTEGER", "HEX_INTEGER", 
                              "DOUBLE", "TYPE_BOOL", "TYPE_BYTE", "TYPE_I16", 
                              "TYPE_I32", "TYPE_I64", "TYPE_DOUBLE", "TYPE_STRING", 
-                             "TYPE_BINARY", "LITERAL_VALUE", "IDENTIFIER", 
-                             "COMMA", "WS", "SL_COMMENT", "ML_COMMENT" ];
+                             "TYPE_BINARY", "LITERAL", "IDENTIFIER", "COMMA", 
+                             "WS", "SL_COMMENT", "ML_COMMENT" ];
     static ruleNames = [ "document", "header", "include_", "namespace_", 
                          "cpp_include", "definition", "const_rule", "typedef_", 
                          "enum_rule", "enum_field", "senum", "struct_", 
@@ -202,7 +202,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 81;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << ThriftParser.T__0) | (1 << ThriftParser.T__1) | (1 << ThriftParser.T__3) | (1 << ThriftParser.T__4) | (1 << ThriftParser.T__5))) !== 0)) {
+	        while((((_la) & ~0x1f) == 0 && ((1 << _la) & 118) !== 0)) {
 	            this.state = 78;
 	            this.header();
 	            this.state = 83;
@@ -212,7 +212,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 87;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << ThriftParser.T__6) | (1 << ThriftParser.T__8) | (1 << ThriftParser.T__9) | (1 << ThriftParser.T__12) | (1 << ThriftParser.T__13) | (1 << ThriftParser.T__14) | (1 << ThriftParser.T__15) | (1 << ThriftParser.T__16))) !== 0)) {
+	        while((((_la) & ~0x1f) == 0 && ((1 << _la) & 255616) !== 0)) {
 	            this.state = 84;
 	            this.definition();
 	            this.state = 89;
@@ -244,19 +244,19 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 95;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
-	        case ThriftParser.T__0:
+	        case 1:
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 92;
 	            this.include_();
 	            break;
-	        case ThriftParser.T__1:
-	        case ThriftParser.T__3:
-	        case ThriftParser.T__4:
+	        case 2:
+	        case 4:
+	        case 5:
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 93;
 	            this.namespace_();
 	            break;
-	        case ThriftParser.T__5:
+	        case 6:
 	            this.enterOuterAlt(localctx, 3);
 	            this.state = 94;
 	            this.cpp_include();
@@ -288,7 +288,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 97;
 	        this.match(ThriftParser.T__0);
 	        this.state = 98;
-	        this.match(ThriftParser.LITERAL_VALUE);
+	        this.match(ThriftParser.LITERAL);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -322,7 +322,7 @@ export default class ThriftParser extends antlr4.Parser {
 	            this.match(ThriftParser.T__2);
 	            this.state = 102;
 	            _la = this._input.LA(1);
-	            if(!(_la===ThriftParser.LITERAL_VALUE || _la===ThriftParser.IDENTIFIER)) {
+	            if(!(_la===48 || _la===49)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
@@ -339,7 +339,7 @@ export default class ThriftParser extends antlr4.Parser {
 	            this.match(ThriftParser.IDENTIFIER);
 	            this.state = 105;
 	            _la = this._input.LA(1);
-	            if(!(_la===ThriftParser.LITERAL_VALUE || _la===ThriftParser.IDENTIFIER)) {
+	            if(!(_la===48 || _la===49)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
@@ -349,7 +349,7 @@ export default class ThriftParser extends antlr4.Parser {
 	            this.state = 107;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if(_la===ThriftParser.T__21) {
+	            if(_la===22) {
 	                this.state = 106;
 	                this.type_annotations();
 	            }
@@ -397,7 +397,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 115;
 	        this.match(ThriftParser.T__5);
 	        this.state = 116;
-	        this.match(ThriftParser.LITERAL_VALUE);
+	        this.match(ThriftParser.LITERAL);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -421,42 +421,42 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 126;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
-	        case ThriftParser.T__6:
+	        case 7:
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 118;
 	            this.const_rule();
 	            break;
-	        case ThriftParser.T__8:
+	        case 9:
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 119;
 	            this.typedef_();
 	            break;
-	        case ThriftParser.T__9:
+	        case 10:
 	            this.enterOuterAlt(localctx, 3);
 	            this.state = 120;
 	            this.enum_rule();
 	            break;
-	        case ThriftParser.T__12:
+	        case 13:
 	            this.enterOuterAlt(localctx, 4);
 	            this.state = 121;
 	            this.senum();
 	            break;
-	        case ThriftParser.T__13:
+	        case 14:
 	            this.enterOuterAlt(localctx, 5);
 	            this.state = 122;
 	            this.struct_();
 	            break;
-	        case ThriftParser.T__14:
+	        case 15:
 	            this.enterOuterAlt(localctx, 6);
 	            this.state = 123;
 	            this.union_();
 	            break;
-	        case ThriftParser.T__15:
+	        case 16:
 	            this.enterOuterAlt(localctx, 7);
 	            this.state = 124;
 	            this.exception_();
 	            break;
-	        case ThriftParser.T__16:
+	        case 17:
 	            this.enterOuterAlt(localctx, 8);
 	            this.state = 125;
 	            this.service();
@@ -495,7 +495,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 133;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__7) {
+	        if(_la===8) {
 	            this.state = 131;
 	            this.match(ThriftParser.T__7);
 	            this.state = 132;
@@ -505,7 +505,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 136;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__35 || _la===ThriftParser.COMMA) {
+	        if(_la===36 || _la===50) {
 	            this.state = 135;
 	            this.list_separator();
 	        }
@@ -541,7 +541,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 142;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 141;
 	            this.type_annotations();
 	        }
@@ -577,7 +577,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 150;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===ThriftParser.IDENTIFIER) {
+	        while(_la===49) {
 	            this.state = 147;
 	            this.enum_field();
 	            this.state = 152;
@@ -589,7 +589,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 155;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 154;
 	            this.type_annotations();
 	        }
@@ -621,7 +621,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 160;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__7) {
+	        if(_la===8) {
 	            this.state = 158;
 	            this.match(ThriftParser.T__7);
 	            this.state = 159;
@@ -631,7 +631,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 163;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 162;
 	            this.type_annotations();
 	        }
@@ -639,7 +639,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 166;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__35 || _la===ThriftParser.COMMA) {
+	        if(_la===36 || _la===50) {
 	            this.state = 165;
 	            this.list_separator();
 	        }
@@ -675,13 +675,13 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 177;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===ThriftParser.LITERAL_VALUE) {
+	        while(_la===48) {
 	            this.state = 171;
-	            this.match(ThriftParser.LITERAL_VALUE);
+	            this.match(ThriftParser.LITERAL);
 	            this.state = 173;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if(_la===ThriftParser.T__35 || _la===ThriftParser.COMMA) {
+	            if(_la===36 || _la===50) {
 	                this.state = 172;
 	                this.list_separator();
 	            }
@@ -695,7 +695,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 182;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 181;
 	            this.type_annotations();
 	        }
@@ -731,7 +731,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 190;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(((((_la - 20)) & ~0x1f) == 0 && ((1 << (_la - 20)) & ((1 << (ThriftParser.T__19 - 20)) | (1 << (ThriftParser.T__20 - 20)) | (1 << (ThriftParser.T__27 - 20)) | (1 << (ThriftParser.T__30 - 20)) | (1 << (ThriftParser.T__31 - 20)) | (1 << (ThriftParser.INTEGER - 20)) | (1 << (ThriftParser.HEX_INTEGER - 20)) | (1 << (ThriftParser.TYPE_BOOL - 20)) | (1 << (ThriftParser.TYPE_BYTE - 20)) | (1 << (ThriftParser.TYPE_I16 - 20)) | (1 << (ThriftParser.TYPE_I32 - 20)) | (1 << (ThriftParser.TYPE_I64 - 20)) | (1 << (ThriftParser.TYPE_DOUBLE - 20)) | (1 << (ThriftParser.TYPE_STRING - 20)) | (1 << (ThriftParser.TYPE_BINARY - 20)) | (1 << (ThriftParser.IDENTIFIER - 20)))) !== 0)) {
+	        while(((((_la - 20)) & ~0x1f) == 0 && ((1 << (_la - 20)) & 804657411) !== 0)) {
 	            this.state = 187;
 	            this.field();
 	            this.state = 192;
@@ -743,7 +743,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 195;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 194;
 	            this.type_annotations();
 	        }
@@ -779,7 +779,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 203;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(((((_la - 20)) & ~0x1f) == 0 && ((1 << (_la - 20)) & ((1 << (ThriftParser.T__19 - 20)) | (1 << (ThriftParser.T__20 - 20)) | (1 << (ThriftParser.T__27 - 20)) | (1 << (ThriftParser.T__30 - 20)) | (1 << (ThriftParser.T__31 - 20)) | (1 << (ThriftParser.INTEGER - 20)) | (1 << (ThriftParser.HEX_INTEGER - 20)) | (1 << (ThriftParser.TYPE_BOOL - 20)) | (1 << (ThriftParser.TYPE_BYTE - 20)) | (1 << (ThriftParser.TYPE_I16 - 20)) | (1 << (ThriftParser.TYPE_I32 - 20)) | (1 << (ThriftParser.TYPE_I64 - 20)) | (1 << (ThriftParser.TYPE_DOUBLE - 20)) | (1 << (ThriftParser.TYPE_STRING - 20)) | (1 << (ThriftParser.TYPE_BINARY - 20)) | (1 << (ThriftParser.IDENTIFIER - 20)))) !== 0)) {
+	        while(((((_la - 20)) & ~0x1f) == 0 && ((1 << (_la - 20)) & 804657411) !== 0)) {
 	            this.state = 200;
 	            this.field();
 	            this.state = 205;
@@ -791,7 +791,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 208;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 207;
 	            this.type_annotations();
 	        }
@@ -827,7 +827,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 216;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(((((_la - 20)) & ~0x1f) == 0 && ((1 << (_la - 20)) & ((1 << (ThriftParser.T__19 - 20)) | (1 << (ThriftParser.T__20 - 20)) | (1 << (ThriftParser.T__27 - 20)) | (1 << (ThriftParser.T__30 - 20)) | (1 << (ThriftParser.T__31 - 20)) | (1 << (ThriftParser.INTEGER - 20)) | (1 << (ThriftParser.HEX_INTEGER - 20)) | (1 << (ThriftParser.TYPE_BOOL - 20)) | (1 << (ThriftParser.TYPE_BYTE - 20)) | (1 << (ThriftParser.TYPE_I16 - 20)) | (1 << (ThriftParser.TYPE_I32 - 20)) | (1 << (ThriftParser.TYPE_I64 - 20)) | (1 << (ThriftParser.TYPE_DOUBLE - 20)) | (1 << (ThriftParser.TYPE_STRING - 20)) | (1 << (ThriftParser.TYPE_BINARY - 20)) | (1 << (ThriftParser.IDENTIFIER - 20)))) !== 0)) {
+	        while(((((_la - 20)) & ~0x1f) == 0 && ((1 << (_la - 20)) & 804657411) !== 0)) {
 	            this.state = 213;
 	            this.field();
 	            this.state = 218;
@@ -839,7 +839,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 221;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 220;
 	            this.type_annotations();
 	        }
@@ -873,7 +873,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 227;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__17) {
+	        if(_la===18) {
 	            this.state = 225;
 	            this.match(ThriftParser.T__17);
 	            this.state = 226;
@@ -885,7 +885,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 233;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(((((_la - 24)) & ~0x1f) == 0 && ((1 << (_la - 24)) & ((1 << (ThriftParser.T__23 - 24)) | (1 << (ThriftParser.T__24 - 24)) | (1 << (ThriftParser.T__25 - 24)) | (1 << (ThriftParser.T__27 - 24)) | (1 << (ThriftParser.T__30 - 24)) | (1 << (ThriftParser.T__31 - 24)) | (1 << (ThriftParser.TYPE_BOOL - 24)) | (1 << (ThriftParser.TYPE_BYTE - 24)) | (1 << (ThriftParser.TYPE_I16 - 24)) | (1 << (ThriftParser.TYPE_I32 - 24)) | (1 << (ThriftParser.TYPE_I64 - 24)) | (1 << (ThriftParser.TYPE_DOUBLE - 24)) | (1 << (ThriftParser.TYPE_STRING - 24)) | (1 << (ThriftParser.TYPE_BINARY - 24)) | (1 << (ThriftParser.IDENTIFIER - 24)))) !== 0)) {
+	        while(((((_la - 24)) & ~0x1f) == 0 && ((1 << (_la - 24)) & 50266519) !== 0)) {
 	            this.state = 230;
 	            this.function_();
 	            this.state = 235;
@@ -897,7 +897,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 238;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 237;
 	            this.type_annotations();
 	        }
@@ -927,7 +927,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 241;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.INTEGER || _la===ThriftParser.HEX_INTEGER) {
+	        if(_la===37 || _la===38) {
 	            this.state = 240;
 	            this.field_id();
 	        }
@@ -935,7 +935,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 244;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__19 || _la===ThriftParser.T__20) {
+	        if(_la===20 || _la===21) {
 	            this.state = 243;
 	            this.field_req();
 	        }
@@ -947,7 +947,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 250;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__7) {
+	        if(_la===8) {
 	            this.state = 248;
 	            this.match(ThriftParser.T__7);
 	            this.state = 249;
@@ -957,7 +957,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 253;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 252;
 	            this.type_annotations();
 	        }
@@ -965,7 +965,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 256;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__35 || _la===ThriftParser.COMMA) {
+	        if(_la===36 || _la===50) {
 	            this.state = 255;
 	            this.list_separator();
 	        }
@@ -1019,7 +1019,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 261;
 	        _la = this._input.LA(1);
-	        if(!(_la===ThriftParser.T__19 || _la===ThriftParser.T__20)) {
+	        if(!(_la===20 || _la===21)) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -1051,7 +1051,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 264;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__23 || _la===ThriftParser.T__24) {
+	        if(_la===24 || _la===25) {
 	            this.state = 263;
 	            this.oneway();
 	        }
@@ -1065,7 +1065,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 272;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(((((_la - 20)) & ~0x1f) == 0 && ((1 << (_la - 20)) & ((1 << (ThriftParser.T__19 - 20)) | (1 << (ThriftParser.T__20 - 20)) | (1 << (ThriftParser.T__27 - 20)) | (1 << (ThriftParser.T__30 - 20)) | (1 << (ThriftParser.T__31 - 20)) | (1 << (ThriftParser.INTEGER - 20)) | (1 << (ThriftParser.HEX_INTEGER - 20)) | (1 << (ThriftParser.TYPE_BOOL - 20)) | (1 << (ThriftParser.TYPE_BYTE - 20)) | (1 << (ThriftParser.TYPE_I16 - 20)) | (1 << (ThriftParser.TYPE_I32 - 20)) | (1 << (ThriftParser.TYPE_I64 - 20)) | (1 << (ThriftParser.TYPE_DOUBLE - 20)) | (1 << (ThriftParser.TYPE_STRING - 20)) | (1 << (ThriftParser.TYPE_BINARY - 20)) | (1 << (ThriftParser.IDENTIFIER - 20)))) !== 0)) {
+	        while(((((_la - 20)) & ~0x1f) == 0 && ((1 << (_la - 20)) & 804657411) !== 0)) {
 	            this.state = 269;
 	            this.field();
 	            this.state = 274;
@@ -1077,7 +1077,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 277;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__26) {
+	        if(_la===27) {
 	            this.state = 276;
 	            this.throws_list();
 	        }
@@ -1085,7 +1085,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 280;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 279;
 	            this.type_annotations();
 	        }
@@ -1093,7 +1093,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 283;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__35 || _la===ThriftParser.COMMA) {
+	        if(_la===36 || _la===50) {
 	            this.state = 282;
 	            this.list_separator();
 	        }
@@ -1122,7 +1122,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 285;
 	        _la = this._input.LA(1);
-	        if(!(_la===ThriftParser.T__23 || _la===ThriftParser.T__24)) {
+	        if(!(_la===24 || _la===25)) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -1152,23 +1152,23 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 289;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
-	        case ThriftParser.T__27:
-	        case ThriftParser.T__30:
-	        case ThriftParser.T__31:
-	        case ThriftParser.TYPE_BOOL:
-	        case ThriftParser.TYPE_BYTE:
-	        case ThriftParser.TYPE_I16:
-	        case ThriftParser.TYPE_I32:
-	        case ThriftParser.TYPE_I64:
-	        case ThriftParser.TYPE_DOUBLE:
-	        case ThriftParser.TYPE_STRING:
-	        case ThriftParser.TYPE_BINARY:
-	        case ThriftParser.IDENTIFIER:
+	        case 28:
+	        case 31:
+	        case 32:
+	        case 40:
+	        case 41:
+	        case 42:
+	        case 43:
+	        case 44:
+	        case 45:
+	        case 46:
+	        case 47:
+	        case 49:
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 287;
 	            this.field_type();
 	            break;
-	        case ThriftParser.T__25:
+	        case 26:
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 288;
 	            this.match(ThriftParser.T__25);
@@ -1205,7 +1205,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 296;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(((((_la - 20)) & ~0x1f) == 0 && ((1 << (_la - 20)) & ((1 << (ThriftParser.T__19 - 20)) | (1 << (ThriftParser.T__20 - 20)) | (1 << (ThriftParser.T__27 - 20)) | (1 << (ThriftParser.T__30 - 20)) | (1 << (ThriftParser.T__31 - 20)) | (1 << (ThriftParser.INTEGER - 20)) | (1 << (ThriftParser.HEX_INTEGER - 20)) | (1 << (ThriftParser.TYPE_BOOL - 20)) | (1 << (ThriftParser.TYPE_BYTE - 20)) | (1 << (ThriftParser.TYPE_I16 - 20)) | (1 << (ThriftParser.TYPE_I32 - 20)) | (1 << (ThriftParser.TYPE_I64 - 20)) | (1 << (ThriftParser.TYPE_DOUBLE - 20)) | (1 << (ThriftParser.TYPE_STRING - 20)) | (1 << (ThriftParser.TYPE_BINARY - 20)) | (1 << (ThriftParser.IDENTIFIER - 20)))) !== 0)) {
+	        while(((((_la - 20)) & ~0x1f) == 0 && ((1 << (_la - 20)) & 804657411) !== 0)) {
 	            this.state = 293;
 	            this.field();
 	            this.state = 298;
@@ -1241,7 +1241,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 305;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===ThriftParser.IDENTIFIER) {
+	        while(_la===49) {
 	            this.state = 302;
 	            this.type_annotation();
 	            this.state = 307;
@@ -1277,7 +1277,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 313;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__7) {
+	        if(_la===8) {
 	            this.state = 311;
 	            this.match(ThriftParser.T__7);
 	            this.state = 312;
@@ -1287,7 +1287,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 316;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__35 || _la===ThriftParser.COMMA) {
+	        if(_la===36 || _la===50) {
 	            this.state = 315;
 	            this.list_separator();
 	        }
@@ -1315,16 +1315,16 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 320;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
-	        case ThriftParser.INTEGER:
-	        case ThriftParser.HEX_INTEGER:
+	        case 37:
+	        case 38:
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 318;
 	            this.integer();
 	            break;
-	        case ThriftParser.LITERAL_VALUE:
+	        case 48:
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 319;
-	            this.match(ThriftParser.LITERAL_VALUE);
+	            this.match(ThriftParser.LITERAL);
 	            break;
 	        default:
 	            throw new antlr4.error.NoViableAltException(this);
@@ -1352,26 +1352,26 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 325;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
-	        case ThriftParser.TYPE_BOOL:
-	        case ThriftParser.TYPE_BYTE:
-	        case ThriftParser.TYPE_I16:
-	        case ThriftParser.TYPE_I32:
-	        case ThriftParser.TYPE_I64:
-	        case ThriftParser.TYPE_DOUBLE:
-	        case ThriftParser.TYPE_STRING:
-	        case ThriftParser.TYPE_BINARY:
+	        case 40:
+	        case 41:
+	        case 42:
+	        case 43:
+	        case 44:
+	        case 45:
+	        case 46:
+	        case 47:
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 322;
 	            this.base_type();
 	            break;
-	        case ThriftParser.IDENTIFIER:
+	        case 49:
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 323;
 	            this.match(ThriftParser.IDENTIFIER);
 	            break;
-	        case ThriftParser.T__27:
-	        case ThriftParser.T__30:
-	        case ThriftParser.T__31:
+	        case 28:
+	        case 31:
+	        case 32:
 	            this.enterOuterAlt(localctx, 3);
 	            this.state = 324;
 	            this.container_type();
@@ -1406,7 +1406,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 329;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 328;
 	            this.type_annotations();
 	        }
@@ -1436,15 +1436,15 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 334;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
-	        case ThriftParser.T__27:
+	        case 28:
 	            this.state = 331;
 	            this.map_type();
 	            break;
-	        case ThriftParser.T__30:
+	        case 31:
 	            this.state = 332;
 	            this.set_type();
 	            break;
-	        case ThriftParser.T__31:
+	        case 32:
 	            this.state = 333;
 	            this.list_type();
 	            break;
@@ -1454,7 +1454,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 337;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__21) {
+	        if(_la===22) {
 	            this.state = 336;
 	            this.type_annotations();
 	        }
@@ -1486,7 +1486,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 341;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__32) {
+	        if(_la===33) {
 	            this.state = 340;
 	            this.cpp_type();
 	        }
@@ -1528,7 +1528,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 351;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__32) {
+	        if(_la===33) {
 	            this.state = 350;
 	            this.cpp_type();
 	        }
@@ -1572,7 +1572,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 362;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__32) {
+	        if(_la===33) {
 	            this.state = 361;
 	            this.cpp_type();
 	        }
@@ -1601,7 +1601,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 364;
 	        this.match(ThriftParser.T__32);
 	        this.state = 365;
-	        this.match(ThriftParser.LITERAL_VALUE);
+	        this.match(ThriftParser.LITERAL);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -1625,33 +1625,33 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 373;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
-	        case ThriftParser.INTEGER:
-	        case ThriftParser.HEX_INTEGER:
+	        case 37:
+	        case 38:
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 367;
 	            this.integer();
 	            break;
-	        case ThriftParser.DOUBLE:
+	        case 39:
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 368;
 	            this.match(ThriftParser.DOUBLE);
 	            break;
-	        case ThriftParser.LITERAL_VALUE:
+	        case 48:
 	            this.enterOuterAlt(localctx, 3);
 	            this.state = 369;
-	            this.match(ThriftParser.LITERAL_VALUE);
+	            this.match(ThriftParser.LITERAL);
 	            break;
-	        case ThriftParser.IDENTIFIER:
+	        case 49:
 	            this.enterOuterAlt(localctx, 4);
 	            this.state = 370;
 	            this.match(ThriftParser.IDENTIFIER);
 	            break;
-	        case ThriftParser.T__33:
+	        case 34:
 	            this.enterOuterAlt(localctx, 5);
 	            this.state = 371;
 	            this.const_list();
 	            break;
-	        case ThriftParser.T__10:
+	        case 11:
 	            this.enterOuterAlt(localctx, 6);
 	            this.state = 372;
 	            this.const_map();
@@ -1683,7 +1683,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 375;
 	        _la = this._input.LA(1);
-	        if(!(_la===ThriftParser.INTEGER || _la===ThriftParser.HEX_INTEGER)) {
+	        if(!(_la===37 || _la===38)) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -1717,13 +1717,13 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 384;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===ThriftParser.T__10 || ((((_la - 34)) & ~0x1f) == 0 && ((1 << (_la - 34)) & ((1 << (ThriftParser.T__33 - 34)) | (1 << (ThriftParser.INTEGER - 34)) | (1 << (ThriftParser.HEX_INTEGER - 34)) | (1 << (ThriftParser.DOUBLE - 34)) | (1 << (ThriftParser.LITERAL_VALUE - 34)) | (1 << (ThriftParser.IDENTIFIER - 34)))) !== 0)) {
+	        while(_la===11 || ((((_la - 34)) & ~0x1f) == 0 && ((1 << (_la - 34)) & 49209) !== 0)) {
 	            this.state = 378;
 	            this.const_value();
 	            this.state = 380;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if(_la===ThriftParser.T__35 || _la===ThriftParser.COMMA) {
+	            if(_la===36 || _la===50) {
 	                this.state = 379;
 	                this.list_separator();
 	            }
@@ -1765,7 +1765,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 393;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===ThriftParser.T__35 || _la===ThriftParser.COMMA) {
+	        if(_la===36 || _la===50) {
 	            this.state = 392;
 	            this.list_separator();
 	        }
@@ -1797,7 +1797,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.state = 399;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===ThriftParser.T__10 || ((((_la - 34)) & ~0x1f) == 0 && ((1 << (_la - 34)) & ((1 << (ThriftParser.T__33 - 34)) | (1 << (ThriftParser.INTEGER - 34)) | (1 << (ThriftParser.HEX_INTEGER - 34)) | (1 << (ThriftParser.DOUBLE - 34)) | (1 << (ThriftParser.LITERAL_VALUE - 34)) | (1 << (ThriftParser.IDENTIFIER - 34)))) !== 0)) {
+	        while(_la===11 || ((((_la - 34)) & ~0x1f) == 0 && ((1 << (_la - 34)) & 49209) !== 0)) {
 	            this.state = 396;
 	            this.const_map_entry();
 	            this.state = 401;
@@ -1830,7 +1830,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 404;
 	        _la = this._input.LA(1);
-	        if(!(_la===ThriftParser.T__35 || _la===ThriftParser.COMMA)) {
+	        if(!(_la===36 || _la===50)) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -1861,7 +1861,7 @@ export default class ThriftParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 406;
 	        _la = this._input.LA(1);
-	        if(!(((((_la - 40)) & ~0x1f) == 0 && ((1 << (_la - 40)) & ((1 << (ThriftParser.TYPE_BOOL - 40)) | (1 << (ThriftParser.TYPE_BYTE - 40)) | (1 << (ThriftParser.TYPE_I16 - 40)) | (1 << (ThriftParser.TYPE_I32 - 40)) | (1 << (ThriftParser.TYPE_I64 - 40)) | (1 << (ThriftParser.TYPE_DOUBLE - 40)) | (1 << (ThriftParser.TYPE_STRING - 40)) | (1 << (ThriftParser.TYPE_BINARY - 40)))) !== 0))) {
+	        if(!(((((_la - 40)) & ~0x1f) == 0 && ((1 << (_la - 40)) & 255) !== 0))) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -1933,7 +1933,7 @@ ThriftParser.TYPE_I64 = 44;
 ThriftParser.TYPE_DOUBLE = 45;
 ThriftParser.TYPE_STRING = 46;
 ThriftParser.TYPE_BINARY = 47;
-ThriftParser.LITERAL_VALUE = 48;
+ThriftParser.LITERAL = 48;
 ThriftParser.IDENTIFIER = 49;
 ThriftParser.COMMA = 50;
 ThriftParser.WS = 51;
@@ -2094,8 +2094,8 @@ class Include_Context extends antlr4.ParserRuleContext {
         this.ruleIndex = ThriftParser.RULE_include_;
     }
 
-	LITERAL_VALUE() {
-	    return this.getToken(ThriftParser.LITERAL_VALUE, 0);
+	LITERAL() {
+	    return this.getToken(ThriftParser.LITERAL, 0);
 	};
 
 	enterRule(listener) {
@@ -2141,8 +2141,8 @@ class Namespace_Context extends antlr4.ParserRuleContext {
 	};
 
 
-	LITERAL_VALUE() {
-	    return this.getToken(ThriftParser.LITERAL_VALUE, 0);
+	LITERAL() {
+	    return this.getToken(ThriftParser.LITERAL, 0);
 	};
 
 	type_annotations() {
@@ -2180,8 +2180,8 @@ class Cpp_includeContext extends antlr4.ParserRuleContext {
         this.ruleIndex = ThriftParser.RULE_cpp_include;
     }
 
-	LITERAL_VALUE() {
-	    return this.getToken(ThriftParser.LITERAL_VALUE, 0);
+	LITERAL() {
+	    return this.getToken(ThriftParser.LITERAL, 0);
 	};
 
 	enterRule(listener) {
@@ -2469,14 +2469,14 @@ class SenumContext extends antlr4.ParserRuleContext {
 	    return this.getToken(ThriftParser.IDENTIFIER, 0);
 	};
 
-	LITERAL_VALUE = function(i) {
+	LITERAL = function(i) {
 		if(i===undefined) {
 			i = null;
 		}
 	    if(i===null) {
-	        return this.getTokens(ThriftParser.LITERAL_VALUE);
+	        return this.getTokens(ThriftParser.LITERAL);
 	    } else {
-	        return this.getToken(ThriftParser.LITERAL_VALUE, i);
+	        return this.getToken(ThriftParser.LITERAL, i);
 	    }
 	};
 
@@ -3125,8 +3125,8 @@ class Annotation_valueContext extends antlr4.ParserRuleContext {
 	    return this.getTypedRuleContext(IntegerContext,0);
 	};
 
-	LITERAL_VALUE() {
-	    return this.getToken(ThriftParser.LITERAL_VALUE, 0);
+	LITERAL() {
+	    return this.getToken(ThriftParser.LITERAL, 0);
 	};
 
 	enterRule(listener) {
@@ -3417,8 +3417,8 @@ class Cpp_typeContext extends antlr4.ParserRuleContext {
         this.ruleIndex = ThriftParser.RULE_cpp_type;
     }
 
-	LITERAL_VALUE() {
-	    return this.getToken(ThriftParser.LITERAL_VALUE, 0);
+	LITERAL() {
+	    return this.getToken(ThriftParser.LITERAL, 0);
 	};
 
 	enterRule(listener) {
@@ -3460,8 +3460,8 @@ class Const_valueContext extends antlr4.ParserRuleContext {
 	    return this.getToken(ThriftParser.DOUBLE, 0);
 	};
 
-	LITERAL_VALUE() {
-	    return this.getToken(ThriftParser.LITERAL_VALUE, 0);
+	LITERAL() {
+	    return this.getToken(ThriftParser.LITERAL, 0);
 	};
 
 	IDENTIFIER() {

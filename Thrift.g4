@@ -9,18 +9,18 @@ header
     ;
 
 include_
-    : 'include' LITERAL_VALUE
+    : 'include' LITERAL
     ;
 
 namespace_
-    : 'namespace' '*' (IDENTIFIER | LITERAL_VALUE)
-    | 'namespace' IDENTIFIER (IDENTIFIER | LITERAL_VALUE) type_annotations?
+    : 'namespace' '*' (IDENTIFIER | LITERAL)
+    | 'namespace' IDENTIFIER (IDENTIFIER | LITERAL) type_annotations?
     | 'cpp_namespace' IDENTIFIER
     | 'php_namespace' IDENTIFIER
     ;
 
 cpp_include
-    : 'cpp_include' LITERAL_VALUE
+    : 'cpp_include' LITERAL
     ;
 
 
@@ -45,7 +45,7 @@ enum_field
     ;
 
 senum
-    : 'senum' IDENTIFIER '{' (LITERAL_VALUE list_separator?)* '}' type_annotations?
+    : 'senum' IDENTIFIER '{' (LITERAL list_separator?)* '}' type_annotations?
     ;
 
 struct_
@@ -104,7 +104,7 @@ type_annotation
     ;
 
 annotation_value
-    : integer | LITERAL_VALUE
+    : integer | LITERAL
     ;
 
 
@@ -133,11 +133,11 @@ list_type
     ;
 
 cpp_type
-    : 'cpp_type' LITERAL_VALUE
+    : 'cpp_type' LITERAL
     ;
 
 const_value
-    : integer | DOUBLE | LITERAL_VALUE | IDENTIFIER | const_list | const_map
+    : integer | DOUBLE | LITERAL | IDENTIFIER | const_list | const_map
     ;
 
 integer
@@ -185,12 +185,13 @@ TYPE_DOUBLE: 'double';
 TYPE_STRING: 'string';
 TYPE_BINARY: 'binary';
 
-LITERAL_VALUE
-    : ( ( '"'  (('\\' ('r'|'n'|'t'|'"'|'\''|'\\') ) | ~('\\' | '"' ))* '"')
-        |
-        ( '\'' (('\\' ('r'|'n'|'t'|'"'|'\''|'\\') ) | ~('\\' | '\''))* '\'')
-      )
+LITERAL
+    : '"' ( ESC_SEQ | ~[\\"] )* '"'
+    | '\'' ( ESC_SEQ | ~[\\'] )* '\''
     ;
+
+fragment ESC_SEQ : '\\' [rnt"'\\] ;
+
 
 IDENTIFIER
     : (LETTER | '_') (LETTER | DIGIT | '.' | '_')*
