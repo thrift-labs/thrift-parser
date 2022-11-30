@@ -1,7 +1,7 @@
 [[package]]
 name = "antlr4-python3-runtime"
-version = "4.10"
-summary = "ANTLR 4.10 runtime for Python 2.7.12"
+version = "4.11.1"
+summary = "ANTLR 4.11.1 runtime for Python 3"
 
 [[package]]
 name = "atomicwrites"
@@ -132,11 +132,12 @@ summary = "Backport of pathlib-compatible object wrapper for zip files"
 
 [metadata]
 lock_version = "4.0"
-content_hash = "sha256:73b4a1537fffa2c3dd1583f15177ed83a1480f9718af54788ea2dda961e11814"
+content_hash = "sha256:785f84a230ff04a1a934db5eceb48570f3e267d3d7a2de9c261967b59d43ea83"
 
 [metadata.files]
-"antlr4-python3-runtime 4.10" = [
-    {url = "https://files.pythonhosted.org/packages/4e/cc/f268dcff9983d26d68eeadd43a05174901e19d75f9387939197a95deacfc/antlr4-python3-runtime-4.10.tar.gz", hash = "sha256:061a49bc72ae05a35d9b61c0ba0ac36c0397708819f02fbfb20a80e47d287a1b"},
+"antlr4-python3-runtime 4.11.1" = [
+    {url = "https://files.pythonhosted.org/packages/b6/3a/4f2e9d67277cc255a17a34c1b54e02d939ca5991bc596dee3d63e587e512/antlr4_python3_runtime-4.11.1-py3-none-any.whl", hash = "sha256:ff1954eda1ca9072c02bf500387d0c86cb549bef4dbb3b64f39468b547ec5f6b"},
+    {url = "https://files.pythonhosted.org/packages/e0/64/c548678120cccf784f555972ed37cedcf4f026abeec30ab0340c3af4ea07/antlr4-python3-runtime-4.11.1.tar.gz", hash = "sha256:a53de701312f9bdacc5258a6872cd6c62b90d3a90ae25e494026f76267333b60"},
 ]
 "atomicwrites 1.4.0" = [
     {url = "https://files.pythonhosted.org/packages/2c/a0/da5f49008ec6e9a658dbf5d7310a4debd397bce0b4db03cf8a410066bb87/atomicwrites-1.4.0-py2.py3-none-any.whl", hash = "sha256:6d1784dea7c0c8d4a5172b6c620f40b6e4cbfdf96d783691f2e1302a7b88e197"},
