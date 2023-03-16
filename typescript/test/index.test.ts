@@ -7,7 +7,7 @@ import { ThriftData } from '../src';
 describe('Thrift Data', function () {
     describe('test', function () {
       it('load thrift from string', function () {
-        const data = ThriftData.from_string('include "shared.thrift"');
+        const data = ThriftData.fromString('include "shared.thrift"');
         assert.strictEqual(data.tokens.get(0).text, 'include');
         const header = data.document.getChild(0);
         const include = header.getChild(0);
@@ -20,7 +20,7 @@ describe('Thrift Data', function () {
 
       it('load literal value', function () {
         const thrift = `const string default_user = 'it\\'s name is \\" x \\" or \\'x\\' \\r\\t\\n';`
-        const data = ThriftData.from_string(thrift);
+        const data = ThriftData.fromString(thrift);
         assert.strictEqual(data.tokens.get(0).text, 'const');
 
         const defines = data.document.getChild(0);
@@ -38,7 +38,7 @@ describe('Thrift Data', function () {
         const thrift = `const string default_user = "\\'default_user\\'" ;
         const string default_name = '"abc\\'s"';`
 
-        const data = ThriftData.from_string(thrift);
+        const data = ThriftData.fromString(thrift);
         assert.equal(true, data instanceof ThriftData);
         assert.notEqual(data.tokens.get(0).text, '');
       });
@@ -46,7 +46,7 @@ describe('Thrift Data', function () {
       it('test complex literal more', () => {
         const thrift = `const string default_user = "\\'default_user\\'" ;
         const string default_name = '"abc\\'s"';`
-        const data = ThriftData.from_string(thrift);
+        const data = ThriftData.fromString(thrift);
         assert.equal(true, data instanceof ThriftData);
         assert.notEqual(data.tokens.get(0).text, '');
       })
