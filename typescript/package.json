@@ -1,6 +1,6 @@
 {
   "name": "thrift-parser-ts",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A parser of Thrift , by Antlr4 and antlr4ts",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -12,7 +12,8 @@
     "build": "tsc",
     "clean": "rm -rf ./lib/",
     "test": "mocha -r ts-node/register 'test/*.ts'",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepack": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
