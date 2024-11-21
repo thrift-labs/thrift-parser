@@ -27,7 +27,12 @@ public class ParserTest {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         ThriftParser parser = new ThriftParser(tokens);
         
-        HeaderContext header = parser.header(0);
-        assertEquals("", header.String(), header.String());
+        ThriftParser.HeaderContext header = parser.header();
+        var n = header.include_();
+        TerminalNode tn = n.LITERAL();
+        Token t = tn.getSymbol();
+        String s = t.getText();
+
+        assertEquals("\"./other.thrift\"", s);
     }
 }
