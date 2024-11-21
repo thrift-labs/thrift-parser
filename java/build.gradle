@@ -16,15 +16,6 @@ group = 'thriftlabs' // 替换为你的组织名
 version = '0.0.1' // 替换为你的版本号
 
 jar {
-    archiveBaseName.set('thriftparser')
-}
-
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/main/java']
-        }
-    }
 }
 
 test {
