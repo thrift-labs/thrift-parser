@@ -8,13 +8,15 @@ repositories {
 
 dependencies {
     implementation 'org.antlr:antlr4-runtime:4.13.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
-group = 'thrift-labs' // 替换为你的组织名
+group = 'thriftlabs' // 替换为你的组织名
 version = '0.0.1' // 替换为你的版本号
 
 jar {
-    archiveBaseName.set('thrift-parser')
+    archiveBaseName.set('thriftparser')
 }
 
 sourceSets {
@@ -23,4 +25,8 @@ sourceSets {
             srcDirs = ['src/main/java']
         }
     }
+}
+
+test {
+    useJUnitPlatform()
 }
