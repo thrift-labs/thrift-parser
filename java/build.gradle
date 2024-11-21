@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id("maven-publish")
 }
 
 repositories {
@@ -20,4 +21,18 @@ jar {
 
 test {
     useJUnitPlatform()
+}
+
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/thrift-labs/thrift-parser"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
