@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.antlr:antlr4-runtime:4.13.0'
+}
+
+group = 'thrift-labs' // 替换为你的组织名
+version = '0.0.1' // 替换为你的版本号
+
+jar {
+    archiveBaseName.set('thrift-parser')
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+}
