@@ -13,10 +13,11 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
-group = 'thriftlabs' // 替换为你的组织名
-version = '0.0.1' // 替换为你的版本号
+group = 'thriftlabs'
+version = '0.0.1'
 
 jar {
+    archiveBaseName.set('thriftparser')
 }
 
 test {
