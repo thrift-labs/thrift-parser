@@ -26,6 +26,15 @@ test {
 
 
 publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = 'thriftlabs'
+            artifactId = 'thriftparser'
+            version = '0.0.1'
+        }
+    }
+
     repositories {
         maven {
             name = "GitHubPackages"
