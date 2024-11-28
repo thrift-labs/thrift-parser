@@ -44,5 +44,5 @@ jobs:
       run: gradle publish
       working-directory: ./java
       env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_ACTOR: ${{ github.actor }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
