@@ -14,7 +14,7 @@ dependencies {
 }
 
 group = 'thriftlabs'
-version = '0.0.2'
+version = '0.0.3'
 
 jar {
     archiveBaseName.set('thriftparser')
@@ -31,7 +31,7 @@ publishing {
             from components.java
             groupId = 'thriftlabs'
             artifactId = 'thriftparser'
-            version = '0.0.2'
+            version = '0.0.3'
         }
     }
 
