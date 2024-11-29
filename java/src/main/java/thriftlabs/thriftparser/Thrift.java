@@ -3,9 +3,6 @@ package thriftlabs.thriftparser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.ParserRuleContext;
-
-import thriftlabs.thriftparser.*;
 
 public class Thrift {
     public static final int CommentChannel = 2; // 定义评论通道的常量
@@ -27,27 +24,11 @@ public class Thrift {
         return new ParserResult(lexer, tokens, parser, document);
     }
 
-    public static class ThriftData {
-        private CommonTokenStream tokens;
-        private ThriftParser.DocumentContext document;
-
-        public ThriftData(CharStream inputStream) {
-            ParserResult result = parse(inputStream);
-            this.tokens = result.tokens;
-            this.document = result.document;
-        }
-
-        public static ThriftData fromString(String data) {
-            CharStream inputStream = CharStreams.fromString(data);
-            return new ThriftData(inputStream);
-        }
-    }
-
     public static class ParserResult {
-        ThriftLexer lexer;
-        CommonTokenStream tokens;
-        ThriftParser parser;
-        ThriftParser.DocumentContext document;
+        public ThriftLexer lexer;
+        public CommonTokenStream tokens;
+        public ThriftParser parser;
+        public ThriftParser.DocumentContext document;
 
         public ParserResult(ThriftLexer lexer, CommonTokenStream tokens, ThriftParser parser,
                 ThriftParser.DocumentContext document) {
