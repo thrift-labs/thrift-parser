@@ -4,6 +4,9 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -41,5 +44,12 @@ public class ParserTest {
         Thrift.ParserResult td = Thrift.parse(content);
         List<ThriftParser.HeaderContext> headers = td.document.header();
         assertEquals(headers.size(), 4);
+        assertTrue(td.isSuccess());
+    }
+
+    @Test
+    public void testFailThrift() {
+        Thrift.ParserResult td = Thrift.parse("123-1");
+        assertFalse(td.isSuccess());
     }
 }

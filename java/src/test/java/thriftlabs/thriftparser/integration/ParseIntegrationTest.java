@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import thriftlabs.thriftparser.Thrift;
 import thriftlabs.thriftparser.ThriftParser;
@@ -24,6 +25,7 @@ public class ParseIntegrationTest {
     @Test
     public void testThrift() {
         Thrift.ParserResult td = Thrift.parse(content);
+        assertTrue(td.isSuccess());
         List<ThriftParser.HeaderContext> headers = td.document.header();
         assertEquals(headers.size(), 4);
     }
