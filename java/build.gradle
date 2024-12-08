@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id("maven-publish")
+    id 'maven-publish'
 }
 
 repositories {
@@ -14,7 +14,7 @@ dependencies {
 }
 
 group = 'thriftlabs'
-version = '0.0.3'
+version = '0.0.4'
 
 jar {
     archiveBaseName.set('thriftparser')
@@ -24,14 +24,13 @@ test {
     useJUnitPlatform()
 }
 
-
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            groupId = 'thriftlabs'
+            groupId = group
             artifactId = 'thriftparser'
-            version = '0.0.3'
+            version = version
         }
     }
 
